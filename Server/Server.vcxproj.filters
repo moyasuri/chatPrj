@@ -21,7 +21,7 @@
     <ClCompile Include="MySQL.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="UsageServer.cpp">
+    <ClCompile Include="myVar.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,16 +32,7 @@
     <ClInclude Include="main.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Room.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="UsageServer.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="User.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="UserInfo.h">
+    <ClInclude Include="myVar.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

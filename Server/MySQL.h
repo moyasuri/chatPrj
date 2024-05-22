@@ -2,8 +2,8 @@
 
 #include <string>
 #include <mysql/jdbc.h>
-#include "UsageServer.h"
 #include <vector>
+
 using std::string;
 
 

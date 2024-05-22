@@ -6,11 +6,8 @@
 #include <string>
 #include <sstream>
 #include <vector>
-#include "UsageServer.h"
-//#include "UserInfo.h"
-#include "Room.h"
 #include <iomanip>
-
+#include "myVar.h"
 
 using std::cout;
 using std::endl;
@@ -25,21 +22,22 @@ extern std::string _id_temp, _msg_temp, result;
 string _from_nickname;
 string _date;
 string _id;
-extern int client_count;
+
 extern bool multimsg;
 #define MAX_SIZE 1024//소켓 박스크기
 
+
+// int타입을 string으로 만들어주는 함수
 string s_(int e_num) {
     return std::to_string(e_num);
 }
 
 
 
-
-void MySQL::_send_msg(const char* msg, int room_Index66) {
+void MySQL::_send_msg(const char* msg, int room_Index) {
     size_t length = strlen(msg);
     for (int i = 0; i < client_count; i++) { // 이 방에 접속해 있는 모든 client에게 메시지 전송
-        if (stoi(sck_list[i]._user.getJoinRoomIndex()) == room_Index66) {// UserInfo 객체 생성시 초기화 반드시 진행, JoinRoomIndex ="0"으로
+        if (stoi(sck_list[i]._user.getJoinRoomIndex()) == room_Index) {// UserInfo 객체 생성시 초기화 반드시 진행, JoinRoomIndex ="0"으로
             send(sck_list[i].sck, msg, length, 0);
         }
         else
@@ -47,17 +45,6 @@ void MySQL::_send_msg(const char* msg, int room_Index66) {
         //join_client 멤버들의 소켓으로 보내줘야 됨
     }
 }
-
-
-//void MySQL::room_activate(int roomIndex_, int index__) {
-//    string _my_ID62 = sck_list[index__]._user.getID();
-//    if (isWorkingRoomIndexExist(roomIndex_) == false) {
-//        workingRoom_list[roomIndex_].Room_Index = roomIndex_;
-//    }
-//    workingRoom_list[roomIndex_].join_client[index__] = (_my_ID62);
-//}
-
-
 
 
 
@@ -83,11 +70,11 @@ string MySQL::room_Delete(string roomidx, int idx) {
 
 
 void MySQL::room_activate(int roomIndex, int index__) {
-    string _my_ID62 = sck_list[index__]._user.getID();
+    string _my_ID = sck_list[index__]._user.getID();
     if (isWorkingRoomIndexExist(roomIndex) == false) {
         workingRoom_list[roomIndex].Room_Index = roomIndex;
     }
-    workingRoom_list[roomIndex].join_client.push_back(_my_ID62);
+    workingRoom_list[roomIndex].join_client.push_back(_my_ID);
 }
 
 
@@ -803,65 +790,6 @@ string MySQL::QuerySql(string msg, int idx) {
         }
         break;
     }
-    //case e_message_Sent: //이건 엔터가 들어간 메세지 관련 쓸꺼야 지우지마
-    //{
-    //    string _id = sck_list[idx]._user.getID();
-    //    string _to_nickname, _msg;
-
-
-    //    /*string query = "SELECT Member_ID FROM member WHERE Nickname = '" + _to_nickname + "'";
-    //    stmt = con->createStatement();
-    //    res = stmt->executeQuery(query);*/
-
-    //    std::stringstream ss_id_from, ss_msg_from;
-    //    prep_stmt = con->prepareStatement("SELECT * FROM short_note WHERE From_Short_Note_ID = ? AND (Respond_Short_Note = 1 OR Respond_Short_Note = 2 OR Respond_Short_Note = 3 OR Respond_Short_Note = 4);");
-    //    prep_stmt->setString(1, _id);
-
-    //    res = prep_stmt->executeQuery();
-    //    
-    //    _msg_temp = "";
-    //    // 이거는 엔터가 들어간 메세지를 구분해야하는 다른곳에서도 쓰일수 있어.
-    //    while (res->next()) {
-
-    //        ss_id_from << res->getString("To_Short_Note_ID") + delim; // 결과 값을 스트림에 추가
-    //        _msg_temp = res->getString("Short_Note_Text") + "\0";
-    //        ss_msg_from << _msg_temp.append(&nullChar, 1);
-
-    //        // 결과 처리
-    //    }
-    //    _id_from = "", _nick_from = "", _msg = "";
-    //    _id_temp = "", _msg_temp = "", result = "";
-
-    //    while (ss_id_from >> _id_temp)
-    //    {
-    //        string query = "SELECT Nickname FROM Member WHERE Member_ID =  '" + _id_temp + "'";
-    //        stmt = con->createStatement();
-    //        res = stmt->executeQuery(query);
-    //        if (res->next()) {
-    //            getline(ss_msg_from, _msg_temp, '\0');
-    //            if (ss_msg_from.peek() == '\0') {
-    //                // 다음 문자가 '\0'이면 마지막 '\0'이므로 추가하지 않음
-    //                continue;
-    //            }
-    //            _nick_from = "*/" + res->getString("Nickname");
-    //            result += _nick_from + delim + _msg_temp + delim;
-    //            
-    //        }
-    //    }
-
-    //    if (!result.empty())
-    //    {
-    //        _ret = trueStr + delim + result;
-    //        break;
-
-    //    }
-    //    else
-    //    {
-    //        _ret = falseStr;
-    //        break;
-    //    }
-
-    //}
     case e_message_Sent_list: // 보낸 메세지
     {
         string _id = sck_list[idx]._user.getID();
@@ -1725,16 +1653,11 @@ string MySQL::QuerySql(string msg, int idx) {
     }
     case e_room_Delete:
     {
-        std::string temp_63;
-        ss >> temp_63;
-        _ret = room_Delete(temp_63, idx);
+        std::string temp;
+        ss >> temp;
+        _ret = room_Delete(temp, idx);
         break;
     }
-
-
-
-
-
 
     default:
         break;

@@ -1,5 +1,7 @@
-#include "UsageServer.h"
+#include "myVar.h"
 #include <string>
+
+int client_count = 0;
 
 
 std::string isTrue = "";
@@ -41,4 +43,13 @@ void IniMsg()
 	clrisTrue();
 	clrsvrMsg();
 	clrsqlMsg();
+}
+
+bool isNumeric(const std::string& str) {
+	for (char c : str) {
+		if (!std::isdigit(c)) {
+			return false;
+		}
+	}
+	return true;
 }
