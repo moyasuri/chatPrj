@@ -133,11 +133,15 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MySQL.cpp" />
+    <ClCompile Include="UsageServer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CommonVar.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MySQL.h" />
+    <ClInclude Include="Room.h" />
+    <ClInclude Include="UsageServer.h" />
+    <ClInclude Include="User.h" />
+    <ClInclude Include="UserInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

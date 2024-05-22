@@ -1,19 +1,16 @@
 #pragma comment(lib, "ws2_32.lib") //명시적인 라이브러리의 링크. 윈속 라이브러리 참조
 
-
+#include "MySQL.h"
+#include "main.h"
 #include <mysql/jdbc.h>
 #include <string>
 #include <sstream>
 #include <vector>
+#include "UsageServer.h"
+//#include "UserInfo.h"
+#include "Room.h"
 #include <iomanip>
 
-#include "MySQL.h"
-#include "main.h"
-#include "CommonVar.h"
-
-
-
-#define MAX_SIZE 1024//소켓 박스크기
 
 using std::cout;
 using std::endl;
@@ -29,17 +26,8 @@ string _from_nickname;
 string _date;
 string _id;
 extern int client_count;
-
-
-std::string isTrue = "";
-std::string svrMsg = "";
-std::string sqlMsg = "";
-bool multimsg = false;
-
-std::string _id_from="", _nick_from="", _msg="";
-std::string _id_temp="", _msg_temp = "", result = "";
-
-
+extern bool multimsg;
+#define MAX_SIZE 1024//소켓 박스크기
 
 string s_(int e_num) {
     return std::to_string(e_num);
