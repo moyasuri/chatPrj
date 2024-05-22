@@ -135,6 +135,7 @@
     <ClCompile Include="MySQL.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CommonVar.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MySQL.h" />
   </ItemGroup>

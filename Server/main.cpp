@@ -32,9 +32,9 @@ int client_count = 0; // 현재 접속해 있는 클라이언트를 count 할 �
 
 
 //bool isNumeric(const std::string& str);
-void add_client1();
+void add_client();
 void server_init(); // socket 초기화 함수. socket(), bind(), listen() 함수 실행됨. 자세한 내용은 함수 구현부에서 확인.
-void add_client(); // 소켓에 연결을 시도하는 client를 추가(accept)하는 함수. client accept() 함수 실행됨. 자세한 내용은 함수 구현부에서 확인.
+
 void send_msg(const char* msg); // send() 함수 실행됨. 자세한 내용은 함수 구현부에서 확인.
 void recv_msg(int idx); // recv() 함수 실행됨. 자세한 내용은 함수 구현부에서 확인.
 void del_client(int idx); // 소켓에 연결되어 있는 client를 제거하는 함수. closesocket() 실행됨. 자세한 내용은 함수 구현부에서 확인.
@@ -55,7 +55,7 @@ int main() {
         std::thread th1[MAX_CLIENT];
         for (int i = 0; i < MAX_CLIENT; i++) {
             // 인원 수 만큼 thread 생성해서 각각의 클라이언트가 동시에 소통할 수 있도록 함.
-            th1[i] = std::thread(add_client1);
+            th1[i] = std::thread(add_client);
             //th1[i] = std::thread(add_client);
         }
         //std::thread th1(add_client); // 이렇게 하면 하나의 client만 받아짐...
@@ -105,7 +105,7 @@ void server_init() {
 
 
 
-void add_client1() { //add_client  변형해서 우리 상황에 맞게 사용하고 싶음
+void add_client() { //add_client  변형해서 우리 상황에 맞게 사용하고 싶음
     SOCKADDR_IN addr = {};
     int addrsize = sizeof(addr);
     char buf[MAX_SIZE] = { };
@@ -129,34 +129,7 @@ void add_client1() { //add_client  변형해서 우리 상황에 맞게 사용�
 
 }
 
-void add_client() {
-    SOCKADDR_IN addr = {};
-    int addrsize = sizeof(addr);
-    char buf[MAX_SIZE] = { };
 
-
-    ZeroMemory(&addr, addrsize); // addr의 메모리 영역을 0으로 초기화
-
-    SOCKET_INFO new_client = {};
-
-    new_client.sck = accept(server_sock.sck, (sockaddr*)&addr, &addrsize);
-    recv(new_client.sck, buf, MAX_SIZE, 0);
-    // Winsock2의 recv 함수. client가 보낸 닉네임을 받음.
-    new_client.user = string(buf);
-
-    string msg = "[공지] " + new_client.user + " 님이 입장했습니다.";
-    cout << msg << endl;
-    sck_list.push_back(new_client); // client 정보를 답는 sck_list 배열에 새로운 client 추가
-
-    std::thread th(recv_msg, client_count);
-    // 다른 사람들로부터 오는 메시지를 계속해서 받을 수 있는 상태로 만들어 두기.
-
-    client_count++; // client 수 증가.
-    cout << "[공지] 현재 접속자 수 : " << client_count << "명" << endl;
-    send_msg(msg.c_str()); // c_str : string 타입을 const chqr* 타입으로 바꿔줌.
-
-    th.join();
-}
 
 void send_msg(const char* msg) {
     size_t length = strlen(msg);
