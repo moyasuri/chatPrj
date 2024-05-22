@@ -3,8 +3,7 @@
 
 #include <WinSock2.h>
 #include <string>
-#include "UserInfo.h"
-#include "Room.h"
+#include "myVar.h"
 
 using std::string;
 
