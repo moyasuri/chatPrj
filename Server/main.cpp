@@ -23,6 +23,7 @@ using std::endl;
 using std::string;
 
 
+
 std::mutex sck_list_mutex;
 std::vector<SOCKET_INFO> sck_list; // 연결된 클라이언트 소켓들을 저장할 배열 선언.
 SOCKET_INFO server_sock; // 서버 소켓에 대한 정보를 저장할 변수 선언.
@@ -34,9 +35,13 @@ void send_msg(const char* msg); // send() 함수 실행됨. 자세한 내용은 
 void recv_msg(int idx); // recv() 함수 실행됨. 자세한 내용은 함수 구현부에서 확인.
 void del_client(int idx); // 소켓에 연결되어 있는 client를 제거하는 함수. closesocket() 실행됨. 자세한 내용은 함수 구현부에서 확인.
 
-int main() {
-    WSADATA wsa;
 
+
+int main() {
+    
+    
+    WSADATA wsa;
+    
     // Winsock를 초기화하는 함수. MAKEWORD(2, 2)는 Winsock의 2.2 버전을 사용하겠다는 의미.
     // 실행에 성공하면 0을, 실패하면 그 이외의 값을 반환.
     // 0을 반환했다는 것은 Winsock을 사용할 준비가 되었다는 의미.
@@ -44,10 +49,12 @@ int main() {
 
     if (!code) {
         server_init();
-        /*MySQL* mySQL = new MySQL();
+        MySQL* mySQL = new MySQL();
         mySQL->Init_Mysql();
-        mySQL->set_database("chat");*/
+        mySQL->set_database("chat");
+
         std::thread th1[MAX_CLIENT];
+
         for (int i = 0; i < MAX_CLIENT; i++) {
             // 인원 수 만큼 thread 생성해서 각각의 클라이언트가 동시에 소통할 수 있도록 함.
             th1[i] = std::thread(add_client);

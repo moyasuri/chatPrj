@@ -1,0 +1,2 @@
+﻿#include "FriendsResponse.h"
+

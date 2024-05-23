@@ -122,19 +122,138 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddFriends.cpp" />
+    <ClCompile Include="ChatRoom.cpp" />
+    <ClCompile Include="CreateChatRoom.cpp" />
+    <ClCompile Include="DeleteRoom.cpp" />
+    <ClCompile Include="EditProfile.cpp" />
+    <ClCompile Include="FindAccount.cpp" />
+    <ClCompile Include="Friends.cpp" />
+    <ClCompile Include="FriendsList.cpp" />
+    <ClCompile Include="FriendsResponse.cpp" />
+    <ClCompile Include="GeneralChatList.cpp" />
+    <ClCompile Include="JoinChatRoom.cpp" />
+    <ClCompile Include="MainForm.cpp" />
+    <ClCompile Include="MessageMain.cpp" />
+    <ClCompile Include="MessageSent.cpp" />
+    <ClCompile Include="MsgBox.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="MyFunction.cpp" />
+    <ClCompile Include="NewMessage.cpp" />
+    <ClCompile Include="SignupForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddFriends.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ChatRoom.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="CreateChatRoom.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="DeleteRoom.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="EditProfile.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="enum.h" />
+    <ClInclude Include="FindAccount.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Friends.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="FriendsList.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="FriendsResponse.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="GeneralChatList.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="JoinChatRoom.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MainForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MessageMain.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MessageSent.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MsgBox.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MyFunction.h" />
+    <ClInclude Include="NewMessage.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="SignupForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddFriends.resx">
+      <DependentUpon>AddFriends.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChatRoom.resx">
+      <DependentUpon>ChatRoom.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateChatRoom.resx">
+      <DependentUpon>CreateChatRoom.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteRoom.resx">
+      <DependentUpon>DeleteRoom.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditProfile.resx">
+      <DependentUpon>EditProfile.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindAccount.resx">
+      <DependentUpon>FindAccount.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Friends.resx">
+      <DependentUpon>Friends.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FriendsList.resx">
+      <DependentUpon>FriendsList.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FriendsResponse.resx">
+      <DependentUpon>FriendsResponse.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneralChatList.resx">
+      <DependentUpon>GeneralChatList.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JoinChatRoom.resx">
+      <DependentUpon>JoinChatRoom.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessageMain.resx">
+      <DependentUpon>MessageMain.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessageSent.resx">
+      <DependentUpon>MessageSent.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MsgBox.resx">
+      <DependentUpon>MsgBox.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewMessage.resx">
+      <DependentUpon>NewMessage.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SignupForm.resx">
+      <DependentUpon>SignupForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
