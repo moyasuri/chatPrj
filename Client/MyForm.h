@@ -145,6 +145,7 @@ namespace Client {
 			this->btnSignUp->TabIndex = 3;
 			this->btnSignUp->Text = L"signup";
 			this->btnSignUp->UseVisualStyleBackColor = false;
+			this->btnSignUp->Click += gcnew System::EventHandler(this, &MyForm::btnSignUp_Click);
 			// 
 			// btnExit
 			// 
@@ -160,6 +161,7 @@ namespace Client {
 			this->btnExit->TabIndex = 3;
 			this->btnExit->Text = L"exit";
 			this->btnExit->UseVisualStyleBackColor = false;
+			this->btnExit->Click += gcnew System::EventHandler(this, &MyForm::btnExit_Click);
 			// 
 			// btnFindAccount
 			// 
@@ -175,6 +177,7 @@ namespace Client {
 			this->btnFindAccount->TabIndex = 3;
 			this->btnFindAccount->Text = L"find account";
 			this->btnFindAccount->UseVisualStyleBackColor = false;
+			this->btnFindAccount->Click += gcnew System::EventHandler(this, &MyForm::btnFindAccount_Click);
 			// 
 			// btnSignIn
 			// 
@@ -188,7 +191,7 @@ namespace Client {
 			this->btnSignIn->Name = L"btnSignIn";
 			this->btnSignIn->Size = System::Drawing::Size(139, 28);
 			this->btnSignIn->TabIndex = 3;
-			this->btnSignIn->Text = L"find account";
+			this->btnSignIn->Text = L"SignIn";
 			this->btnSignIn->UseVisualStyleBackColor = false;
 			this->btnSignIn->Click += gcnew System::EventHandler(this, &MyForm::btnSignIn_Click);
 			// 
@@ -276,20 +279,48 @@ namespace Client {
 
 		}
 
-		  public: void MainFormShow()
-		  {
-			  if (mainForm == nullptr || mainForm->IsDisposed) {
-				  mainForm = gcnew MainForm(_my);
-				  mainForm->Owner = this; // Owner를 설정해야 가능
-				  this->Hide();
-				  //this->HomeImageSound->Stop();
-				  mainForm->Show();
-			  }
-			  return;
-		  }
+		public: void MainFormShow()
+		{
+			if (mainForm == nullptr || mainForm->IsDisposed) {
+				mainForm = gcnew MainForm(_my);
+				mainForm->Owner = this; // Owner를 설정해야 가능
+				this->Hide();
+				//this->HomeImageSound->Stop();
+				mainForm->Show();
+			}
+			return;
+		}
 
 
 
+		
+
+
+		private: System::Void btnSignUp_Click(System::Object^ sender, System::EventArgs^ e) {
+						btnSignUp->NotifyDefault(false);
+
+			if (signupForm == nullptr || signupForm->IsDisposed) {
+				signupForm = gcnew SignupForm(_my);
+				signupForm->Show();
+
+			}
+			// 이미 생성된 폼이 열려 있는 경우, 해당 폼을 활성화시킵니다.
+			else {
+				signupForm->Activate();
+			}
+		}
+
+
+
+		private: System::Void btnSignIn_Click(System::Object^ sender, System::EventArgs^ e) {
+				btnSignIn->NotifyDefault(false);
+				SendMessageForm(e_id_try_Signin);
+		}
+
+		private: System::Void btnExit_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->Close();
+
+		}
 		private: System::Void btnFindAccount_Click(System::Object^ sender, System::EventArgs^ e) {
 			btnFindAccount->NotifyDefault(false);
 
@@ -301,39 +332,6 @@ namespace Client {
 			else {
 				findaccount->Activate();
 			}
-
 		}
-		private: System::Void btnSignUp_Click(System::Object^ sender, System::EventArgs^ e) {
-			btnSignUp->NotifyDefault(false);
-
-			if (signupForm == nullptr || signupForm->IsDisposed) {
-				signupForm = gcnew SignupForm(_my);
-				signupForm->Show();
-
-			}
-			// 이미 생성된 폼이 열려 있는 경우, 해당 폼을 활성화시킵니다.
-			else {
-				signupForm->Activate();
-			}
-
-		}
-
-
-
-
-
-		private: System::Void btnExit_Click(System::Object^ sender, System::EventArgs^ e) {
-
-			this->Close();
-
-		}
-
-
-
-
-	private: System::Void btnSignIn_Click(System::Object^ sender, System::EventArgs^ e) {
-			btnSignIn->NotifyDefault(false);
-			SendMessageForm(e_id_try_Signin);
-	}
 };
 }

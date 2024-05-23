@@ -86,39 +86,46 @@ namespace Client {
 			// 
 			// btnServer
 			// 
-			this->btnServer->Location = System::Drawing::Point(317, 38);
+			this->btnServer->Location = System::Drawing::Point(277, 30);
+			this->btnServer->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnServer->Name = L"btnServer";
-			this->btnServer->Size = System::Drawing::Size(158, 110);
+			this->btnServer->Size = System::Drawing::Size(138, 88);
 			this->btnServer->TabIndex = 0;
 			this->btnServer->Text = L"Server";
 			this->btnServer->UseVisualStyleBackColor = true;
+			this->btnServer->Click += gcnew System::EventHandler(this, &JoinChatRoom::btnServer_Click);
 			// 
 			// btnGeneral
 			// 
-			this->btnGeneral->Location = System::Drawing::Point(317, 241);
+			this->btnGeneral->Location = System::Drawing::Point(277, 193);
+			this->btnGeneral->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnGeneral->Name = L"btnGeneral";
-			this->btnGeneral->Size = System::Drawing::Size(158, 93);
+			this->btnGeneral->Size = System::Drawing::Size(138, 74);
 			this->btnGeneral->TabIndex = 0;
 			this->btnGeneral->Text = L"General";
 			this->btnGeneral->UseVisualStyleBackColor = true;
+			this->btnGeneral->Click += gcnew System::EventHandler(this, &JoinChatRoom::btnGeneral_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(411, 439);
+			this->btnClose->Location = System::Drawing::Point(360, 351);
+			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(134, 49);
+			this->btnClose->Size = System::Drawing::Size(117, 39);
 			this->btnClose->TabIndex = 1;
 			this->btnClose->Text = L"Close";
 			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->Click += gcnew System::EventHandler(this, &JoinChatRoom::btnClose_Click);
 			// 
 			// JoinChatRoom
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(670, 545);
+			this->ClientSize = System::Drawing::Size(586, 436);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnGeneral);
 			this->Controls->Add(this->btnServer);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"JoinChatRoom";
 			this->Text = L"JoinChatRoom";
 			this->ResumeLayout(false);
@@ -189,10 +196,13 @@ namespace Client {
 		}
 
 
+
+		private: System::Void JoinChatRoom_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+			this->Owner->Show();
+			this->Owner->Activate();
+		}
 		private: System::Void btnServer_Click(System::Object^ sender, System::EventArgs^ e) {
-
 			SendMessageForm(e_room_Enter);
-
 		}
 		private: System::Void btnGeneral_Click(System::Object^ sender, System::EventArgs^ e) {
 			if (generalChatList == nullptr || generalChatList->IsDisposed) {
@@ -204,12 +214,7 @@ namespace Client {
 			}
 		}
 		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
-
 			this->Close();
 		}
-		private: System::Void JoinChatRoom_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
-			this->Owner->Show();
-			this->Owner->Activate();
-		}
-	};
+};
 }
