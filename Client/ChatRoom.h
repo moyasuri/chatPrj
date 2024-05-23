@@ -105,50 +105,56 @@ namespace Client {
 			// 
 			// picBoxImojiMy
 			// 
-			this->picBoxImojiMy->Location = System::Drawing::Point(24, 150);
+			this->picBoxImojiMy->Location = System::Drawing::Point(21, 120);
+			this->picBoxImojiMy->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->picBoxImojiMy->Name = L"picBoxImojiMy";
-			this->picBoxImojiMy->Size = System::Drawing::Size(87, 91);
+			this->picBoxImojiMy->Size = System::Drawing::Size(76, 73);
 			this->picBoxImojiMy->TabIndex = 0;
 			this->picBoxImojiMy->TabStop = false;
 			// 
 			// picBoxImojiYou
 			// 
-			this->picBoxImojiYou->Location = System::Drawing::Point(24, 274);
+			this->picBoxImojiYou->Location = System::Drawing::Point(21, 219);
+			this->picBoxImojiYou->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->picBoxImojiYou->Name = L"picBoxImojiYou";
-			this->picBoxImojiYou->Size = System::Drawing::Size(87, 91);
+			this->picBoxImojiYou->Size = System::Drawing::Size(76, 73);
 			this->picBoxImojiYou->TabIndex = 0;
 			this->picBoxImojiYou->TabStop = false;
 			// 
 			// txtBoxId
 			// 
-			this->txtBoxId->Location = System::Drawing::Point(159, 51);
+			this->txtBoxId->Location = System::Drawing::Point(139, 41);
+			this->txtBoxId->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxId->Multiline = true;
 			this->txtBoxId->Name = L"txtBoxId";
 			this->txtBoxId->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
-			this->txtBoxId->Size = System::Drawing::Size(134, 189);
+			this->txtBoxId->Size = System::Drawing::Size(118, 152);
 			this->txtBoxId->TabIndex = 1;
 			// 
 			// txtBoxMessage
 			// 
-			this->txtBoxMessage->Location = System::Drawing::Point(338, 57);
+			this->txtBoxMessage->Location = System::Drawing::Point(296, 46);
+			this->txtBoxMessage->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxMessage->Multiline = true;
 			this->txtBoxMessage->Name = L"txtBoxMessage";
-			this->txtBoxMessage->Size = System::Drawing::Size(154, 182);
+			this->txtBoxMessage->Size = System::Drawing::Size(135, 146);
 			this->txtBoxMessage->TabIndex = 2;
 			// 
 			// txtBoxMyChat
 			// 
-			this->txtBoxMyChat->Location = System::Drawing::Point(338, 274);
+			this->txtBoxMyChat->Location = System::Drawing::Point(296, 219);
+			this->txtBoxMyChat->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxMyChat->Name = L"txtBoxMyChat";
-			this->txtBoxMyChat->Size = System::Drawing::Size(154, 25);
+			this->txtBoxMyChat->Size = System::Drawing::Size(135, 21);
 			this->txtBoxMyChat->TabIndex = 2;
 			// 
 			// txtBoxDate
 			// 
-			this->txtBoxDate->Location = System::Drawing::Point(526, 59);
+			this->txtBoxDate->Location = System::Drawing::Point(460, 47);
+			this->txtBoxDate->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxDate->Multiline = true;
 			this->txtBoxDate->Name = L"txtBoxDate";
-			this->txtBoxDate->Size = System::Drawing::Size(154, 182);
+			this->txtBoxDate->Size = System::Drawing::Size(135, 146);
 			this->txtBoxDate->TabIndex = 2;
 			// 
 			// ViewDataChat
@@ -158,10 +164,11 @@ namespace Client {
 				this->ID, this->Message,
 					this->Time
 			});
-			this->ViewDataChat->Location = System::Drawing::Point(526, 247);
+			this->ViewDataChat->Location = System::Drawing::Point(460, 198);
+			this->ViewDataChat->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->ViewDataChat->Name = L"ViewDataChat";
 			this->ViewDataChat->RowTemplate->Height = 27;
-			this->ViewDataChat->Size = System::Drawing::Size(431, 183);
+			this->ViewDataChat->Size = System::Drawing::Size(377, 146);
 			this->ViewDataChat->TabIndex = 3;
 			// 
 			// ID
@@ -181,27 +188,31 @@ namespace Client {
 			// 
 			// btnSend
 			// 
-			this->btnSend->Location = System::Drawing::Point(159, 432);
+			this->btnSend->Location = System::Drawing::Point(139, 346);
+			this->btnSend->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSend->Name = L"btnSend";
-			this->btnSend->Size = System::Drawing::Size(119, 42);
+			this->btnSend->Size = System::Drawing::Size(104, 34);
 			this->btnSend->TabIndex = 4;
 			this->btnSend->Text = L"btnSend";
 			this->btnSend->UseVisualStyleBackColor = true;
+			this->btnSend->Click += gcnew System::EventHandler(this, &ChatRoom::btnSend_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(373, 432);
+			this->btnClose->Location = System::Drawing::Point(326, 346);
+			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(119, 42);
+			this->btnClose->Size = System::Drawing::Size(104, 34);
 			this->btnClose->TabIndex = 4;
 			this->btnClose->Text = L"btnClose";
 			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->Click += gcnew System::EventHandler(this, &ChatRoom::btnClose_Click);
 			// 
 			// ChatRoom
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(969, 518);
+			this->ClientSize = System::Drawing::Size(848, 414);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnSend);
 			this->Controls->Add(this->ViewDataChat);
@@ -211,6 +222,7 @@ namespace Client {
 			this->Controls->Add(this->txtBoxId);
 			this->Controls->Add(this->picBoxImojiYou);
 			this->Controls->Add(this->picBoxImojiMy);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"ChatRoom";
 			this->Text = L"ChatRoom";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picBoxImojiMy))->EndInit();
@@ -336,9 +348,7 @@ namespace Client {
 			return;
 		}
 
-		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
-			this->Close();
-		}
+
 
 		private: System::Void ChatRoom_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
 
@@ -358,6 +368,8 @@ namespace Client {
 			}
 		}
 
+
+
 		private: System::Void btnSend_Click(System::Object^ sender, System::EventArgs^ e) {
 			String^ tmptxt_1 = txtBoxMyChat->Text; // textBox는 해당 텍스트 상자의 이름입니다.
 			if (!String::IsNullOrEmpty(tmptxt_1))
@@ -368,6 +380,8 @@ namespace Client {
 				txtBoxMyChat->Text = "";
 			}
 		}
-
-	};
+		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->Close();
+		}
+};
 }

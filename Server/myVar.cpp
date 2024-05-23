@@ -1,6 +1,6 @@
 #include "myVar.h"
 #include <string>
-
+#include <atomic>
 
 
 
@@ -21,7 +21,8 @@ std::string _id_temp = "", _msg_temp = "", result = "";
 const char nullChar = '\0';
 
 
-int client_count = 0;
+
+
 
 void clrisTrue()
 {

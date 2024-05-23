@@ -124,7 +124,7 @@ namespace Client {
 			this->label10->AutoSize = true;
 			this->label10->BackColor = System::Drawing::Color::Transparent;
 			this->label10->Font = (gcnew System::Drawing::Font(L"Georgia", 14));
-			this->label10->Location = System::Drawing::Point(98, 46);
+			this->label10->Location = System::Drawing::Point(86, 37);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(61, 23);
 			this->label10->TabIndex = 70;
@@ -136,10 +136,9 @@ namespace Client {
 			this->txtBoxName->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->txtBoxName->Font = (gcnew System::Drawing::Font(L"Georgia", 14));
 			this->txtBoxName->ForeColor = System::Drawing::SystemColors::WindowFrame;
-			this->txtBoxName->Location = System::Drawing::Point(103, 86);
-			this->txtBoxName->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+			this->txtBoxName->Location = System::Drawing::Point(90, 69);
 			this->txtBoxName->Name = L"txtBoxName";
-			this->txtBoxName->Size = System::Drawing::Size(195, 22);
+			this->txtBoxName->Size = System::Drawing::Size(171, 22);
 			this->txtBoxName->TabIndex = 69;
 			// 
 			// label9
@@ -147,7 +146,7 @@ namespace Client {
 			this->label9->AutoSize = true;
 			this->label9->BackColor = System::Drawing::Color::Transparent;
 			this->label9->Font = (gcnew System::Drawing::Font(L"Georgia", 14));
-			this->label9->Location = System::Drawing::Point(341, 380);
+			this->label9->Location = System::Drawing::Point(298, 304);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(67, 23);
 			this->label9->TabIndex = 68;
@@ -159,10 +158,9 @@ namespace Client {
 			this->txtBoxEmail->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->txtBoxEmail->Font = (gcnew System::Drawing::Font(L"Georgia", 14));
 			this->txtBoxEmail->ForeColor = System::Drawing::SystemColors::WindowFrame;
-			this->txtBoxEmail->Location = System::Drawing::Point(346, 425);
-			this->txtBoxEmail->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+			this->txtBoxEmail->Location = System::Drawing::Point(303, 340);
 			this->txtBoxEmail->Name = L"txtBoxEmail";
-			this->txtBoxEmail->Size = System::Drawing::Size(195, 22);
+			this->txtBoxEmail->Size = System::Drawing::Size(171, 22);
 			this->txtBoxEmail->TabIndex = 67;
 			// 
 			// btnCancle
@@ -170,40 +168,42 @@ namespace Client {
 			this->btnCancle->BackColor = System::Drawing::Color::Cornsilk;
 			this->btnCancle->Font = (gcnew System::Drawing::Font(L"Georgia", 15));
 			this->btnCancle->ForeColor = System::Drawing::Color::Firebrick;
-			this->btnCancle->Location = System::Drawing::Point(417, 559);
+			this->btnCancle->Location = System::Drawing::Point(365, 447);
+			this->btnCancle->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnCancle->Name = L"btnCancle";
-			this->btnCancle->Size = System::Drawing::Size(146, 56);
+			this->btnCancle->Size = System::Drawing::Size(128, 45);
 			this->btnCancle->TabIndex = 66;
 			this->btnCancle->Text = L"Cancle";
 			this->btnCancle->UseVisualStyleBackColor = false;
+			this->btnCancle->Click += gcnew System::EventHandler(this, &SignupForm::btnCancle_Click);
 			// 
 			// btnSubmit
 			// 
 			this->btnSubmit->BackColor = System::Drawing::Color::Cornsilk;
 			this->btnSubmit->Font = (gcnew System::Drawing::Font(L"Georgia", 15));
 			this->btnSubmit->ForeColor = System::Drawing::SystemColors::MenuHighlight;
-			this->btnSubmit->Location = System::Drawing::Point(245, 559);
+			this->btnSubmit->Location = System::Drawing::Point(214, 447);
+			this->btnSubmit->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSubmit->Name = L"btnSubmit";
-			this->btnSubmit->Size = System::Drawing::Size(146, 56);
+			this->btnSubmit->Size = System::Drawing::Size(128, 45);
 			this->btnSubmit->TabIndex = 65;
 			this->btnSubmit->Text = L"Submit";
 			this->btnSubmit->UseVisualStyleBackColor = false;
+			this->btnSubmit->Click += gcnew System::EventHandler(this, &SignupForm::btnSubmit_Click);
 			// 
 			// combBoxCha
 			// 
 			this->combBoxCha->FormattingEnabled = true;
-			this->combBoxCha->Location = System::Drawing::Point(346, 500);
-			this->combBoxCha->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+			this->combBoxCha->Location = System::Drawing::Point(303, 400);
 			this->combBoxCha->Name = L"combBoxCha";
-			this->combBoxCha->Size = System::Drawing::Size(193, 23);
+			this->combBoxCha->Size = System::Drawing::Size(169, 20);
 			this->combBoxCha->TabIndex = 64;
 			// 
 			// btnChkAvailability
 			// 
-			this->btnChkAvailability->Location = System::Drawing::Point(332, 160);
-			this->btnChkAvailability->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+			this->btnChkAvailability->Location = System::Drawing::Point(290, 128);
 			this->btnChkAvailability->Name = L"btnChkAvailability";
-			this->btnChkAvailability->Size = System::Drawing::Size(130, 29);
+			this->btnChkAvailability->Size = System::Drawing::Size(114, 23);
 			this->btnChkAvailability->TabIndex = 63;
 			this->btnChkAvailability->Text = L"Check Availability";
 			this->btnChkAvailability->UseVisualStyleBackColor = true;
@@ -211,10 +211,9 @@ namespace Client {
 			// 
 			// btnNickChkAvailability
 			// 
-			this->btnNickChkAvailability->Location = System::Drawing::Point(332, 340);
-			this->btnNickChkAvailability->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+			this->btnNickChkAvailability->Location = System::Drawing::Point(290, 272);
 			this->btnNickChkAvailability->Name = L"btnNickChkAvailability";
-			this->btnNickChkAvailability->Size = System::Drawing::Size(130, 29);
+			this->btnNickChkAvailability->Size = System::Drawing::Size(114, 23);
 			this->btnNickChkAvailability->TabIndex = 62;
 			this->btnNickChkAvailability->Text = L"Check Availability";
 			this->btnNickChkAvailability->UseVisualStyleBackColor = true;
@@ -225,7 +224,7 @@ namespace Client {
 			this->label8->AutoSize = true;
 			this->label8->BackColor = System::Drawing::Color::Transparent;
 			this->label8->Font = (gcnew System::Drawing::Font(L"Georgia", 10));
-			this->label8->Location = System::Drawing::Point(144, 215);
+			this->label8->Location = System::Drawing::Point(126, 172);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(126, 17);
 			this->label8->TabIndex = 61;
@@ -236,7 +235,7 @@ namespace Client {
 			this->label7->AutoSize = true;
 			this->label7->BackColor = System::Drawing::Color::Transparent;
 			this->label7->Font = (gcnew System::Drawing::Font(L"Georgia", 14));
-			this->label7->Location = System::Drawing::Point(341, 460);
+			this->label7->Location = System::Drawing::Point(298, 368);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(94, 23);
 			this->label7->TabIndex = 60;
@@ -247,7 +246,7 @@ namespace Client {
 			this->label6->AutoSize = true;
 			this->label6->BackColor = System::Drawing::Color::Transparent;
 			this->label6->Font = (gcnew System::Drawing::Font(L"Georgia", 14));
-			this->label6->Location = System::Drawing::Point(98, 380);
+			this->label6->Location = System::Drawing::Point(86, 304);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(54, 23);
 			this->label6->TabIndex = 59;
@@ -259,10 +258,9 @@ namespace Client {
 			this->txtBoxBirth->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->txtBoxBirth->Font = (gcnew System::Drawing::Font(L"Georgia", 14));
 			this->txtBoxBirth->ForeColor = System::Drawing::SystemColors::WindowFrame;
-			this->txtBoxBirth->Location = System::Drawing::Point(103, 426);
-			this->txtBoxBirth->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+			this->txtBoxBirth->Location = System::Drawing::Point(90, 341);
 			this->txtBoxBirth->Name = L"txtBoxBirth";
-			this->txtBoxBirth->Size = System::Drawing::Size(195, 22);
+			this->txtBoxBirth->Size = System::Drawing::Size(171, 22);
 			this->txtBoxBirth->TabIndex = 58;
 			// 
 			// label5
@@ -270,7 +268,7 @@ namespace Client {
 			this->label5->AutoSize = true;
 			this->label5->BackColor = System::Drawing::Color::Transparent;
 			this->label5->Font = (gcnew System::Drawing::Font(L"Georgia", 14));
-			this->label5->Location = System::Drawing::Point(98, 460);
+			this->label5->Location = System::Drawing::Point(86, 368);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(63, 23);
 			this->label5->TabIndex = 57;
@@ -282,10 +280,9 @@ namespace Client {
 			this->txtBoxPhone->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->txtBoxPhone->Font = (gcnew System::Drawing::Font(L"Georgia", 14));
 			this->txtBoxPhone->ForeColor = System::Drawing::SystemColors::WindowFrame;
-			this->txtBoxPhone->Location = System::Drawing::Point(103, 500);
-			this->txtBoxPhone->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+			this->txtBoxPhone->Location = System::Drawing::Point(90, 400);
 			this->txtBoxPhone->Name = L"txtBoxPhone";
-			this->txtBoxPhone->Size = System::Drawing::Size(195, 22);
+			this->txtBoxPhone->Size = System::Drawing::Size(171, 22);
 			this->txtBoxPhone->TabIndex = 56;
 			// 
 			// label4
@@ -293,7 +290,7 @@ namespace Client {
 			this->label4->AutoSize = true;
 			this->label4->BackColor = System::Drawing::Color::Transparent;
 			this->label4->Font = (gcnew System::Drawing::Font(L"Georgia", 14));
-			this->label4->Location = System::Drawing::Point(98, 295);
+			this->label4->Location = System::Drawing::Point(86, 236);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(106, 23);
 			this->label4->TabIndex = 55;
@@ -305,10 +302,9 @@ namespace Client {
 			this->txtBoxNickName->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->txtBoxNickName->Font = (gcnew System::Drawing::Font(L"Georgia", 14));
 			this->txtBoxNickName->ForeColor = System::Drawing::SystemColors::WindowFrame;
-			this->txtBoxNickName->Location = System::Drawing::Point(103, 340);
-			this->txtBoxNickName->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+			this->txtBoxNickName->Location = System::Drawing::Point(90, 272);
 			this->txtBoxNickName->Name = L"txtBoxNickName";
-			this->txtBoxNickName->Size = System::Drawing::Size(195, 22);
+			this->txtBoxNickName->Size = System::Drawing::Size(171, 22);
 			this->txtBoxNickName->TabIndex = 54;
 			// 
 			// label3
@@ -316,7 +312,7 @@ namespace Client {
 			this->label3->AutoSize = true;
 			this->label3->BackColor = System::Drawing::Color::Transparent;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Georgia", 12));
-			this->label3->Location = System::Drawing::Point(354, 215);
+			this->label3->Location = System::Drawing::Point(310, 172);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(70, 18);
 			this->label3->TabIndex = 53;
@@ -328,11 +324,10 @@ namespace Client {
 			this->txtBoxRechk->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->txtBoxRechk->Font = (gcnew System::Drawing::Font(L"Georgia", 14));
 			this->txtBoxRechk->ForeColor = System::Drawing::SystemColors::WindowFrame;
-			this->txtBoxRechk->Location = System::Drawing::Point(357, 250);
-			this->txtBoxRechk->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+			this->txtBoxRechk->Location = System::Drawing::Point(312, 200);
 			this->txtBoxRechk->Name = L"txtBoxRechk";
 			this->txtBoxRechk->PasswordChar = '*';
-			this->txtBoxRechk->Size = System::Drawing::Size(195, 22);
+			this->txtBoxRechk->Size = System::Drawing::Size(171, 22);
 			this->txtBoxRechk->TabIndex = 52;
 			// 
 			// label2
@@ -340,7 +335,7 @@ namespace Client {
 			this->label2->AutoSize = true;
 			this->label2->BackColor = System::Drawing::Color::Transparent;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Georgia", 14));
-			this->label2->Location = System::Drawing::Point(98, 207);
+			this->label2->Location = System::Drawing::Point(86, 166);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(41, 23);
 			this->label2->TabIndex = 51;
@@ -352,12 +347,11 @@ namespace Client {
 			this->txtBoxPW->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->txtBoxPW->Font = (gcnew System::Drawing::Font(L"Georgia", 14));
 			this->txtBoxPW->ForeColor = System::Drawing::SystemColors::WindowFrame;
-			this->txtBoxPW->Location = System::Drawing::Point(103, 250);
-			this->txtBoxPW->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+			this->txtBoxPW->Location = System::Drawing::Point(90, 200);
 			this->txtBoxPW->MaxLength = 16;
 			this->txtBoxPW->Name = L"txtBoxPW";
 			this->txtBoxPW->PasswordChar = '*';
-			this->txtBoxPW->Size = System::Drawing::Size(195, 22);
+			this->txtBoxPW->Size = System::Drawing::Size(171, 22);
 			this->txtBoxPW->TabIndex = 50;
 			// 
 			// label1
@@ -365,7 +359,7 @@ namespace Client {
 			this->label1->AutoSize = true;
 			this->label1->BackColor = System::Drawing::Color::Transparent;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Georgia", 14));
-			this->label1->Location = System::Drawing::Point(98, 121);
+			this->label1->Location = System::Drawing::Point(86, 97);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(31, 23);
 			this->label1->TabIndex = 49;
@@ -377,17 +371,16 @@ namespace Client {
 			this->txtBoxID->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->txtBoxID->Font = (gcnew System::Drawing::Font(L"Georgia", 14));
 			this->txtBoxID->ForeColor = System::Drawing::SystemColors::WindowFrame;
-			this->txtBoxID->Location = System::Drawing::Point(103, 160);
-			this->txtBoxID->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+			this->txtBoxID->Location = System::Drawing::Point(90, 128);
 			this->txtBoxID->Name = L"txtBoxID";
-			this->txtBoxID->Size = System::Drawing::Size(195, 22);
+			this->txtBoxID->Size = System::Drawing::Size(171, 22);
 			this->txtBoxID->TabIndex = 48;
 			// 
 			// SignupForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(734, 695);
+			this->ClientSize = System::Drawing::Size(642, 556);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->txtBoxName);
 			this->Controls->Add(this->label9);
@@ -411,6 +404,7 @@ namespace Client {
 			this->Controls->Add(this->txtBoxPW);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->txtBoxID);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"SignupForm";
 			this->Text = L"SignupForm";
 			this->ResumeLayout(false);
@@ -597,15 +591,7 @@ namespace Client {
 		}
 
 
-		private: System::Void btnCancle_Click(System::Object^ sender, System::EventArgs^ e) {
-			this->Close();
-		}
-
-
-		private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^ e) {
-			btnSubmit->NotifyDefault(false);
-			SendMessageForm(e_signup_Submit);
-		}
+		
 		private: System::Void btnChkAvailability_Click(System::Object^ sender, System::EventArgs^ e) {
 			btnChkAvailability->NotifyDefault(false);
 			SendMessageForm(e_signup_IDchk);
@@ -613,6 +599,14 @@ namespace Client {
 		private: System::Void btnNickChkAvailability_Click(System::Object^ sender, System::EventArgs^ e) {
 			btnNickChkAvailability->NotifyDefault(false);
 			SendMessageForm(e_signup_NickNamechk);
+		}
+		private: System::Void btnCancle_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->Close();
+
+		}
+		private: System::Void btnSubmit_Click(System::Object^ sender, System::EventArgs^ e) {
+			btnSubmit->NotifyDefault(false);
+			SendMessageForm(e_signup_Submit);
 		}
 };
 }

@@ -7,6 +7,7 @@
 #include <sstream>
 #include <vector>
 #include <iomanip>
+#include "main.h"
 #include "myVar.h"
 
 using std::cout;
@@ -16,7 +17,6 @@ using std::string;
 extern const char nullChar;
 
 std::vector<ROOM_INFO> workingRoom_list(100);
-extern std::vector<SOCKET_INFO> sck_list;
 extern std::string _id_from, _nick_from, _msg;
 extern std::string _id_temp, _msg_temp, result;
 string _from_nickname;
@@ -33,11 +33,13 @@ string s_(int e_num) {
 }
 
 
+// 2024-05-23
+// 퍼블릭에 접속해있는 사람만 메세지를 주게 바꾸자
 
 void MySQL::_send_msg(const char* msg, int room_Index) {
     size_t length = strlen(msg);
-    for (int i = 0; i < client_count; i++) { // 이 방에 접속해 있는 모든 client에게 메시지 전송
-        if (stoi(sck_list[i]._user.getJoinRoomIndex()) == room_Index) {// UserInfo 객체 생성시 초기화 반드시 진행, JoinRoomIndex ="0"으로
+    for (int i = 0; i < 1; i++) { // 이 방에 접속해 있는 모든 client에게 메시지 전송 < 이부분
+        if (stoi(sck_list[i].ui.getJoinRoomIndex()) == room_Index) {// UserInfo 객체 생성시 초기화 반드시 진행, JoinRoomIndex ="0"으로
             send(sck_list[i].sck, msg, length, 0);
         }
         else
@@ -50,7 +52,7 @@ void MySQL::_send_msg(const char* msg, int room_Index) {
 
 string MySQL::room_Delete(string roomidx, int idx) {
     string room_Index_;
-    string my_ID = sck_list[idx]._user.getID();
+    string my_ID = sck_list[idx].ui.getID();
     string result;
     int i_room_Index = stoi(roomidx);
     prep_stmt = con->prepareStatement("DELETE FROM room_list WHERE Room_Master = ? AND Room_Index = ?;");
@@ -70,7 +72,7 @@ string MySQL::room_Delete(string roomidx, int idx) {
 
 
 void MySQL::room_activate(int roomIndex, int index__) {
-    string _my_ID = sck_list[index__]._user.getID();
+    string _my_ID = sck_list[index__].ui.getID();
     if (isWorkingRoomIndexExist(roomIndex) == false) {
         workingRoom_list[roomIndex].Room_Index = roomIndex;
     }
@@ -95,7 +97,7 @@ string MySQL::room_myList(int index) {
     int Room_Type;
     string Room_Date;
     string rl_line = "";
-    string my_ID = sck_list[index]._user.getID();
+    string my_ID = sck_list[index].ui.getID();
     prep_stmt = con->prepareStatement("SELECT Room_Index, Room_Type, Room_Title, Room_Date FROM room_list WHERE Room_Master = ?;");
     prep_stmt->setString(1, my_ID);
     sql::ResultSet* res = prep_stmt->executeQuery();
@@ -222,10 +224,6 @@ string MySQL::QuerySql(string msg, int idx) {
     _date = "";
     _id = "";
 
-
-
-
-
     ss >> _Index;
     int _Index_Int = stoi(_Index);
     //multimsg = true; // 여러번 보내야할때 잠깐 false로바뀜
@@ -247,19 +245,19 @@ string MySQL::QuerySql(string msg, int idx) {
         if (res->next())
         {
 
-            sck_list[idx]._user.setID(_id);
+            sck_list[idx].ui.setID(_id);
             stmt->execute("UPDATE member SET Join_Room_Index = NULL WHERE Member_ID = '" + _id + "';");// 추가열
-            std::string query = "SELECT Nickname FROM member WHERE Member_ID = '" + _id + "'";
-            result = "";
+            std::string query = "SELECT Nickname, Name FROM member WHERE Member_ID = '" + _id + "'";
             res = stmt->executeQuery(query);
 
 
             while (res->next()) {
-                sck_list[idx]._user.setNickName(res->getString("Nickname"));
+                sck_list[idx].ui.setNickName(res->getString("Nickname"));
+                sck_list[idx].ui.setName(res->getString("Name"));
             }
 
-            cout << sck_list[idx]._user.getNickName();
-            cout << sck_list[idx]._user.getID();
+            cout << sck_list[idx].ui.getNickName();
+            cout << sck_list[idx].ui.getID();
             _ret = s_(e_id_try_Signin) + delim + trueStr;
             break;
 
@@ -375,7 +373,7 @@ string MySQL::QuerySql(string msg, int idx) {
     // editinfo
     case e_edit_PWchk:
     {
-        string _id = sck_list[idx]._user.getID(), _pw;
+        string _id = sck_list[idx].ui.getID(), _pw;
         ss >> _pw;
         prep_stmt = con->prepareStatement("SELECT Member_ID FROM member WHERE Member_ID = ? AND Member_PW = ?");
         prep_stmt->setString(1, _id);
@@ -395,7 +393,7 @@ string MySQL::QuerySql(string msg, int idx) {
     case e_edit_NickNamechk:
     {
         string _id, _nickname;
-        _id = sck_list[idx]._user.getID();
+        _id = sck_list[idx].ui.getID();
         ss >> _nickname;
         prep_stmt = con->prepareStatement("SELECT Member_ID FROM member WHERE Nickname = ?");
         prep_stmt->setString(1, _nickname);
@@ -414,7 +412,7 @@ string MySQL::QuerySql(string msg, int idx) {
     }
     case e_edit_Confirm:
     {
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
         // 순서 Email; Phone; Nickname; Cha_Num; Member_PW;        
 
         string _email, _phone, _nickname, _cha_num, _pw;
@@ -433,11 +431,11 @@ string MySQL::QuerySql(string msg, int idx) {
         {
 
             // 이거 필요함? 음...
-            sck_list[idx]._user.setChaNum(_cha_num);
-            sck_list[idx]._user.setEmail(_email);
-            sck_list[idx]._user.setNickName(_nickname);
-            sck_list[idx]._user.setPhone(_phone);
-            sck_list[idx]._user.setPW(_pw);
+            sck_list[idx].ui.setChaNum(_cha_num);
+            sck_list[idx].ui.setEmail(_email);
+            sck_list[idx].ui.setNickName(_nickname);
+            sck_list[idx].ui.setPhone(_phone);
+            sck_list[idx].ui.setPW(_pw);
             _ret = s_(e_edit_Confirm) + trueStr;
             break;
         }
@@ -450,7 +448,7 @@ string MySQL::QuerySql(string msg, int idx) {
     case e_friends_List:
     {
 
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
         string query = "SELECT m.Nickname FROM friend_list f INNER JOIN member m ON f.My_Friend_ID\
  = m.Member_ID WHERE f.My_ID = '" + _id + "'";
         res = stmt->executeQuery(query);
@@ -474,7 +472,7 @@ string MySQL::QuerySql(string msg, int idx) {
     }
     case e_friends_Request:
     {
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
         string _to_nickname = "";
         _msg = "";
         ss >> _to_nickname >> std::ws;;
@@ -535,7 +533,7 @@ string MySQL::QuerySql(string msg, int idx) {
 
     case e_friends_Response_List:
     {
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
 
         string query = "SELECT From_Friend_Request_ID, Request_Msg FROM friend_request WHERE To_Friend_Request_ID =  '" + _id + "'";
         stmt = con->createStatement();
@@ -583,7 +581,7 @@ string MySQL::QuerySql(string msg, int idx) {
 
     case e_friends_Accept:
     {
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
         _nick_from = "";
         ss >> _nick_from;
 
@@ -635,7 +633,7 @@ string MySQL::QuerySql(string msg, int idx) {
 
     case e_friends_Request_Decline:
     {
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
         _nick_from = "";
         ss >> _nick_from;
 
@@ -679,7 +677,7 @@ string MySQL::QuerySql(string msg, int idx) {
     {
 
 
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
         string _to_nickname, _msg;
 
         ss >> _to_nickname;
@@ -715,7 +713,7 @@ string MySQL::QuerySql(string msg, int idx) {
     case e_message_Cnt:
     {
 
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
         string _to_nickname, _msg;
 
 
@@ -747,7 +745,7 @@ string MySQL::QuerySql(string msg, int idx) {
     }
     case e_message_Send: // 매새지 보내기
     {
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
         string _to_nickname;
 
         ss >> _to_nickname >> std::ws;;
@@ -792,7 +790,7 @@ string MySQL::QuerySql(string msg, int idx) {
     }
     case e_message_Sent_list: // 보낸 메세지
     {
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
         string _to_nickname, _msg;
 
 
@@ -852,7 +850,7 @@ string MySQL::QuerySql(string msg, int idx) {
     }
     case e_message_Sent_msg: // 보낸메세지 메세지 보기
     {
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
         string _to_nickname, _msg, _date;
         result = "";
 
@@ -892,7 +890,7 @@ string MySQL::QuerySql(string msg, int idx) {
     }
     case e_message_Sent_msg_delete: // 보낸메세지 메세지 삭제
     {
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
         string _to_nickname, _msg, _date;
         result = "";
 
@@ -966,7 +964,7 @@ string MySQL::QuerySql(string msg, int idx) {
     }
     case e_message_UGiven_list: // 안읽은 메세지 리스트
     {
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
         string _to_nickname, _msg;
 
 
@@ -1016,7 +1014,7 @@ string MySQL::QuerySql(string msg, int idx) {
 
         std::stringstream ssa(msg);
         string index_temp;
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
         result = "";
         ss >> _from_nickname;
         getline(ss, _date);
@@ -1072,7 +1070,7 @@ string MySQL::QuerySql(string msg, int idx) {
     }
     case e_message_RGiven_list: // 읽은 메세지 리스트
     {
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
         string _to_nickname, _msg;
 
 
@@ -1119,7 +1117,7 @@ string MySQL::QuerySql(string msg, int idx) {
     }
     case e_message_UGiven_msg: // 읽지않은 받은 메세지 보기 *
     {
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
         _from_nickname, _msg, _date;
         result = "";
 
@@ -1157,7 +1155,7 @@ string MySQL::QuerySql(string msg, int idx) {
 
     case e_message_UGiven_Read: // 읽기
     {
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
 
         result = "";
         ss >> _from_nickname;
@@ -1214,7 +1212,7 @@ string MySQL::QuerySql(string msg, int idx) {
     }
     case e_message_RGiven_msg: // 읽은 받은 메세지 보기 *
     {
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
         string _from_nickname, _msg, _date;
         result = "";
 
@@ -1251,7 +1249,7 @@ string MySQL::QuerySql(string msg, int idx) {
     }
     case e_message_RGiven_msg_delete: // 읽은 메세지 삭제
     {
-        string _id = sck_list[idx]._user.getID();
+        string _id = sck_list[idx].ui.getID();
         string _from_nickname, _msg, _date;
         result = "";
 
@@ -1327,7 +1325,7 @@ string MySQL::QuerySql(string msg, int idx) {
         string room_PW = "";
         string room_Name = "";
         int room_Index;
-        string my_ID = sck_list[idx]._user.getID();
+        string my_ID = sck_list[idx].ui.getID();
         string room_date = getCurrentTime();
         std::vector<string> dis_content;
         string line;
@@ -1382,16 +1380,16 @@ string MySQL::QuerySql(string msg, int idx) {
                     {
                         sck_list[idx].room.setRoom_PW(res->getString(6));
                     }
-                    //sck_list[idx]._user.setJoinRoomIndex(s_(sck_list[idx].room.getRoom_Index()));
-                    //cout << " 내가 들어간 방 : " << sck_list[idx]._user.getJoinRoomIndex() << endl;
+                    //sck_list[idx].ui.setJoinRoomIndex(s_(sck_list[idx].room.getRoom_Index()));
+                    //cout << " 내가 들어간 방 : " << sck_list[idx].ui.getJoinRoomIndex() << endl;
                     //cout << "방 정보 저장 완료" << endl;
                     //prep_stmt = con->prepareStatement("UPDATE member set Join_Room_Index = ? WHERE member_ID = ? ");
-                    //prep_stmt->setInt(1, std::stoi(sck_list[idx]._user.getJoinRoomIndex()));
+                    //prep_stmt->setInt(1, std::stoi(sck_list[idx].ui.getJoinRoomIndex()));
                     //prep_stmt->setString(2, my_ID);
                     //int rowUpdate = prep_stmt->executeUpdate();
                     //cout << "update member query 완료;" << endl;
                     //room_activate(room_Index, idx); // 방 활성화 해주기
-                    result = s_(e_room_Create) + IDENTIFIER + trueStr;/*+ IDENTIFIER + sck_list[idx]._user.getJoinRoomIndex(); */// **** 내가 몇번방에들어갔는지 알 수 있다.
+                    result = s_(e_room_Create) + IDENTIFIER + trueStr;/*+ IDENTIFIER + sck_list[idx].ui.getJoinRoomIndex(); */// **** 내가 몇번방에들어갔는지 알 수 있다.
                     cout << "result : " << result << endl;
                     return result;
 
@@ -1421,7 +1419,7 @@ string MySQL::QuerySql(string msg, int idx) {
     // enum값만 주면된다.
     case e_room_Exit:
     {
-        string my_ID = sck_list[idx]._user.getID();
+        string my_ID = sck_list[idx].ui.getID();
         string result;
         string str_room_Index;
         int count = 0;
@@ -1435,7 +1433,7 @@ string MySQL::QuerySql(string msg, int idx) {
             sck_list[idx].room.room_init();//방정보 초기화
             result = s_(e_room_Exit) + IDENTIFIER + trueStr;
             cout << "result = s_(e_room_Exit) + IDENTIFIER + True; :" << result << endl;
-            str_room_Index = sck_list[idx]._user.getJoinRoomIndex();
+            str_room_Index = sck_list[idx].ui.getJoinRoomIndex();
             i_room_Index = stoi(str_room_Index);
             for (auto id : workingRoom_list[i_room_Index].join_client)
             {
@@ -1447,7 +1445,7 @@ string MySQL::QuerySql(string msg, int idx) {
                 count++;
             }
             workingRoom_list[i_room_Index].join_client.erase(workingRoom_list[i_room_Index].join_client.begin() + join_client_num);//내 이름 활성화된 방에서 삭제
-            sck_list[idx]._user.setJoinRoomIndex("0");// 방에 안들어간 상태를 0 이라고 두어도 문제 없나?
+            sck_list[idx].ui.setJoinRoomIndex("0");// 방에 안들어간 상태를 0 이라고 두어도 문제 없나?
             result = s_(e_room_Exit) + IDENTIFIER + trueStr;
         }
         else
@@ -1458,7 +1456,7 @@ string MySQL::QuerySql(string msg, int idx) {
     // 방의 인덱스 + 타입 + 패스워드(없으면안보내도 됨)
     case e_room_Enter:
     {
-        string my_ID62 = sck_list[idx]._user.getID();
+        string my_ID62 = sck_list[idx].ui.getID();
         string result62;
         string room_Type62;
         string room_Title62;
@@ -1520,7 +1518,7 @@ string MySQL::QuerySql(string msg, int idx) {
                 sck_list[idx].room.setRoom_Date(res->getString(5));
                 if (i_room_Type == 3)// 비밀방만 비밀번호 받으므로 예외 처리
                     sck_list[idx].room.setRoom_PW(res->getString(6));
-                sck_list[idx]._user.setJoinRoomIndex(room_Index62);
+                sck_list[idx].ui.setJoinRoomIndex(room_Index62);
                 room_activate(stoi(room_Index62), idx);
                 if (i_room_Type == 1)
                 {
@@ -1553,7 +1551,7 @@ string MySQL::QuerySql(string msg, int idx) {
     //    string all_Text = "";
     //    string result;
     //    string nickname, chat, chat_Data = "";
-    //    int room_index = stoi(sck_list[idx]._user.getJoinRoomIndex());
+    //    int room_index = stoi(sck_list[idx].ui.getJoinRoomIndex());
     //    prep_stmt = con->prepareStatement("select member.Nickname, room_chat.Chat, Chat_Date FROM room_chat left join member on room_chat.Member_ID = member.member_ID WHERE Room_Index= ?");
     //    prep_stmt->setInt(1, room_index);
     //    sql::ResultSet* res = prep_stmt->executeQuery();
@@ -1576,7 +1574,7 @@ string MySQL::QuerySql(string msg, int idx) {
         string all_Text = "";
         string result;
         string nickname, chat, chat_Data = "";
-        int room_index = stoi(sck_list[idx]._user.getJoinRoomIndex());
+        int room_index = stoi(sck_list[idx].ui.getJoinRoomIndex());
         prep_stmt = con->prepareStatement("SELECT Member_ID, Chat, Chat_Date FROM room_chat WHERE Room_Index=?");
         prep_stmt->setInt(1, room_index);
         sql::ResultSet* res = prep_stmt->executeQuery();
@@ -1605,13 +1603,13 @@ string MySQL::QuerySql(string msg, int idx) {
     string my_Nickname66;
     string date66 = getCurrentTime();
     cout << msg_chat << endl;
-    string my_ID66 = sck_list[idx]._user.getID();
+    string my_ID66 = sck_list[idx].ui.getID();
     prep_stmt = con->prepareStatement("SELECT Nickname from member WHERE Member_ID = ?");
     prep_stmt->setString(1, my_ID66);
     sql::ResultSet* res = prep_stmt->executeQuery();
     if (res->next())
         my_Nickname66 = res->getString(1);
-    int room_Index66 = stoi(sck_list[idx]._user.getJoinRoomIndex());
+    int room_Index66 = stoi(sck_list[idx].ui.getJoinRoomIndex());
     prep_stmt = con->prepareStatement("INSERT INTO room_chat VALUES (NULL,?,?,?,?)");
     prep_stmt->setString(1, my_ID66);
     prep_stmt->setString(2, modifiedString);

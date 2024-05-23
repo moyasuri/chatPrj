@@ -119,89 +119,104 @@ namespace Client {
 			// 
 			// btnJoinChatRoom
 			// 
-			this->btnJoinChatRoom->Location = System::Drawing::Point(196, 59);
+			this->btnJoinChatRoom->Location = System::Drawing::Point(172, 47);
+			this->btnJoinChatRoom->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnJoinChatRoom->Name = L"btnJoinChatRoom";
-			this->btnJoinChatRoom->Size = System::Drawing::Size(228, 64);
+			this->btnJoinChatRoom->Size = System::Drawing::Size(200, 51);
 			this->btnJoinChatRoom->TabIndex = 0;
 			this->btnJoinChatRoom->Text = L"joinroom";
 			this->btnJoinChatRoom->UseVisualStyleBackColor = true;
+			this->btnJoinChatRoom->Click += gcnew System::EventHandler(this, &MainForm::btnJoinChatRoom_Click);
 			// 
 			// btnCreateChatRoom
 			// 
-			this->btnCreateChatRoom->Location = System::Drawing::Point(196, 165);
+			this->btnCreateChatRoom->Location = System::Drawing::Point(172, 132);
+			this->btnCreateChatRoom->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnCreateChatRoom->Name = L"btnCreateChatRoom";
-			this->btnCreateChatRoom->Size = System::Drawing::Size(228, 64);
+			this->btnCreateChatRoom->Size = System::Drawing::Size(200, 51);
 			this->btnCreateChatRoom->TabIndex = 0;
 			this->btnCreateChatRoom->Text = L"createroom";
 			this->btnCreateChatRoom->UseVisualStyleBackColor = true;
+			this->btnCreateChatRoom->Click += gcnew System::EventHandler(this, &MainForm::btnCreateChatRoom_Click);
 			// 
 			// btnDelChatRoom
 			// 
-			this->btnDelChatRoom->Location = System::Drawing::Point(196, 262);
+			this->btnDelChatRoom->Location = System::Drawing::Point(172, 210);
+			this->btnDelChatRoom->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnDelChatRoom->Name = L"btnDelChatRoom";
-			this->btnDelChatRoom->Size = System::Drawing::Size(228, 64);
+			this->btnDelChatRoom->Size = System::Drawing::Size(200, 51);
 			this->btnDelChatRoom->TabIndex = 0;
 			this->btnDelChatRoom->Text = L"deleteroom";
 			this->btnDelChatRoom->UseVisualStyleBackColor = true;
+			this->btnDelChatRoom->Click += gcnew System::EventHandler(this, &MainForm::btnDelChatRoom_Click);
 			// 
 			// btnEditProfile
 			// 
-			this->btnEditProfile->Location = System::Drawing::Point(82, 374);
+			this->btnEditProfile->Location = System::Drawing::Point(72, 299);
+			this->btnEditProfile->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnEditProfile->Name = L"btnEditProfile";
-			this->btnEditProfile->Size = System::Drawing::Size(92, 114);
+			this->btnEditProfile->Size = System::Drawing::Size(80, 91);
 			this->btnEditProfile->TabIndex = 0;
 			this->btnEditProfile->Text = L"editprofile";
 			this->btnEditProfile->UseVisualStyleBackColor = true;
+			this->btnEditProfile->Click += gcnew System::EventHandler(this, &MainForm::btnEditProfile_Click);
 			// 
 			// btnFriends
 			// 
-			this->btnFriends->Location = System::Drawing::Point(258, 374);
+			this->btnFriends->Location = System::Drawing::Point(226, 299);
+			this->btnFriends->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnFriends->Name = L"btnFriends";
-			this->btnFriends->Size = System::Drawing::Size(92, 114);
+			this->btnFriends->Size = System::Drawing::Size(80, 91);
 			this->btnFriends->TabIndex = 0;
 			this->btnFriends->Text = L"friends";
 			this->btnFriends->UseVisualStyleBackColor = true;
+			this->btnFriends->Click += gcnew System::EventHandler(this, &MainForm::btnFriends_Click);
 			// 
 			// btnMessage
 			// 
-			this->btnMessage->Location = System::Drawing::Point(432, 374);
+			this->btnMessage->Location = System::Drawing::Point(378, 299);
+			this->btnMessage->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnMessage->Name = L"btnMessage";
-			this->btnMessage->Size = System::Drawing::Size(92, 114);
+			this->btnMessage->Size = System::Drawing::Size(80, 91);
 			this->btnMessage->TabIndex = 0;
 			this->btnMessage->Text = L"message";
 			this->btnMessage->UseVisualStyleBackColor = true;
+			this->btnMessage->Click += gcnew System::EventHandler(this, &MainForm::btnMessage_Click);
 			// 
 			// btnSignOut
 			// 
-			this->btnSignOut->Location = System::Drawing::Point(461, 548);
+			this->btnSignOut->Location = System::Drawing::Point(403, 438);
+			this->btnSignOut->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSignOut->Name = L"btnSignOut";
-			this->btnSignOut->Size = System::Drawing::Size(149, 47);
+			this->btnSignOut->Size = System::Drawing::Size(130, 38);
 			this->btnSignOut->TabIndex = 0;
 			this->btnSignOut->Text = L"signout";
 			this->btnSignOut->UseVisualStyleBackColor = true;
+			this->btnSignOut->Click += gcnew System::EventHandler(this, &MainForm::btnSignOut_Click);
 			// 
 			// panel1
 			// 
 			this->panel1->Controls->Add(this->NumMessage);
-			this->panel1->Location = System::Drawing::Point(540, 262);
+			this->panel1->Location = System::Drawing::Point(472, 210);
+			this->panel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(109, 112);
+			this->panel1->Size = System::Drawing::Size(95, 90);
 			this->panel1->TabIndex = 1;
 			// 
 			// NumMessage
 			// 
 			this->NumMessage->AutoSize = true;
-			this->NumMessage->Location = System::Drawing::Point(21, 37);
+			this->NumMessage->Location = System::Drawing::Point(18, 30);
 			this->NumMessage->Name = L"NumMessage";
-			this->NumMessage->Size = System::Drawing::Size(45, 15);
+			this->NumMessage->Size = System::Drawing::Size(38, 12);
 			this->NumMessage->TabIndex = 0;
 			this->NumMessage->Text = L"label1";
 			// 
 			// MainForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(715, 620);
+			this->ClientSize = System::Drawing::Size(626, 496);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->btnSignOut);
 			this->Controls->Add(this->btnMessage);
@@ -210,6 +225,7 @@ namespace Client {
 			this->Controls->Add(this->btnDelChatRoom);
 			this->Controls->Add(this->btnCreateChatRoom);
 			this->Controls->Add(this->btnJoinChatRoom);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MainForm";
 			this->Text = L"MainForm";
 			this->panel1->ResumeLayout(false);
@@ -270,9 +286,6 @@ namespace Client {
 		}
 
 
-		private: System::Void btnSignOut_Click(System::Object^ sender, System::EventArgs^ e) {
-			this->Close();
-		}
 
 
 		private: System::Void MainForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
@@ -283,59 +296,67 @@ namespace Client {
 		private: System::Void MainForm_Activated(System::Object^ sender, System::EventArgs^ e) {
 			SendMessageForm(e_message_Cnt);
 		}
-		private: System::Void btnEditProfile_Click(System::Object^ sender, System::EventArgs^ e) {
-			if (editProfile == nullptr || editProfile->IsDisposed) {
-				editProfile = gcnew EditProfile(_my);
-				editProfile->Owner = this; // Owner를 설정해야 가능
-				this->Hide();
-				//this->HomeImageSound->Stop();
-				editProfile->Show();
-			}
+
+
+
+
+	private: System::Void btnJoinChatRoom_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (joinchatRoom == nullptr || joinchatRoom->IsDisposed) {
+			joinchatRoom = gcnew JoinChatRoom(_my);
+			joinchatRoom->Owner = this; // Owner를 설정해야 가능
+			this->Hide();
+			//this->HomeImageSound->Stop();
+			joinchatRoom->Show();
 		}
-		private: System::Void btnFriends_Click(System::Object^ sender, System::EventArgs^ e) {
-			if (friends == nullptr || friends->IsDisposed) {
-				friends = gcnew Friends(_my);
-				friends->Owner = this; // Owner를 설정해야 가능
-				this->Hide();
-				//this->HomeImageSound->Stop();
-				friends->Show();
-			}
-		}
-		private: System::Void btnMessage_Click(System::Object^ sender, System::EventArgs^ e) {
-			if (messageMain == nullptr || messageMain->IsDisposed) {
-				messageMain = gcnew MessageMain(_my);
-				messageMain->Owner = this; // Owner를 설정해야 가능
-				this->Hide();
-				//this->HomeImageSound->Stop();
-				messageMain->Show();
-			}
-		}
-		private: System::Void btnJoinChatRoom_Click(System::Object^ sender, System::EventArgs^ e) {
-			if (joinchatRoom == nullptr || joinchatRoom->IsDisposed) {
-				joinchatRoom = gcnew JoinChatRoom(_my);
-				joinchatRoom->Owner = this; // Owner를 설정해야 가능
-				this->Hide();
-				//this->HomeImageSound->Stop();
-				joinchatRoom->Show();
-			}
-		}
-		private: System::Void btnCreateChatRoom_Click(System::Object^ sender, System::EventArgs^ e) {
-			if (createchatRoom == nullptr || createchatRoom->IsDisposed) {
-				createchatRoom = gcnew CreateChatRoom(_my);
-				createchatRoom->Owner = this; // Owner를 설정해야 가능
-				this->Hide();
-				//this->HomeImageSound->Stop();
-				createchatRoom->Show();
-			}
-		}
-		private: System::Void btnDelChatRoom_Click(System::Object^ sender, System::EventArgs^ e) {
-			if (deleteRoom == nullptr || deleteRoom->IsDisposed) {
-				deleteRoom = gcnew DeleteRoom(_my);
-				deleteRoom->Owner = this; // Owner를 설정해야 가능
-				this->Hide();
-				//this->HomeImageSound->Stop();
-				deleteRoom->Show();
-			}
-		}
-	};
+	}
+private: System::Void btnCreateChatRoom_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (createchatRoom == nullptr || createchatRoom->IsDisposed) {
+		createchatRoom = gcnew CreateChatRoom(_my);
+		createchatRoom->Owner = this; // Owner를 설정해야 가능
+		this->Hide();
+		//this->HomeImageSound->Stop();
+		createchatRoom->Show();
+	}
+}
+
+private: System::Void btnDelChatRoom_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (deleteRoom == nullptr || deleteRoom->IsDisposed) {
+		deleteRoom = gcnew DeleteRoom(_my);
+		deleteRoom->Owner = this; // Owner를 설정해야 가능
+		this->Hide();
+		//this->HomeImageSound->Stop();
+		deleteRoom->Show();
+	}
+}
+private: System::Void btnEditProfile_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (editProfile == nullptr || editProfile->IsDisposed) {
+		editProfile = gcnew EditProfile(_my);
+		editProfile->Owner = this; // Owner를 설정해야 가능
+		this->Hide();
+		//this->HomeImageSound->Stop();
+		editProfile->Show();
+	}
+}
+private: System::Void btnFriends_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (friends == nullptr || friends->IsDisposed) {
+		friends = gcnew Friends(_my);
+		friends->Owner = this; // Owner를 설정해야 가능
+		this->Hide();
+		//this->HomeImageSound->Stop();
+		friends->Show();
+	}
+}
+private: System::Void btnMessage_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (messageMain == nullptr || messageMain->IsDisposed) {
+		messageMain = gcnew MessageMain(_my);
+		messageMain->Owner = this; // Owner를 설정해야 가능
+		this->Hide();
+		//this->HomeImageSound->Stop();
+		messageMain->Show();
+	}
+}
+private: System::Void btnSignOut_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
+};
 }
