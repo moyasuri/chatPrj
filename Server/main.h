@@ -156,10 +156,6 @@ public:
 
 
 
-
-
-
-
 private:
     int Room_Index;
     int Room_Type;
@@ -251,4 +247,5 @@ private:
 
 
 };
+
 
