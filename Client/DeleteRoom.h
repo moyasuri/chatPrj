@@ -98,10 +98,11 @@ namespace Client {
 				this->RoomIndex,
 					this->RoomName, this->RoomTitle, this->PrivateCheck, this->CreatedDate
 			});
-			this->ViewRoomList->Location = System::Drawing::Point(83, 76);
+			this->ViewRoomList->Location = System::Drawing::Point(73, 61);
+			this->ViewRoomList->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->ViewRoomList->Name = L"ViewRoomList";
 			this->ViewRoomList->RowTemplate->Height = 27;
-			this->ViewRoomList->Size = System::Drawing::Size(575, 353);
+			this->ViewRoomList->Size = System::Drawing::Size(503, 282);
 			this->ViewRoomList->TabIndex = 0;
 			// 
 			// RoomIndex
@@ -131,209 +132,209 @@ namespace Client {
 			// 
 			// btnDelete
 			// 
-			this->btnDelete->Location = System::Drawing::Point(714, 125);
+			this->btnDelete->Location = System::Drawing::Point(625, 100);
+			this->btnDelete->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnDelete->Name = L"btnDelete";
-			this->btnDelete->Size = System::Drawing::Size(101, 50);
+			this->btnDelete->Size = System::Drawing::Size(88, 40);
 			this->btnDelete->TabIndex = 1;
 			this->btnDelete->Text = L"Delete";
 			this->btnDelete->UseVisualStyleBackColor = true;
+			this->btnDelete->Click += gcnew System::EventHandler(this, &DeleteRoom::btnDelete_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(714, 295);
+			this->btnClose->Location = System::Drawing::Point(625, 236);
+			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(101, 50);
+			this->btnClose->Size = System::Drawing::Size(88, 40);
 			this->btnClose->TabIndex = 1;
 			this->btnClose->Text = L"Close";
 			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->Click += gcnew System::EventHandler(this, &DeleteRoom::btnClose_Click);
 			// 
 			// DeleteRoom
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(952, 565);
+			this->ClientSize = System::Drawing::Size(833, 452);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnDelete);
 			this->Controls->Add(this->ViewRoomList);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"DeleteRoom";
 			this->Text = L"DeleteRoom";
+			this->Activated += gcnew System::EventHandler(this, &DeleteRoom::DeleteRoom_Activated);
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &DeleteRoom::DeleteRoom_FormClosing);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ViewRoomList))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 
-			public: void SendMessageForm(int index)
+		public: void SendMessageForm(int index)
+		{
+
+			switch (index)
+			{
+			case e_room_Delete:
 			{
 
-				switch (index)
+				MessageBoxButtons buttons = MessageBoxButtons::YesNo;
+
+				// 메시지 박스를 표시하고 사용자의 선택을 저장합니다.
+				System::Windows::Forms::DialogResult result = \
+					MessageBox::Show("Do you really want to delete this room?", "confirm", buttons);
+
+				// 사용자의 선택에 따라 분기합니다.
+				if (result == System::Windows::Forms::DialogResult::Yes)
 				{
-				case e_room_Delete:
-				{
-
-					MessageBoxButtons buttons = MessageBoxButtons::YesNo;
-
-					// 메시지 박스를 표시하고 사용자의 선택을 저장합니다.
-					System::Windows::Forms::DialogResult result = \
-						MessageBox::Show("Do you really want to delete this room?", "confirm", buttons);
-
-					// 사용자의 선택에 따라 분기합니다.
-					if (result == System::Windows::Forms::DialogResult::Yes)
-					{
-					}
-					else if (result == System::Windows::Forms::DialogResult::No)
-					{
-						return;
-					}
-
-
-
-					int selectedRowIndex = ViewRoomList->SelectedRows[0]->Index;
-
-					System::Object^ column1ValueObj = ViewRoomList->Rows[selectedRowIndex]->Cells["RoomIndex"]->Value;
-					System::String^ tmptxt_1;
-					// null 체크
-					if (column1ValueObj != nullptr)
-					{
-						System::String^ column1Value = column1ValueObj->ToString();
-						tmptxt_1 = column1Value;
-					}
-					else
-					{
-						ViewRoomList->Rows->Clear();
-						return;
-					}
-
-					int t_index = e_room_Delete;
-					String^ buffer = _my->s_(t_index) + " " + tmptxt_1;
-					_my->SendMessage(buffer);
-					break;
 				}
-				case e_room_myList:
-				{
-					int t_index = e_room_myList;
-					String^ buffer = _my->s_(t_index);
-					_my->SendMessage(buffer);
-
-					break;
-				}
-
-				}
-
-			}
-
-
-			private: void ReceivedMsg(String^ message)
-			{
-				String^ inputString = message;
-
-				array<String^>^ subString = inputString->Split(' ');
-
-				String^ index_s = subString[0];
-				String^ isTrue = subString[1];
-				int index = Int32::Parse(index_s);
-
-				switch (index)
-				{
-				case e_room_Delete:
-				{
-
-					if (isTrue == "true")
-					{
-
-						System::Windows::Forms::MessageBox::Show("Room deleted", "Notice", MessageBoxButtons::OK, MessageBoxIcon::Information);
-					}
-					else
-					{
-						System::Windows::Forms::MessageBox::Show("Failed", "Notice", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-					}
-					break;
-				}
-
-				case e_room_myList:
-				{
-
-					this->Invoke(gcnew Action<String^>(this, &DeleteRoom::UpdateRoomList), message);
-					break;
-				}
-
-				}
-
-
-			}
-			private: void UpdateRoomList(String^ message) {
-
-				ViewRoomList->Rows->Clear();
-
-				String^ inputString = message;
-
-				array<String^>^ subString = inputString->Split(' ');
-
-				String^ index_s = subString[0];
-				String^ isTrue = subString[1];
-
-				if (isTrue == "false")
+				else if (result == System::Windows::Forms::DialogResult::No)
 				{
 					return;
 				}
 
-				// 17*/2*/welcome my home*/20211012 3033\n
 
-				array<String^>^ roomInfo = message->Split('\n');
-				int rowNum = 0;
-				array<String^>^ separators = gcnew array<String^> { "*/" };
 
-				for (int i = 1; i < roomInfo->Length;i++)
+				int selectedRowIndex = ViewRoomList->SelectedRows[0]->Index;
+
+				System::Object^ column1ValueObj = ViewRoomList->Rows[selectedRowIndex]->Cells["RoomIndex"]->Value;
+				System::String^ tmptxt_1;
+				// null 체크
+				if (column1ValueObj != nullptr)
 				{
-					//array<String^>^ myString = roomInfo[i]->Split('*/');
-					array<String^>^ myString = roomInfo[i]->Split(separators, StringSplitOptions::None);
-					ViewRoomList->Rows->Add();
-					ViewRoomList->Rows[rowNum]->Cells["RoomIndex"]->Value = myString[0];
-
-
-					if (myString[1] == "2")
-					{
-						ViewRoomList->Rows[rowNum]->Cells["PrivateCheck"]->Value = "Public";
-					}
-					else
-					{
-						ViewRoomList->Rows[rowNum]->Cells["PrivateCheck"]->Value = "Private";
-					}
-
-					ViewRoomList->Rows[rowNum]->Cells["RoomName"]->Value = myString[2];
-
-
-					ViewRoomList->Rows[rowNum]->Cells["CreatedDate"]->Value = myString[3];
-
-					rowNum++;
+					System::String^ column1Value = column1ValueObj->ToString();
+					tmptxt_1 = column1Value;
+				}
+				else
+				{
+					ViewRoomList->Rows->Clear();
+					return;
 				}
 
+				int t_index = e_room_Delete;
+				String^ buffer = _my->s_(t_index) + " " + tmptxt_1;
+				_my->SendMessage(buffer);
+				break;
+			}
+			case e_room_myList:
+			{
+				int t_index = e_room_myList;
+				String^ buffer = _my->s_(t_index);
+				_my->SendMessage(buffer);
+
+				break;
+			}
+
+			}
+
+		}
+
+
+		private: void ReceivedMsg(String^ message)
+		{
+			String^ inputString = message;
+
+			array<String^>^ subString = inputString->Split(' ');
+
+			String^ index_s = subString[0];
+			String^ isTrue = subString[1];
+			int index = Int32::Parse(index_s);
+
+			switch (index)
+			{
+			case e_room_Delete:
+			{
+
+				if (isTrue == "true")
+				{
+
+					System::Windows::Forms::MessageBox::Show("Room deleted", "Notice", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				}
+				else
+				{
+					System::Windows::Forms::MessageBox::Show("Failed", "Notice", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				}
+				break;
+			}
+
+			case e_room_myList:
+			{
+
+				this->Invoke(gcnew Action<String^>(this, &DeleteRoom::UpdateRoomList), message);
+				break;
+			}
 
 			}
 
 
-			private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
-				btnDelete->NotifyDefault(false);
-				SendMessageForm(e_room_Delete);
+		}
+		private: void UpdateRoomList(String^ message) {
+
+			ViewRoomList->Rows->Clear();
+
+			String^ inputString = message;
+
+			array<String^>^ subString = inputString->Split(' ');
+
+			String^ index_s = subString[0];
+			String^ isTrue = subString[1];
+
+			if (isTrue == "false")
+			{
+				return;
 			}
 
-			private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
-				this->Close();
+			// 17*/2*/welcome my home*/20211012 3033\n
+
+			array<String^>^ roomInfo = message->Split('\n');
+			int rowNum = 0;
+			array<String^>^ separators = gcnew array<String^> { "*/" };
+
+			for (int i = 1; i < roomInfo->Length;i++)
+			{
+				//array<String^>^ myString = roomInfo[i]->Split('*/');
+				array<String^>^ myString = roomInfo[i]->Split(separators, StringSplitOptions::None);
+				ViewRoomList->Rows->Add();
+				ViewRoomList->Rows[rowNum]->Cells["RoomIndex"]->Value = myString[0];
+
+
+				if (myString[1] == "2")
+				{
+					ViewRoomList->Rows[rowNum]->Cells["PrivateCheck"]->Value = "Public";
+				}
+				else
+				{
+					ViewRoomList->Rows[rowNum]->Cells["PrivateCheck"]->Value = "Private";
+				}
+
+				ViewRoomList->Rows[rowNum]->Cells["RoomName"]->Value = myString[2];
+
+
+				ViewRoomList->Rows[rowNum]->Cells["CreatedDate"]->Value = myString[3];
+
+				rowNum++;
 			}
 
-			private: System::Void DeleteRoom_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
-				this->Owner->Show();
-				this->Owner->Activate();
 
-			}
-
-			private: System::Void DeleteRoom_Activated(System::Object^ sender, System::EventArgs^ e) {
-
-				SendMessageForm(e_room_myList);
-
-			}
+		}
 
 
 
-	};
+
+		private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
+			btnDelete->NotifyDefault(false);
+			SendMessageForm(e_room_Delete);
+		}
+		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->Close();
+		}
+		private: System::Void DeleteRoom_Activated(System::Object^ sender, System::EventArgs^ e) {
+			SendMessageForm(e_room_myList);
+		}
+		private: System::Void DeleteRoom_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+			this->Owner->Show();
+			this->Owner->Activate();
+		}
+};
 }

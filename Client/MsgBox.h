@@ -109,7 +109,7 @@ namespace Client {
 			this->label1->BackColor = System::Drawing::Color::Transparent;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 24));
 			this->label1->ForeColor = System::Drawing::SystemColors::Highlight;
-			this->label1->Location = System::Drawing::Point(23, 377);
+			this->label1->Location = System::Drawing::Point(20, 302);
 			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(98, 37);
@@ -122,7 +122,7 @@ namespace Client {
 			this->label3->BackColor = System::Drawing::Color::Transparent;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 24));
 			this->label3->ForeColor = System::Drawing::SystemColors::ControlText;
-			this->label3->Location = System::Drawing::Point(23, 42);
+			this->label3->Location = System::Drawing::Point(20, 34);
 			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(132, 37);
@@ -131,10 +131,11 @@ namespace Client {
 			// 
 			// txtBoxMsg
 			// 
-			this->txtBoxMsg->Location = System::Drawing::Point(508, 96);
+			this->txtBoxMsg->Location = System::Drawing::Point(444, 77);
+			this->txtBoxMsg->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxMsg->Multiline = true;
 			this->txtBoxMsg->Name = L"txtBoxMsg";
-			this->txtBoxMsg->Size = System::Drawing::Size(414, 535);
+			this->txtBoxMsg->Size = System::Drawing::Size(363, 429);
 			this->txtBoxMsg->TabIndex = 23;
 			// 
 			// ViewRead
@@ -144,15 +145,17 @@ namespace Client {
 				this->NumOfRead, this->R_From,
 					this->R_Date
 			});
-			this->ViewRead->Location = System::Drawing::Point(31, 426);
+			this->ViewRead->Location = System::Drawing::Point(27, 341);
+			this->ViewRead->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->ViewRead->MultiSelect = false;
 			this->ViewRead->Name = L"ViewRead";
 			this->ViewRead->ReadOnly = true;
 			this->ViewRead->RowHeadersWidth = 51;
 			this->ViewRead->RowTemplate->Height = 27;
 			this->ViewRead->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->ViewRead->Size = System::Drawing::Size(418, 204);
+			this->ViewRead->Size = System::Drawing::Size(366, 163);
 			this->ViewRead->TabIndex = 22;
+			this->ViewRead->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MsgBox::ViewRead_CellClick);
 			// 
 			// NumOfRead
 			// 
@@ -185,15 +188,17 @@ namespace Client {
 				this->NumOfUnread,
 					this->U_From, this->U_Date
 			});
-			this->ViewUnread->Location = System::Drawing::Point(31, 96);
+			this->ViewUnread->Location = System::Drawing::Point(27, 77);
+			this->ViewUnread->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->ViewUnread->MultiSelect = false;
 			this->ViewUnread->Name = L"ViewUnread";
 			this->ViewUnread->ReadOnly = true;
 			this->ViewUnread->RowHeadersWidth = 51;
 			this->ViewUnread->RowTemplate->Height = 27;
 			this->ViewUnread->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->ViewUnread->Size = System::Drawing::Size(418, 204);
+			this->ViewUnread->Size = System::Drawing::Size(366, 163);
 			this->ViewUnread->TabIndex = 21;
+			this->ViewUnread->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MsgBox::ViewUnread_CellClick);
 			// 
 			// NumOfUnread
 			// 
@@ -221,45 +226,53 @@ namespace Client {
 			// 
 			// btnRead
 			// 
-			this->btnRead->Location = System::Drawing::Point(247, 306);
+			this->btnRead->Location = System::Drawing::Point(216, 245);
+			this->btnRead->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnRead->Name = L"btnRead";
-			this->btnRead->Size = System::Drawing::Size(84, 40);
+			this->btnRead->Size = System::Drawing::Size(74, 32);
 			this->btnRead->TabIndex = 26;
 			this->btnRead->Text = L"Read";
 			this->btnRead->UseVisualStyleBackColor = true;
+			this->btnRead->Click += gcnew System::EventHandler(this, &MsgBox::btnRead_Click);
 			// 
 			// btnDelete_U
 			// 
-			this->btnDelete_U->Location = System::Drawing::Point(355, 306);
+			this->btnDelete_U->Location = System::Drawing::Point(311, 245);
+			this->btnDelete_U->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnDelete_U->Name = L"btnDelete_U";
-			this->btnDelete_U->Size = System::Drawing::Size(84, 40);
+			this->btnDelete_U->Size = System::Drawing::Size(74, 32);
 			this->btnDelete_U->TabIndex = 26;
 			this->btnDelete_U->Text = L"delete";
 			this->btnDelete_U->UseVisualStyleBackColor = true;
+			this->btnDelete_U->Click += gcnew System::EventHandler(this, &MsgBox::btnDelete_U_Click);
 			// 
 			// btnDelete_R
 			// 
-			this->btnDelete_R->Location = System::Drawing::Point(355, 636);
+			this->btnDelete_R->Location = System::Drawing::Point(311, 509);
+			this->btnDelete_R->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnDelete_R->Name = L"btnDelete_R";
-			this->btnDelete_R->Size = System::Drawing::Size(84, 40);
+			this->btnDelete_R->Size = System::Drawing::Size(74, 32);
 			this->btnDelete_R->TabIndex = 26;
 			this->btnDelete_R->Text = L"delete";
 			this->btnDelete_R->UseVisualStyleBackColor = true;
+			this->btnDelete_R->Click += gcnew System::EventHandler(this, &MsgBox::btnDelete_R_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(838, 638);
+			this->btnClose->Location = System::Drawing::Point(733, 510);
+			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(84, 40);
+			this->btnClose->Size = System::Drawing::Size(74, 32);
 			this->btnClose->TabIndex = 26;
 			this->btnClose->Text = L"close";
 			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->Click += gcnew System::EventHandler(this, &MsgBox::btnClose_Click);
 			// 
 			// MsgBox
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(988, 690);
+			this->ClientSize = System::Drawing::Size(864, 552);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnDelete_R);
 			this->Controls->Add(this->btnDelete_U);
@@ -269,8 +282,11 @@ namespace Client {
 			this->Controls->Add(this->txtBoxMsg);
 			this->Controls->Add(this->ViewRead);
 			this->Controls->Add(this->ViewUnread);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MsgBox";
 			this->Text = L"MsgBox";
+			this->Activated += gcnew System::EventHandler(this, &MsgBox::MsgBox_Activated);
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &MsgBox::MsgBox_FormClosing);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ViewRead))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ViewUnread))->EndInit();
 			this->ResumeLayout(false);
@@ -280,20 +296,7 @@ namespace Client {
 #pragma endregion
 
 
-			private: System::Void MsgBox_Activated(System::Object^ sender, System::EventArgs^ e) {
 
-				ViewRead->Rows->Clear();
-				ViewUnread->Rows->Clear();
-
-				String^ buffer = _my->s_(e_message_UGiven_list);
-				_my->SendMessage(buffer);
-
-				Sleep(100);
-
-				buffer = _my->s_(e_message_RGiven_list);
-				_my->SendMessage(buffer);
-
-			}
 
 		public: String^ temp;
 
@@ -465,15 +468,8 @@ namespace Client {
 			return;
 
 		}
-		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
-			this->Close();
-		}
-		private: System::Void MsgBox_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
-			this->Owner->Show();
-			this->Owner->Activate();
-		}
-		private: System::Void ViewUnread_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 
+		private: System::Void ViewUnread_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 			if (ViewUnread->SelectedRows->Count > 0) {
 				// 선택한 행의 인덱스를 가져옵니다.
 				int selectedRowIndex = ViewUnread->SelectedRows[0]->Index;
@@ -512,7 +508,6 @@ namespace Client {
 			}
 		}
 		private: System::Void ViewRead_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-
 			if (ViewRead->SelectedRows->Count > 0) {
 				// 선택한 행의 인덱스를 가져옵니다.
 				int selectedRowIndex = ViewRead->SelectedRows[0]->Index;
@@ -551,7 +546,6 @@ namespace Client {
 			}
 		}
 		private: System::Void btnRead_Click(System::Object^ sender, System::EventArgs^ e) {
-
 			String^ tmptxt_1;
 
 			if (ViewUnread->SelectedRows->Count > 0) {
@@ -585,7 +579,6 @@ namespace Client {
 			}
 		}
 		private: System::Void btnDelete_U_Click(System::Object^ sender, System::EventArgs^ e) {
-
 			String^ tmptxt_1;
 			if (ViewUnread->SelectedRows->Count > 0) {
 				// 선택한 행의 인덱스를 가져옵니다.
@@ -619,10 +612,8 @@ namespace Client {
 				// 예를 들어, 오류 메시지 출력 또는 다른 작업을 수행할 수 있습니다.
 				return;
 			}
-
 		}
 		private: System::Void btnDelete_R_Click(System::Object^ sender, System::EventArgs^ e) {
-
 			String^ tmptxt_1;
 			if (ViewRead->SelectedRows->Count > 0) {
 				// 선택한 행의 인덱스를 가져옵니다.
@@ -656,7 +647,25 @@ namespace Client {
 				// 예를 들어, 오류 메시지 출력 또는 다른 작업을 수행할 수 있습니다.
 				return;
 			}
-
 		}
-	};
+		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->Close();
+		}
+		private: System::Void MsgBox_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+			this->Owner->Show();
+			this->Owner->Activate();
+		}
+		private: System::Void MsgBox_Activated(System::Object^ sender, System::EventArgs^ e) {
+			ViewRead->Rows->Clear();
+			ViewUnread->Rows->Clear();
+
+			String^ buffer = _my->s_(e_message_UGiven_list);
+			_my->SendMessage(buffer);
+
+			Sleep(100);
+
+			buffer = _my->s_(e_message_RGiven_list);
+			_my->SendMessage(buffer);
+		}
+};
 }

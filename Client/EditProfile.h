@@ -75,6 +75,10 @@ namespace Client {
 
 	private: System::Windows::Forms::Button^ btnPWchk;
 	private: System::Windows::Forms::Button^ btnNickNameduplicateChk;
+	private: System::Windows::Forms::Button^ btnEditConfirm;
+	private: System::Windows::Forms::Button^ btnClose;
+
+
 
 
 
@@ -108,149 +112,182 @@ namespace Client {
 			this->combBoxCha = (gcnew System::Windows::Forms::ComboBox());
 			this->btnPWchk = (gcnew System::Windows::Forms::Button());
 			this->btnNickNameduplicateChk = (gcnew System::Windows::Forms::Button());
+			this->btnEditConfirm = (gcnew System::Windows::Forms::Button());
+			this->btnClose = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(74, 60);
+			this->label1->Location = System::Drawing::Point(65, 48);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(123, 15);
+			this->label1->Size = System::Drawing::Size(107, 12);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Current Password";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(317, 185);
+			this->label2->Location = System::Drawing::Point(277, 148);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(126, 15);
+			this->label2->Size = System::Drawing::Size(110, 12);
 			this->label2->TabIndex = 0;
 			this->label2->Text = L"Confirm Password";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(74, 185);
+			this->label3->Location = System::Drawing::Point(65, 148);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(104, 15);
+			this->label3->Size = System::Drawing::Size(92, 12);
 			this->label3->TabIndex = 0;
 			this->label3->Text = L"New Password";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(74, 281);
+			this->label4->Location = System::Drawing::Point(65, 225);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(69, 15);
+			this->label4->Size = System::Drawing::Size(62, 12);
 			this->label4->TabIndex = 0;
 			this->label4->Text = L"Nickname";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(74, 382);
+			this->label5->Location = System::Drawing::Point(65, 306);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(50, 15);
+			this->label5->Size = System::Drawing::Size(41, 12);
 			this->label5->TabIndex = 0;
 			this->label5->Text = L"Phone";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(74, 469);
+			this->label6->Location = System::Drawing::Point(65, 375);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(69, 15);
+			this->label6->Size = System::Drawing::Size(60, 12);
 			this->label6->TabIndex = 0;
 			this->label6->Text = L"Character";
 			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(317, 382);
+			this->label7->Location = System::Drawing::Point(277, 306);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(49, 15);
+			this->label7->Size = System::Drawing::Size(43, 12);
 			this->label7->TabIndex = 0;
 			this->label7->Text = L"E-mail";
 			// 
 			// txtBoxPW
 			// 
-			this->txtBoxPW->Location = System::Drawing::Point(75, 94);
+			this->txtBoxPW->Location = System::Drawing::Point(66, 75);
+			this->txtBoxPW->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPW->Name = L"txtBoxPW";
-			this->txtBoxPW->Size = System::Drawing::Size(121, 25);
+			this->txtBoxPW->Size = System::Drawing::Size(106, 21);
 			this->txtBoxPW->TabIndex = 1;
 			// 
 			// txtBoxPW_new
 			// 
 			this->txtBoxPW_new->Enabled = false;
-			this->txtBoxPW_new->Location = System::Drawing::Point(75, 214);
+			this->txtBoxPW_new->Location = System::Drawing::Point(66, 171);
+			this->txtBoxPW_new->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPW_new->Name = L"txtBoxPW_new";
-			this->txtBoxPW_new->Size = System::Drawing::Size(121, 25);
+			this->txtBoxPW_new->Size = System::Drawing::Size(106, 21);
 			this->txtBoxPW_new->TabIndex = 1;
 			// 
 			// txtBoxPW_Confirm
 			// 
 			this->txtBoxPW_Confirm->Enabled = false;
-			this->txtBoxPW_Confirm->Location = System::Drawing::Point(320, 214);
+			this->txtBoxPW_Confirm->Location = System::Drawing::Point(280, 171);
+			this->txtBoxPW_Confirm->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPW_Confirm->Name = L"txtBoxPW_Confirm";
-			this->txtBoxPW_Confirm->Size = System::Drawing::Size(121, 25);
+			this->txtBoxPW_Confirm->Size = System::Drawing::Size(106, 21);
 			this->txtBoxPW_Confirm->TabIndex = 1;
 			// 
 			// txtBoxNickName
 			// 
 			this->txtBoxNickName->Enabled = false;
-			this->txtBoxNickName->Location = System::Drawing::Point(75, 313);
+			this->txtBoxNickName->Location = System::Drawing::Point(66, 250);
+			this->txtBoxNickName->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxNickName->Name = L"txtBoxNickName";
-			this->txtBoxNickName->Size = System::Drawing::Size(121, 25);
+			this->txtBoxNickName->Size = System::Drawing::Size(106, 21);
 			this->txtBoxNickName->TabIndex = 1;
 			// 
 			// txtBoxPhone
 			// 
 			this->txtBoxPhone->Enabled = false;
-			this->txtBoxPhone->Location = System::Drawing::Point(75, 400);
+			this->txtBoxPhone->Location = System::Drawing::Point(66, 320);
+			this->txtBoxPhone->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPhone->Name = L"txtBoxPhone";
-			this->txtBoxPhone->Size = System::Drawing::Size(121, 25);
+			this->txtBoxPhone->Size = System::Drawing::Size(106, 21);
 			this->txtBoxPhone->TabIndex = 1;
 			// 
 			// txtBoxEmail
 			// 
 			this->txtBoxEmail->Enabled = false;
-			this->txtBoxEmail->Location = System::Drawing::Point(322, 400);
+			this->txtBoxEmail->Location = System::Drawing::Point(282, 320);
+			this->txtBoxEmail->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxEmail->Name = L"txtBoxEmail";
-			this->txtBoxEmail->Size = System::Drawing::Size(121, 25);
+			this->txtBoxEmail->Size = System::Drawing::Size(106, 21);
 			this->txtBoxEmail->TabIndex = 1;
 			// 
 			// combBoxCha
 			// 
 			this->combBoxCha->FormattingEnabled = true;
-			this->combBoxCha->Location = System::Drawing::Point(75, 507);
+			this->combBoxCha->Location = System::Drawing::Point(66, 406);
+			this->combBoxCha->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->combBoxCha->Name = L"combBoxCha";
-			this->combBoxCha->Size = System::Drawing::Size(121, 23);
+			this->combBoxCha->Size = System::Drawing::Size(106, 20);
 			this->combBoxCha->TabIndex = 2;
 			// 
 			// btnPWchk
 			// 
-			this->btnPWchk->Location = System::Drawing::Point(75, 143);
+			this->btnPWchk->Location = System::Drawing::Point(66, 114);
+			this->btnPWchk->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnPWchk->Name = L"btnPWchk";
-			this->btnPWchk->Size = System::Drawing::Size(121, 32);
+			this->btnPWchk->Size = System::Drawing::Size(106, 26);
 			this->btnPWchk->TabIndex = 3;
 			this->btnPWchk->Text = L"check";
 			this->btnPWchk->UseVisualStyleBackColor = true;
 			// 
 			// btnNickNameduplicateChk
 			// 
-			this->btnNickNameduplicateChk->Location = System::Drawing::Point(320, 307);
+			this->btnNickNameduplicateChk->Location = System::Drawing::Point(280, 246);
+			this->btnNickNameduplicateChk->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnNickNameduplicateChk->Name = L"btnNickNameduplicateChk";
-			this->btnNickNameduplicateChk->Size = System::Drawing::Size(121, 32);
+			this->btnNickNameduplicateChk->Size = System::Drawing::Size(106, 26);
 			this->btnNickNameduplicateChk->TabIndex = 3;
 			this->btnNickNameduplicateChk->Text = L"check";
 			this->btnNickNameduplicateChk->UseVisualStyleBackColor = true;
 			// 
+			// btnEditConfirm
+			// 
+			this->btnEditConfirm->Location = System::Drawing::Point(66, 475);
+			this->btnEditConfirm->Name = L"btnEditConfirm";
+			this->btnEditConfirm->Size = System::Drawing::Size(116, 33);
+			this->btnEditConfirm->TabIndex = 4;
+			this->btnEditConfirm->Text = L"confirm";
+			this->btnEditConfirm->UseVisualStyleBackColor = true;
+			this->btnEditConfirm->Click += gcnew System::EventHandler(this, &EditProfile::btnEditConfirm_Click);
+			// 
+			// btnClose
+			// 
+			this->btnClose->Location = System::Drawing::Point(282, 475);
+			this->btnClose->Name = L"btnClose";
+			this->btnClose->Size = System::Drawing::Size(116, 33);
+			this->btnClose->TabIndex = 4;
+			this->btnClose->Text = L"close";
+			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->Click += gcnew System::EventHandler(this, &EditProfile::btnClose_Click);
+			// 
 			// EditProfile
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(595, 631);
+			this->ClientSize = System::Drawing::Size(521, 564);
+			this->Controls->Add(this->btnClose);
+			this->Controls->Add(this->btnEditConfirm);
 			this->Controls->Add(this->btnNickNameduplicateChk);
 			this->Controls->Add(this->btnPWchk);
 			this->Controls->Add(this->combBoxCha);
@@ -267,8 +304,10 @@ namespace Client {
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"EditProfile";
 			this->Text = L"EditProfile";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &EditProfile::EditProfile_FormClosing);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -435,23 +474,22 @@ namespace Client {
 
 		}
 
-		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
-			this->Close();
-		}
-		private: System::Void btnEditConfirm_Click(System::Object^ sender, System::EventArgs^ e) {
-			SendMessageForm(e_edit_Confirm);
-		}
 		private: System::Void btnPWchk_Click(System::Object^ sender, System::EventArgs^ e) {
 			SendMessageForm(e_edit_PWchk);
 		}
 		private: System::Void btnNickNameduplicateChk_Click(System::Object^ sender, System::EventArgs^ e) {
 			SendMessageForm(e_edit_NickNamechk);
 		}
+		private: System::Void btnEditConfirm_Click(System::Object^ sender, System::EventArgs^ e) {
+			SendMessageForm(e_edit_Confirm);
+		}
+		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->Close();
+		}
 		private: System::Void EditProfile_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
 			this->Owner->Show();
 			this->Owner->Activate();
 		}
-
-	};
+};
 
 }

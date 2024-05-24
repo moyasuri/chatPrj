@@ -66,12 +66,15 @@ namespace Client {
 	private: System::Windows::Forms::TextBox^ txtBoxMyChat;
 	private: System::Windows::Forms::TextBox^ txtBoxDate;
 	private: System::Windows::Forms::DataGridView^ ViewDataChat;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ID;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Message;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Time;
+
+
+
 	private: System::Windows::Forms::Button^ btnSend;
 	private: System::Windows::Forms::Button^ btnClose;
 	private: MyFunction^ _my;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ViewId;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ViewMsg;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Date;
 
 	private:
 		/// <summary>
@@ -93,9 +96,9 @@ namespace Client {
 			this->txtBoxMyChat = (gcnew System::Windows::Forms::TextBox());
 			this->txtBoxDate = (gcnew System::Windows::Forms::TextBox());
 			this->ViewDataChat = (gcnew System::Windows::Forms::DataGridView());
-			this->ID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Message = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Time = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->ViewId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->ViewMsg = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Date = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btnSend = (gcnew System::Windows::Forms::Button());
 			this->btnClose = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picBoxImojiMy))->BeginInit();
@@ -161,8 +164,8 @@ namespace Client {
 			// 
 			this->ViewDataChat->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->ViewDataChat->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
-				this->ID, this->Message,
-					this->Time
+				this->ViewId,
+					this->ViewMsg, this->Date
 			});
 			this->ViewDataChat->Location = System::Drawing::Point(460, 198);
 			this->ViewDataChat->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
@@ -171,20 +174,20 @@ namespace Client {
 			this->ViewDataChat->Size = System::Drawing::Size(377, 146);
 			this->ViewDataChat->TabIndex = 3;
 			// 
-			// ID
+			// ViewId
 			// 
-			this->ID->HeaderText = L"ID";
-			this->ID->Name = L"ID";
+			this->ViewId->HeaderText = L"ID";
+			this->ViewId->Name = L"ViewId";
 			// 
-			// Message
+			// ViewMsg
 			// 
-			this->Message->HeaderText = L"Message";
-			this->Message->Name = L"Message";
+			this->ViewMsg->HeaderText = L"Message";
+			this->ViewMsg->Name = L"ViewMsg";
 			// 
-			// Time
+			// Date
 			// 
-			this->Time->HeaderText = L"Time";
-			this->Time->Name = L"Time";
+			this->Date->HeaderText = L"Time";
+			this->Date->Name = L"Date";
 			// 
 			// btnSend
 			// 
@@ -225,6 +228,7 @@ namespace Client {
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"ChatRoom";
 			this->Text = L"ChatRoom";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &ChatRoom::ChatRoom_FormClosing);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picBoxImojiMy))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picBoxImojiYou))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ViewDataChat))->EndInit();
@@ -350,16 +354,6 @@ namespace Client {
 
 
 
-		private: System::Void ChatRoom_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
-
-			String^ buffer = _my->s_(e_room_Exit);
-			_my->SendMessage(buffer);
-			this->Owner->Show();
-			this->Owner->Activate();
-
-
-		}
-
 		private: System::Void txtBoxMyChat_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
 			// Check if Enter key (carriage return) was pressed
 			if (e->KeyChar == (char)Keys::Enter) {
@@ -382,6 +376,13 @@ namespace Client {
 		}
 		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
 			this->Close();
+		}
+		private: System::Void ChatRoom_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+
+			String^ buffer = _my->s_(e_room_Exit);
+			_my->SendMessage(buffer);
+			this->Owner->Show();
+			this->Owner->Activate();
 		}
 };
 }

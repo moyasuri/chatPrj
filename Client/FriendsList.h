@@ -81,11 +81,11 @@ namespace Client {
 			// listBoxFriends
 			// 
 			this->listBoxFriends->FormattingEnabled = true;
-			this->listBoxFriends->ItemHeight = 15;
-			this->listBoxFriends->Location = System::Drawing::Point(62, 84);
+			this->listBoxFriends->ItemHeight = 12;
+			this->listBoxFriends->Location = System::Drawing::Point(54, 67);
 			this->listBoxFriends->Margin = System::Windows::Forms::Padding(2);
 			this->listBoxFriends->Name = L"listBoxFriends";
-			this->listBoxFriends->Size = System::Drawing::Size(303, 334);
+			this->listBoxFriends->Size = System::Drawing::Size(266, 268);
 			this->listBoxFriends->TabIndex = 55;
 			// 
 			// label1
@@ -94,7 +94,7 @@ namespace Client {
 			this->label1->BackColor = System::Drawing::Color::Transparent;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15));
 			this->label1->ForeColor = System::Drawing::Color::Cornsilk;
-			this->label1->Location = System::Drawing::Point(58, 30);
+			this->label1->Location = System::Drawing::Point(51, 24);
 			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(45, 23);
@@ -103,31 +103,36 @@ namespace Client {
 			// 
 			// btnConfirm
 			// 
-			this->btnConfirm->Location = System::Drawing::Point(78, 465);
+			this->btnConfirm->Location = System::Drawing::Point(68, 372);
+			this->btnConfirm->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnConfirm->Name = L"btnConfirm";
-			this->btnConfirm->Size = System::Drawing::Size(143, 46);
+			this->btnConfirm->Size = System::Drawing::Size(125, 37);
 			this->btnConfirm->TabIndex = 56;
 			this->btnConfirm->Text = L"confirm";
 			this->btnConfirm->UseVisualStyleBackColor = true;
+			this->btnConfirm->Click += gcnew System::EventHandler(this, &FriendsList::btnConfirm_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(250, 465);
+			this->btnClose->Location = System::Drawing::Point(219, 372);
+			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(143, 46);
+			this->btnClose->Size = System::Drawing::Size(125, 37);
 			this->btnClose->TabIndex = 56;
 			this->btnClose->Text = L"close";
 			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->Click += gcnew System::EventHandler(this, &FriendsList::btnClose_Click);
 			// 
 			// FriendsList
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(522, 545);
+			this->ClientSize = System::Drawing::Size(457, 436);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnConfirm);
 			this->Controls->Add(this->listBoxFriends);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"FriendsList";
 			this->Text = L"FriendsList";
 			this->ResumeLayout(false);
@@ -136,75 +141,81 @@ namespace Client {
 		}
 #pragma endregion
 
-		public: void SendMessageForm(int index)
+	public: void SendMessageForm(int index)
+	{
+
+		switch (index)
+		{
+		case e_friends_List:
 		{
 
-			switch (index)
-			{
+			int t_index = e_friends_List;
+			String^ buffer = t_index.ToString();
+			_my->SendMessage(buffer);
+
+			break;
+		}
+		}
+	}
+
+	public: void ReceivedMsg(String^ message)
+	{
+		String^ inputString = message;
+
+
+		array<String^>^ subString = inputString->Split(' ');
+
+
+		String^ index_s = subString[0];
+		String^ isTrue = subString[1];
+		int index = Int32::Parse(index_s);
+
+		switch (index)
+		{
 			case e_friends_List:
 			{
-
-				int t_index = e_friends_List;
-				String^ buffer = t_index.ToString();
-				_my->SendMessage(buffer);
-
+				if (isTrue == "true")
+				{
+					// 이거 안될거 같은데
+					for (int i = 2; i < subString->Length;i++)
+					{
+						listBoxFriends->Items->Add(gcnew String(subString[i]));
+					}
+				}
 				break;
 			}
-			}
+
 		}
+	}
 
-		public: void ReceivedMsg(String^ message)
-		{
-			String^ inputString = message;
+	private: System::Void FriendsList_Activated(System::Object^ sender, System::EventArgs^ e) {
+
+		listBoxFriends->Items->Clear();
+		int t_index = e_friends_List;
+		String^ buffer = _my->s_(t_index);
+		_my->SendMessage(buffer);
+	}
+
+	private: System::Void btnConfirm_Click1(System::Object^ sender, System::EventArgs^ e) {
+
+	}
+	private: System::Void btnClose_Click1(System::Object^ sender, System::EventArgs^ e) {
+
+	}
 
 
-			array<String^>^ subString = inputString->Split(' ');
-
-
-			String^ index_s = subString[0];
-			String^ isTrue = subString[1];
-			int index = Int32::Parse(index_s);
-
-			switch (index)
-			{
-				case e_friends_List:
-				{
-					if (isTrue == "true")
-					{
-						// 이거 안될거 같은데
-						for (int i = 2; i < subString->Length;i++)
-						{
-							listBoxFriends->Items->Add(gcnew String(subString[i]));
-						}
-					}
-					break;
-				}
-
-			}
+	private: System::Void btnConfirm_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (listBoxFriends->SelectedItem == nullptr) {
+			System::Windows::Forms::MessageBox::Show("Select the ID", "warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			return;
 		}
-
-		private: System::Void FriendsList_Activated(System::Object^ sender, System::EventArgs^ e) {
-
-			listBoxFriends->Items->Clear();
-			int t_index = e_friends_List;
-			String^ buffer = _my->s_(t_index);
-			_my->SendMessage(buffer);
-		}
-
-		private: System::Void btnConfirm_Click(System::Object^ sender, System::EventArgs^ e) {
-			if (listBoxFriends->SelectedItem == nullptr) {
-				System::Windows::Forms::MessageBox::Show("Select the ID", "warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-				return;
-			}
-
-			String^ tmptxt_1 = listBoxFriends->SelectedItem->ToString();
-			MyEvent_(tmptxt_1);
-			this->Close();
-		}
-		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
-			this->Close();
-		}
-
-
-	};
+		String^ tmptxt_1 = listBoxFriends->SelectedItem->ToString();
+		MyEvent_(tmptxt_1);
+		this->Close();
+	}
+	private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Close();
+		
+	}
+};
 }
