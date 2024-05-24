@@ -24,11 +24,13 @@ string _date;
 string _id;
 
 extern bool multimsg;
-#define MAX_SIZE 1024//소켓 박스크기
+#define MAX_SIZE 1024 //소켓 박스크기
+#define SERVER_INDEX 0
+
 
 
 // int타입을 string으로 만들어주는 함수
-string s_(int e_num) {
+string MySQL::s_(int e_num) {
     return std::to_string(e_num);
 }
 
@@ -38,7 +40,7 @@ string s_(int e_num) {
 
 void MySQL::_send_msg(const char* msg, int room_Index) {
     size_t length = strlen(msg);
-    for (int i = 0; i < 1; i++) { // 이 방에 접속해 있는 모든 client에게 메시지 전송 < 이부분
+    for (int i = 0; i < client_count; i++) { // 이 방에 접속해 있는 모든 client에게 메시지 전송 < 이부분
         if (stoi(sck_list[i].ui.getJoinRoomIndex()) == room_Index) {// UserInfo 객체 생성시 초기화 반드시 진행, JoinRoomIndex ="0"으로
             send(sck_list[i].sck, msg, length, 0);
         }
@@ -121,7 +123,7 @@ string MySQL::room_myList(int index) {
 
 MySQL::MySQL() {
     // 생성자에서 초기화
-    driver = sql::mysql::get_mysql_driver_instance();
+    driver = nullptr;
     con = nullptr;
     stmt = nullptr;
     pstmt = nullptr;
@@ -227,6 +229,7 @@ string MySQL::QuerySql(string msg, int idx) {
     ss >> _Index;
     int _Index_Int = stoi(_Index);
     //multimsg = true; // 여러번 보내야할때 잠깐 false로바뀜
+    
     switch (_Index_Int)
     {
 
@@ -240,11 +243,8 @@ string MySQL::QuerySql(string msg, int idx) {
         prep_stmt->setString(2, _pw);
         sql::ResultSet* res = prep_stmt->executeQuery();
 
-
-
         if (res->next())
         {
-
             sck_list[idx].ui.setID(_id);
             stmt->execute("UPDATE member SET Join_Room_Index = NULL WHERE Member_ID = '" + _id + "';");// 추가열
             std::string query = "SELECT Nickname, Name FROM member WHERE Member_ID = '" + _id + "'";
@@ -256,8 +256,8 @@ string MySQL::QuerySql(string msg, int idx) {
                 sck_list[idx].ui.setName(res->getString("Name"));
             }
 
-            cout << sck_list[idx].ui.getNickName();
-            cout << sck_list[idx].ui.getID();
+            
+            cout << sck_list[idx].ui.getID() + "로그인 성공" << endl;
             _ret = s_(e_id_try_Signin) + delim + trueStr;
             break;
 
@@ -308,6 +308,7 @@ string MySQL::QuerySql(string msg, int idx) {
             break;
         }
     }
+    
     // Sign up
     case e_signup_IDchk:
     {
@@ -390,6 +391,7 @@ string MySQL::QuerySql(string msg, int idx) {
             break;
         }
     }
+
     case e_edit_NickNamechk:
     {
         string _id, _nickname;
@@ -410,6 +412,7 @@ string MySQL::QuerySql(string msg, int idx) {
             break;
         }
     }
+
     case e_edit_Confirm:
     {
         string _id = sck_list[idx].ui.getID();
@@ -430,7 +433,6 @@ string MySQL::QuerySql(string msg, int idx) {
         if (prep_stmt->executeUpdate())
         {
 
-            // 이거 필요함? 음...
             sck_list[idx].ui.setChaNum(_cha_num);
             sck_list[idx].ui.setEmail(_email);
             sck_list[idx].ui.setNickName(_nickname);
@@ -458,7 +460,6 @@ string MySQL::QuerySql(string msg, int idx) {
         while (res->next()) {
             result += res->getString("Nickname") + delim;
         }
-
 
         if (!result.empty()) {
             _ret = s_(e_friends_List) + delim + trueStr + delim + result;
@@ -495,6 +496,7 @@ string MySQL::QuerySql(string msg, int idx) {
                 _ret = elseStr;
                 break;
             }
+
             // Friend_Request 테이블 업데이트
             // PreparedStatement를 사용하여 쿼리 준비
             sql::PreparedStatement* insertFriendRequestStmt;
@@ -527,8 +529,6 @@ string MySQL::QuerySql(string msg, int idx) {
             break;
 
         }
-
-
     }
 
     case e_friends_Response_List:
@@ -563,7 +563,7 @@ string MySQL::QuerySql(string msg, int idx) {
                 getline(ss_msg_from, _msg_temp);
                 result += _nick_from + delim + _msg_temp + delim;
             }
-            ;
+            
         }
 
         if (!result.empty())
@@ -644,11 +644,11 @@ string MySQL::QuerySql(string msg, int idx) {
         if (res->next()) {
 
             string b_id = res->getString("Member_ID");
-            sql::PreparedStatement* Acc_Stmt;
+            sql::PreparedStatement* tpstm;
             // friend request list에서 그 애를 지워야 해.
-            Acc_Stmt = con->prepareStatement("SELECT From_Friend_Request_ID, To_Friend_Request_ID FROM friend_request WHERE From_Friend_Request_ID = ? AND To_Friend_Request_ID = ?");
-            Acc_Stmt->setString(1, b_id);
-            Acc_Stmt->setString(2, _id);
+            tpstm = con->prepareStatement("SELECT From_Friend_Request_ID, To_Friend_Request_ID FROM friend_request WHERE From_Friend_Request_ID = ? AND To_Friend_Request_ID = ?");
+            tpstm->setString(1, b_id);
+            tpstm->setString(2, _id);
 
 
             res = Acc_Stmt->executeQuery();

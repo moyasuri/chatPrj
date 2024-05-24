@@ -128,6 +128,7 @@ namespace Client {
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"JoinChatRoom";
 			this->Text = L"JoinChatRoom";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &JoinChatRoom::JoinChatRoom_FormClosing);
 			this->ResumeLayout(false);
 
 		}
@@ -197,10 +198,7 @@ namespace Client {
 
 
 
-		private: System::Void JoinChatRoom_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
-			this->Owner->Show();
-			this->Owner->Activate();
-		}
+
 		private: System::Void btnServer_Click(System::Object^ sender, System::EventArgs^ e) {
 			SendMessageForm(e_room_Enter);
 		}
@@ -215,6 +213,10 @@ namespace Client {
 		}
 		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
 			this->Close();
+		}
+		private: System::Void JoinChatRoom_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+			this->Owner->Show();
+			this->Owner->Activate();
 		}
 };
 }

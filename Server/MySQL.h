@@ -13,6 +13,13 @@ const string server = "tcp://127.0.0.1:3306"; // 데이터베이스 주소
 const string username = "codingon"; // 데이터베이스 사용자
 const string password = "1q2w3e4r5t"; // 데이터베이스 접속 비밀번호
 
+const string trueStr = "true";
+const string falseStr = "false";
+const string elseStr = "else";
+
+
+
+extern std::atomic<int> client_count;
 
 
 
@@ -25,9 +32,7 @@ class MySQL {
 public:
 
     MySQL();
-
     ~MySQL();
-
 
 
     void Init_Mysql();
@@ -35,10 +40,13 @@ public:
     string QuerySql(string msg, int idx);
     string getCurrentTime();
     void room_activate(int roomIndex, int index__);
-    void _send_msg(const char* msg, int room_Index66);
+    void _send_msg(const char* msg, int room_Index);
     string room_List();
     string room_Delete(string roomidx, int idx);
     string room_myList(int index);
+    string s_(int e_num);
+     
+    
     bool isWorkingRoomIndexExist(int roomIndex);
 private:
     // MySQL Connector/C++ 초기화
@@ -50,9 +58,7 @@ private:
     sql::ResultSet* res;
     sql::ResultSet* res2;
 
-
-
-
 };
+
 
 

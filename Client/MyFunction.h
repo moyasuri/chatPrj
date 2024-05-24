@@ -40,8 +40,8 @@ namespace Client {
 
 			if (!String::IsNullOrEmpty(message))
 			{
-				//array<Byte>^ buffer = Encoding::UTF8->GetBytes(message);
-				array<Byte>^ buffer = Encoding::GetEncoding("EUC-KR")->GetBytes(message);
+				array<Byte>^ buffer = Encoding::UTF8->GetBytes(message);
+				//array<Byte>^ buffer = Encoding::GetEncoding("EUC-KR")->GetBytes(message);
 				clientSocket->Send(buffer);
 
 			}
