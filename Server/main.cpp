@@ -148,6 +148,7 @@ void recv_msg(int idx) {
             multimsg = false;
             msg = buf;
 
+            cout << "===================================" << endl;
             cout << "받은 메세지 : " << msg << endl;
             std::stringstream ss(msg);
             cout << "MySQL 전" << endl;

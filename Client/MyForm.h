@@ -121,7 +121,7 @@ namespace Client {
 			this->txtBoxID->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxID->Name = L"txtBoxID";
 			this->txtBoxID->Size = System::Drawing::Size(152, 21);
-			this->txtBoxID->TabIndex = 2;
+			this->txtBoxID->TabIndex = 1;
 			// 
 			// txtBoxPW
 			// 
@@ -142,7 +142,7 @@ namespace Client {
 			this->btnSignUp->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSignUp->Name = L"btnSignUp";
 			this->btnSignUp->Size = System::Drawing::Size(139, 28);
-			this->btnSignUp->TabIndex = 3;
+			this->btnSignUp->TabIndex = 4;
 			this->btnSignUp->Text = L"signup";
 			this->btnSignUp->UseVisualStyleBackColor = false;
 			this->btnSignUp->Click += gcnew System::EventHandler(this, &MyForm::btnSignUp_Click);
@@ -158,7 +158,7 @@ namespace Client {
 			this->btnExit->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnExit->Name = L"btnExit";
 			this->btnExit->Size = System::Drawing::Size(139, 28);
-			this->btnExit->TabIndex = 3;
+			this->btnExit->TabIndex = 6;
 			this->btnExit->Text = L"exit";
 			this->btnExit->UseVisualStyleBackColor = false;
 			this->btnExit->Click += gcnew System::EventHandler(this, &MyForm::btnExit_Click);
@@ -174,7 +174,7 @@ namespace Client {
 			this->btnFindAccount->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnFindAccount->Name = L"btnFindAccount";
 			this->btnFindAccount->Size = System::Drawing::Size(139, 28);
-			this->btnFindAccount->TabIndex = 3;
+			this->btnFindAccount->TabIndex = 5;
 			this->btnFindAccount->Text = L"find account";
 			this->btnFindAccount->UseVisualStyleBackColor = false;
 			this->btnFindAccount->Click += gcnew System::EventHandler(this, &MyForm::btnFindAccount_Click);

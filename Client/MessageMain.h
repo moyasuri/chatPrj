@@ -85,60 +85,66 @@ namespace Client {
 			// 
 			// btnNew
 			// 
-			this->btnNew->Location = System::Drawing::Point(128, 40);
+			this->btnNew->Location = System::Drawing::Point(112, 32);
+			this->btnNew->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnNew->Name = L"btnNew";
-			this->btnNew->Size = System::Drawing::Size(181, 72);
+			this->btnNew->Size = System::Drawing::Size(158, 58);
 			this->btnNew->TabIndex = 0;
 			this->btnNew->Text = L"new";
 			this->btnNew->UseVisualStyleBackColor = true;
+			this->btnNew->Click += gcnew System::EventHandler(this, &MessageMain::btnNew_Click);
 			// 
 			// btnSent
 			// 
-			this->btnSent->Location = System::Drawing::Point(128, 151);
+			this->btnSent->Location = System::Drawing::Point(112, 121);
+			this->btnSent->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSent->Name = L"btnSent";
-			this->btnSent->Size = System::Drawing::Size(181, 72);
+			this->btnSent->Size = System::Drawing::Size(158, 58);
 			this->btnSent->TabIndex = 0;
-			this->btnSent->Text = L"msgbox";
+			this->btnSent->Text = L"sent";
 			this->btnSent->UseVisualStyleBackColor = true;
+			this->btnSent->Click += gcnew System::EventHandler(this, &MessageMain::btnSent_Click);
 			// 
 			// btnMsgBox
 			// 
-			this->btnMsgBox->Location = System::Drawing::Point(128, 260);
+			this->btnMsgBox->Location = System::Drawing::Point(112, 208);
+			this->btnMsgBox->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnMsgBox->Name = L"btnMsgBox";
-			this->btnMsgBox->Size = System::Drawing::Size(181, 72);
+			this->btnMsgBox->Size = System::Drawing::Size(158, 58);
 			this->btnMsgBox->TabIndex = 0;
-			this->btnMsgBox->Text = L"button1";
+			this->btnMsgBox->Text = L"msgbox";
 			this->btnMsgBox->UseVisualStyleBackColor = true;
+			this->btnMsgBox->Click += gcnew System::EventHandler(this, &MessageMain::btnMsgBox_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(306, 375);
+			this->btnClose->Location = System::Drawing::Point(268, 300);
+			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(181, 72);
+			this->btnClose->Size = System::Drawing::Size(158, 58);
 			this->btnClose->TabIndex = 0;
 			this->btnClose->Text = L"close";
 			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->Click += gcnew System::EventHandler(this, &MessageMain::btnClose_Click);
 			// 
 			// MessageMain
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(517, 482);
+			this->ClientSize = System::Drawing::Size(452, 386);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnMsgBox);
 			this->Controls->Add(this->btnSent);
 			this->Controls->Add(this->btnNew);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MessageMain";
 			this->Text = L"MessageMain";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &MessageMain::MessageMain_FormClosing);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 
-
-		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
-			this->Close();
-		}
 
 		private: System::Void btnNew_Click(System::Object^ sender, System::EventArgs^ e) {
 			if (newMessage == nullptr || newMessage->IsDisposed) {
@@ -164,9 +170,12 @@ namespace Client {
 				msgBox->Show();
 			}
 		}
+		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->Close();
+		}
 		private: System::Void MessageMain_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
 			this->Owner->Show();
 			this->Owner->Activate();
 		}
-	};
+};
 }

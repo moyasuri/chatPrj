@@ -87,7 +87,7 @@ namespace Client {
 			this->label2->BackColor = System::Drawing::Color::Transparent;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 24));
 			this->label2->ForeColor = System::Drawing::Color::SlateGray;
-			this->label2->Location = System::Drawing::Point(31, 52);
+			this->label2->Location = System::Drawing::Point(27, 42);
 			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(181, 37);
@@ -97,73 +97,84 @@ namespace Client {
 			// listBoxFriends
 			// 
 			this->listBoxFriends->FormattingEnabled = true;
-			this->listBoxFriends->ItemHeight = 15;
-			this->listBoxFriends->Location = System::Drawing::Point(38, 116);
+			this->listBoxFriends->ItemHeight = 12;
+			this->listBoxFriends->Location = System::Drawing::Point(33, 93);
 			this->listBoxFriends->Margin = System::Windows::Forms::Padding(2);
 			this->listBoxFriends->Name = L"listBoxFriends";
-			this->listBoxFriends->Size = System::Drawing::Size(316, 394);
+			this->listBoxFriends->Size = System::Drawing::Size(277, 316);
 			this->listBoxFriends->TabIndex = 17;
 			// 
 			// btnAdd
 			// 
-			this->btnAdd->Location = System::Drawing::Point(408, 128);
+			this->btnAdd->Location = System::Drawing::Point(357, 102);
+			this->btnAdd->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnAdd->Name = L"btnAdd";
-			this->btnAdd->Size = System::Drawing::Size(150, 52);
+			this->btnAdd->Size = System::Drawing::Size(131, 42);
 			this->btnAdd->TabIndex = 19;
 			this->btnAdd->Text = L"add";
 			this->btnAdd->UseVisualStyleBackColor = true;
+			this->btnAdd->Click += gcnew System::EventHandler(this, &Friends::btnAdd_Click);
 			// 
 			// btnResponse
 			// 
-			this->btnResponse->Location = System::Drawing::Point(399, 199);
+			this->btnResponse->Location = System::Drawing::Point(349, 159);
+			this->btnResponse->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnResponse->Name = L"btnResponse";
-			this->btnResponse->Size = System::Drawing::Size(150, 52);
+			this->btnResponse->Size = System::Drawing::Size(131, 42);
 			this->btnResponse->TabIndex = 19;
 			this->btnResponse->Text = L"response";
 			this->btnResponse->UseVisualStyleBackColor = true;
+			this->btnResponse->Click += gcnew System::EventHandler(this, &Friends::btnResponse_Click);
 			// 
 			// btnDelete
 			// 
-			this->btnDelete->Location = System::Drawing::Point(408, 278);
+			this->btnDelete->Location = System::Drawing::Point(357, 222);
+			this->btnDelete->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnDelete->Name = L"btnDelete";
-			this->btnDelete->Size = System::Drawing::Size(150, 52);
+			this->btnDelete->Size = System::Drawing::Size(131, 42);
 			this->btnDelete->TabIndex = 19;
 			this->btnDelete->Text = L"delete";
 			this->btnDelete->UseVisualStyleBackColor = true;
+			this->btnDelete->Click += gcnew System::EventHandler(this, &Friends::btnDelete_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(408, 421);
+			this->btnClose->Location = System::Drawing::Point(357, 337);
+			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(150, 52);
+			this->btnClose->Size = System::Drawing::Size(131, 42);
 			this->btnClose->TabIndex = 19;
 			this->btnClose->Text = L"close";
 			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->Click += gcnew System::EventHandler(this, &Friends::btnClose_Click);
 			// 
 			// Friends
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(634, 610);
+			this->ClientSize = System::Drawing::Size(555, 488);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnDelete);
 			this->Controls->Add(this->btnResponse);
 			this->Controls->Add(this->btnAdd);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->listBoxFriends);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"Friends";
 			this->Text = L"Friends";
+			this->Activated += gcnew System::EventHandler(this, &Friends::Friends_Activated);
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Friends::Friends_FormClosing);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 
-		public: void SendMessageForm(int index, String^ tmptxt_1)
-		{
+	public: void SendMessageForm(int index, String^ tmptxt_1)
+	{
 
-			switch (index)
-			{
+		switch (index)
+		{
 			case e_friends_Delete:
 			{
 
@@ -173,8 +184,8 @@ namespace Client {
 
 				break;
 			}
-			}
 		}
+	}
 
 
 
@@ -200,112 +211,100 @@ namespace Client {
 
 		switch (index)
 		{
-		case e_friends_List:
-		{
-
-			if (isTrue == "true")
+			case e_friends_List:
 			{
 
-				this->Invoke(gcnew Action<String^>(this, &Friends::UpdateFriendList), message);
-
-
-			}
-			else
-			{
-			}
-			break;
-		}
-		case e_friends_Delete:
-		{
-
-			if (isTrue == "true")
-			{
-				System::Windows::Forms::MessageBox::Show("Friend deleted", "Edit Porofile", MessageBoxButtons::OK, MessageBoxIcon::Information);
-			}
-			else
-			{
-				System::Windows::Forms::MessageBox::Show("something wrong..", "warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-			}
-			break;
-
-
-
-		}
-
-
-		}
-
-	}
-
-	private: System::Void Friends_Activated(System::Object^ sender, System::EventArgs^ e) {
-		listBoxFriends->Items->Clear();
-		int t_index = e_friends_List;
-		String^ buffer = _my->s_(t_index);
-		_my->SendMessage(buffer);
-	}
-		private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
-
-			if (addFriends == nullptr || addFriends->IsDisposed) {
-				addFriends = gcnew AddFriends(_my);
-				addFriends->Owner = this; // Owner를 설정해야 가능
-				//this->HomeImageSound->Stop();
-				addFriends->Show();
-			}
-
-
-		}
-			private: System::Void btnResponse_Click(System::Object^ sender, System::EventArgs^ e) {
-				if (friendResponse == nullptr || friendResponse->IsDisposed) {
-					friendResponse = gcnew FriendsResponse(_my);
-					friendResponse->Owner = this; // Owner를 설정해야 가능
-					//this->HomeImageSound->Stop();
-					friendResponse->Show();
-
-
-				}
-			}
-			private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
-
-				String^ tmptxt_1;
-				if (listBoxFriends->SelectedItem != nullptr)
+				if (isTrue == "true")
 				{
-					tmptxt_1 = listBoxFriends->SelectedItem->ToString();
+
+					this->Invoke(gcnew Action<String^>(this, &Friends::UpdateFriendList), message);
+
+
 				}
 				else
 				{
-					System::Windows::Forms::MessageBox::Show("Select ID to delete", "warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-					return;
 				}
-				MessageBoxButtons buttons = MessageBoxButtons::YesNo;
-
-				// 메시지 박스를 표시하고 사용자의 선택을 저장합니다.
-				System::Windows::Forms::DialogResult result = \
-					MessageBox::Show("Do you really want to delete friend?", "confirm", buttons);
-
-				// 사용자의 선택에 따라 분기합니다.
-				if (result == System::Windows::Forms::DialogResult::Yes)
-				{
-					btnDelete->NotifyDefault(false);
-					SendMessageForm(e_friends_Delete, tmptxt_1);
-				}
-				else if (result == System::Windows::Forms::DialogResult::No)
-				{
-					return;
-				}
+				break;
 			}
+			case e_friends_Delete:
+			{
 
-		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
-			this->Close();
+				if (isTrue == "true")
+				{
+					System::Windows::Forms::MessageBox::Show("Friend deleted", "Edit Porofile", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				}
+				else
+				{
+					System::Windows::Forms::MessageBox::Show("something wrong..", "warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				}
+				break;
+			}
 		}
 
-		private: System::Void Friends_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
-			this->Owner->Show();
-			this->Owner->Activate();
+	}
+
+
+
+
+	private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Close();
+	}
+
+	private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
+		String^ tmptxt_1;
+		if (listBoxFriends->SelectedItem != nullptr)
+		{
+			tmptxt_1 = listBoxFriends->SelectedItem->ToString();
 		}
+		else
+		{
+			System::Windows::Forms::MessageBox::Show("Select ID to delete", "warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			return;
+		}
+		MessageBoxButtons buttons = MessageBoxButtons::YesNo;
+
+		// 메시지 박스를 표시하고 사용자의 선택을 저장합니다.
+		System::Windows::Forms::DialogResult result = \
+			MessageBox::Show("Do you really want to delete friend?", "confirm", buttons);
+
+		// 사용자의 선택에 따라 분기합니다.
+		if (result == System::Windows::Forms::DialogResult::Yes)
+		{
+			btnDelete->NotifyDefault(false);
+			SendMessageForm(e_friends_Delete, tmptxt_1);
+		}
+		else if (result == System::Windows::Forms::DialogResult::No)
+		{
+			return;
+		}
+	}
+	private: System::Void btnResponse_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (friendResponse == nullptr || friendResponse->IsDisposed) {
+			friendResponse = gcnew FriendsResponse(_my);
+			friendResponse->Owner = this; // Owner를 설정해야 가능
+			//this->HomeImageSound->Stop();
+			friendResponse->Show();
 
 
-
-
-
-	};
+		}
+	}
+	private: System::Void btnAdd_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (addFriends == nullptr || addFriends->IsDisposed) {
+			addFriends = gcnew AddFriends(_my);
+			addFriends->Owner = this; // Owner를 설정해야 가능
+			//this->HomeImageSound->Stop();
+			addFriends->Show();
+		}
+	}
+private: System::Void Friends_Activated(System::Object^ sender, System::EventArgs^ e) {
+	listBoxFriends->Items->Clear();
+	int t_index = e_friends_List;
+	String^ buffer = _my->s_(t_index);
+	_my->SendMessage(buffer);
+}
+private: System::Void Friends_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+	this->Owner->Show();
+	this->Owner->Activate();
+}
+};
 }

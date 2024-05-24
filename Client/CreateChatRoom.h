@@ -89,68 +89,75 @@ namespace Client {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(104, 62);
+			this->label1->Location = System::Drawing::Point(91, 50);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(72, 15);
+			this->label1->Size = System::Drawing::Size(62, 12);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"RoomTitle";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(104, 152);
+			this->label2->Location = System::Drawing::Point(91, 122);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(72, 15);
+			this->label2->Size = System::Drawing::Size(62, 12);
 			this->label2->TabIndex = 0;
 			this->label2->Text = L"Password";
 			// 
 			// txtBoxRoomTitle
 			// 
-			this->txtBoxRoomTitle->Location = System::Drawing::Point(229, 62);
+			this->txtBoxRoomTitle->Location = System::Drawing::Point(200, 50);
+			this->txtBoxRoomTitle->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxRoomTitle->Name = L"txtBoxRoomTitle";
-			this->txtBoxRoomTitle->Size = System::Drawing::Size(202, 25);
+			this->txtBoxRoomTitle->Size = System::Drawing::Size(177, 21);
 			this->txtBoxRoomTitle->TabIndex = 1;
 			// 
 			// txtBoxPW
 			// 
-			this->txtBoxPW->Location = System::Drawing::Point(229, 149);
+			this->txtBoxPW->Location = System::Drawing::Point(200, 119);
+			this->txtBoxPW->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPW->Name = L"txtBoxPW";
-			this->txtBoxPW->Size = System::Drawing::Size(202, 25);
+			this->txtBoxPW->Size = System::Drawing::Size(177, 21);
 			this->txtBoxPW->TabIndex = 1;
 			// 
 			// chkBoxPrivate
 			// 
 			this->chkBoxPrivate->AutoSize = true;
-			this->chkBoxPrivate->Location = System::Drawing::Point(505, 64);
+			this->chkBoxPrivate->Location = System::Drawing::Point(442, 51);
+			this->chkBoxPrivate->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->chkBoxPrivate->Name = L"chkBoxPrivate";
-			this->chkBoxPrivate->Size = System::Drawing::Size(71, 19);
+			this->chkBoxPrivate->Size = System::Drawing::Size(62, 16);
 			this->chkBoxPrivate->TabIndex = 2;
 			this->chkBoxPrivate->Text = L"Private";
 			this->chkBoxPrivate->UseVisualStyleBackColor = true;
 			// 
 			// btnConfirm
 			// 
-			this->btnConfirm->Location = System::Drawing::Point(107, 276);
+			this->btnConfirm->Location = System::Drawing::Point(94, 221);
+			this->btnConfirm->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnConfirm->Name = L"btnConfirm";
-			this->btnConfirm->Size = System::Drawing::Size(121, 27);
+			this->btnConfirm->Size = System::Drawing::Size(106, 22);
 			this->btnConfirm->TabIndex = 3;
 			this->btnConfirm->Text = L"btnConfirm";
 			this->btnConfirm->UseVisualStyleBackColor = true;
+			this->btnConfirm->Click += gcnew System::EventHandler(this, &CreateChatRoom::btnConfirm_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(443, 276);
+			this->btnClose->Location = System::Drawing::Point(388, 221);
+			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(121, 27);
+			this->btnClose->Size = System::Drawing::Size(106, 22);
 			this->btnClose->TabIndex = 3;
 			this->btnClose->Text = L"btnClose";
 			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->Click += gcnew System::EventHandler(this, &CreateChatRoom::btnClose_Click);
 			// 
 			// CreateChatRoom
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(895, 470);
+			this->ClientSize = System::Drawing::Size(783, 376);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnConfirm);
 			this->Controls->Add(this->chkBoxPrivate);
@@ -158,8 +165,10 @@ namespace Client {
 			this->Controls->Add(this->txtBoxRoomTitle);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"CreateChatRoom";
 			this->Text = L"CreateChatRoom";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &CreateChatRoom::CreateChatRoom_FormClosing);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -246,11 +255,11 @@ namespace Client {
 
 		}
 
+
 		private: System::Void btnConfirm_Click(System::Object^ sender, System::EventArgs^ e) {
 			btnConfirm->NotifyDefault(false);
 			SendMessageForm(e_room_Create);
 		}
-
 		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
 			this->Close();
 		}
@@ -258,5 +267,5 @@ namespace Client {
 			this->Owner->Show();
 			this->Owner->Activate();
 		}
-	};
+};
 }

@@ -97,7 +97,7 @@ namespace Client {
 			this->label1->BackColor = System::Drawing::Color::Transparent;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 20));
 			this->label1->ForeColor = System::Drawing::Color::DarkSlateGray;
-			this->label1->Location = System::Drawing::Point(15, 3);
+			this->label1->Location = System::Drawing::Point(13, 2);
 			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(74, 32);
@@ -110,7 +110,7 @@ namespace Client {
 			this->label2->BackColor = System::Drawing::Color::Transparent;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 20));
 			this->label2->ForeColor = System::Drawing::Color::DarkSlateGray;
-			this->label2->Location = System::Drawing::Point(15, 300);
+			this->label2->Location = System::Drawing::Point(13, 240);
 			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(131, 32);
@@ -119,11 +119,12 @@ namespace Client {
 			// 
 			// txtBoxMsg
 			// 
-			this->txtBoxMsg->Location = System::Drawing::Point(21, 353);
+			this->txtBoxMsg->Location = System::Drawing::Point(18, 282);
+			this->txtBoxMsg->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxMsg->Multiline = true;
 			this->txtBoxMsg->Name = L"txtBoxMsg";
 			this->txtBoxMsg->ReadOnly = true;
-			this->txtBoxMsg->Size = System::Drawing::Size(685, 263);
+			this->txtBoxMsg->Size = System::Drawing::Size(600, 211);
 			this->txtBoxMsg->TabIndex = 19;
 			// 
 			// ViewDataSent
@@ -133,15 +134,17 @@ namespace Client {
 				this->NumOfSentMsg,
 					this->To, this->Date, this->Status
 			});
-			this->ViewDataSent->Location = System::Drawing::Point(21, 56);
+			this->ViewDataSent->Location = System::Drawing::Point(18, 45);
+			this->ViewDataSent->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->ViewDataSent->MultiSelect = false;
 			this->ViewDataSent->Name = L"ViewDataSent";
 			this->ViewDataSent->ReadOnly = true;
 			this->ViewDataSent->RowHeadersWidth = 51;
 			this->ViewDataSent->RowTemplate->Height = 27;
 			this->ViewDataSent->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->ViewDataSent->Size = System::Drawing::Size(685, 200);
+			this->ViewDataSent->Size = System::Drawing::Size(599, 160);
 			this->ViewDataSent->TabIndex = 18;
+			this->ViewDataSent->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MessageSent::ViewDataSent_CellClick);
 			// 
 			// NumOfSentMsg
 			// 
@@ -177,35 +180,42 @@ namespace Client {
 			// 
 			// btnDelete
 			// 
-			this->btnDelete->Location = System::Drawing::Point(557, 281);
+			this->btnDelete->Location = System::Drawing::Point(487, 225);
+			this->btnDelete->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnDelete->Name = L"btnDelete";
-			this->btnDelete->Size = System::Drawing::Size(106, 50);
+			this->btnDelete->Size = System::Drawing::Size(93, 40);
 			this->btnDelete->TabIndex = 22;
 			this->btnDelete->Text = L"Delete";
 			this->btnDelete->UseVisualStyleBackColor = true;
+			this->btnDelete->Click += gcnew System::EventHandler(this, &MessageSent::btnDelete_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(557, 617);
+			this->btnClose->Location = System::Drawing::Point(487, 494);
+			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(106, 50);
+			this->btnClose->Size = System::Drawing::Size(93, 40);
 			this->btnClose->TabIndex = 22;
 			this->btnClose->Text = L"Close";
 			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->Click += gcnew System::EventHandler(this, &MessageSent::btnClose_Click);
 			// 
 			// MessageSent
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(791, 679);
+			this->ClientSize = System::Drawing::Size(692, 543);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnDelete);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->txtBoxMsg);
 			this->Controls->Add(this->ViewDataSent);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MessageSent";
 			this->Text = L"MessageSent";
+			this->Activated += gcnew System::EventHandler(this, &MessageSent::MessageSent_Activated);
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &MessageSent::MessageSent_FormClosing);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ViewDataSent))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -353,18 +363,46 @@ namespace Client {
 		return;
 	}
 
-	private: System::Void MessageSent_Activated(System::Object^ sender, System::EventArgs^ e) {
 
-		ViewDataSent->Rows->Clear();
 
-		int t_index = e_message_Sent_list;
-		String^ buffer = t_index.ToString();
-		_my->SendMessage(buffer);
 
+	private: System::Void ViewDataSent_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+		if (ViewDataSent->SelectedRows->Count > 0) {
+			// 선택한 행의 인덱스를 가져옵니다.
+			int selectedRowIndex = ViewDataSent->SelectedRows[0]->Index;
+
+			// 1열, 2열, 3열의 데이터를 가져옵니다.
+			System::Object^ column1ValueObj = ViewDataSent->Rows[selectedRowIndex]->Cells["NumOfSentMsg"]->Value;
+			System::Object^ column2ValueObj = ViewDataSent->Rows[selectedRowIndex]->Cells["To"]->Value;
+			System::Object^ column3ValueObj = ViewDataSent->Rows[selectedRowIndex]->Cells["Date"]->Value;
+
+			// null 체크
+			if (column1ValueObj != nullptr && column2ValueObj != nullptr && column3ValueObj != nullptr) {
+				System::String^ column1Value = column1ValueObj->ToString();
+				System::String^ column2Value = column2ValueObj->ToString();
+				System::String^ column3Value = column3ValueObj->ToString();
+
+				String^ tmptxt_1 = column2Value + " " + column3Value;
+
+				int t_index = e_message_Sent_msg;
+				String^ buffer = t_index.ToString() + " " + tmptxt_1;
+
+				_my->SendMessage(buffer);
+
+			}
+			else {
+				// 선택한 행의 하나 이상의 열이 null일 때 처리할 내용
+				// 예를 들어, 오류 메시지 출력 또는 다른 작업을 수행할 수 있습니다.
+				return;
+			}
+		}
+		else {
+			// 선택한 행이 없을 때 처리할 내용
+			// 예를 들어, 오류 메시지 출력 또는 다른 작업을 수행할 수 있습니다.
+			return;
+		}
 	}
-
 	private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^ e) {
-
 		if (ViewDataSent->SelectedCells->Count == 0)
 		{
 			System::Windows::Forms::MessageBox::Show("Select message to delete", "warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);System::Windows::Forms::MessageBox::Show("Select ID From List", "Notice", MessageBoxButtons::OK, MessageBoxIcon::Warning);
@@ -375,51 +413,19 @@ namespace Client {
 			return;
 		}
 	}
-		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
-			this->Close();
-		}
-		private: System::Void MessageSent_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
-			this->Owner->Show();
-			this->Owner->Activate();
-		}
-		private: System::Void ViewDataSent_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Close();
+	}
+private: System::Void MessageSent_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+	this->Owner->Show();
+	this->Owner->Activate();
+}
+private: System::Void MessageSent_Activated(System::Object^ sender, System::EventArgs^ e) {
+	ViewDataSent->Rows->Clear();
 
-			if (ViewDataSent->SelectedRows->Count > 0) {
-				// 선택한 행의 인덱스를 가져옵니다.
-				int selectedRowIndex = ViewDataSent->SelectedRows[0]->Index;
-
-				// 1열, 2열, 3열의 데이터를 가져옵니다.
-				System::Object^ column1ValueObj = ViewDataSent->Rows[selectedRowIndex]->Cells["NumOfSentMsg"]->Value;
-				System::Object^ column2ValueObj = ViewDataSent->Rows[selectedRowIndex]->Cells["To"]->Value;
-				System::Object^ column3ValueObj = ViewDataSent->Rows[selectedRowIndex]->Cells["Date"]->Value;
-
-				// null 체크
-				if (column1ValueObj != nullptr && column2ValueObj != nullptr && column3ValueObj != nullptr) {
-					System::String^ column1Value = column1ValueObj->ToString();
-					System::String^ column2Value = column2ValueObj->ToString();
-					System::String^ column3Value = column3ValueObj->ToString();
-
-					String^ tmptxt_1 = column2Value + " " + column3Value;
-
-					int t_index = e_message_Sent_msg;
-					String^ buffer = t_index.ToString() + " " + tmptxt_1;
-
-					_my->SendMessage(buffer);
-
-				}
-				else {
-					// 선택한 행의 하나 이상의 열이 null일 때 처리할 내용
-					// 예를 들어, 오류 메시지 출력 또는 다른 작업을 수행할 수 있습니다.
-					return;
-				}
-			}
-			else {
-				// 선택한 행이 없을 때 처리할 내용
-				// 예를 들어, 오류 메시지 출력 또는 다른 작업을 수행할 수 있습니다.
-				return;
-			}
-		}
-
-
-	};
+	int t_index = e_message_Sent_list;
+	String^ buffer = t_index.ToString();
+	_my->SendMessage(buffer);
+}
+};
 }

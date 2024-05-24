@@ -228,6 +228,8 @@ namespace Client {
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MainForm";
 			this->Text = L"MainForm";
+			this->Activated += gcnew System::EventHandler(this, &MainForm::MainForm_Activated);
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &MainForm::MainForm_FormClosing);
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
 			this->ResumeLayout(false);
@@ -288,14 +290,7 @@ namespace Client {
 
 
 
-		private: System::Void MainForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
-			this->Owner->Show();
-			this->Owner->Activate();
-			delete NumMessage;
-		}
-		private: System::Void MainForm_Activated(System::Object^ sender, System::EventArgs^ e) {
-			SendMessageForm(e_message_Cnt);
-		}
+
 
 
 
@@ -309,54 +304,62 @@ namespace Client {
 			joinchatRoom->Show();
 		}
 	}
-private: System::Void btnCreateChatRoom_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (createchatRoom == nullptr || createchatRoom->IsDisposed) {
-		createchatRoom = gcnew CreateChatRoom(_my);
-		createchatRoom->Owner = this; // Owner를 설정해야 가능
-		this->Hide();
-		//this->HomeImageSound->Stop();
-		createchatRoom->Show();
+	private: System::Void btnCreateChatRoom_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (createchatRoom == nullptr || createchatRoom->IsDisposed) {
+			createchatRoom = gcnew CreateChatRoom(_my);
+			createchatRoom->Owner = this; // Owner를 설정해야 가능
+			this->Hide();
+			//this->HomeImageSound->Stop();
+			createchatRoom->Show();
+		}
 	}
-}
 
-private: System::Void btnDelChatRoom_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (deleteRoom == nullptr || deleteRoom->IsDisposed) {
-		deleteRoom = gcnew DeleteRoom(_my);
-		deleteRoom->Owner = this; // Owner를 설정해야 가능
-		this->Hide();
-		//this->HomeImageSound->Stop();
-		deleteRoom->Show();
+	private: System::Void btnDelChatRoom_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (deleteRoom == nullptr || deleteRoom->IsDisposed) {
+			deleteRoom = gcnew DeleteRoom(_my);
+			deleteRoom->Owner = this; // Owner를 설정해야 가능
+			this->Hide();
+			//this->HomeImageSound->Stop();
+			deleteRoom->Show();
+		}
 	}
-}
-private: System::Void btnEditProfile_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (editProfile == nullptr || editProfile->IsDisposed) {
-		editProfile = gcnew EditProfile(_my);
-		editProfile->Owner = this; // Owner를 설정해야 가능
-		this->Hide();
-		//this->HomeImageSound->Stop();
-		editProfile->Show();
+	private: System::Void btnEditProfile_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (editProfile == nullptr || editProfile->IsDisposed) {
+			editProfile = gcnew EditProfile(_my);
+			editProfile->Owner = this; // Owner를 설정해야 가능
+			this->Hide();
+			//this->HomeImageSound->Stop();
+			editProfile->Show();
+		}
 	}
-}
-private: System::Void btnFriends_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (friends == nullptr || friends->IsDisposed) {
-		friends = gcnew Friends(_my);
-		friends->Owner = this; // Owner를 설정해야 가능
-		this->Hide();
-		//this->HomeImageSound->Stop();
-		friends->Show();
+	private: System::Void btnFriends_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (friends == nullptr || friends->IsDisposed) {
+			friends = gcnew Friends(_my);
+			friends->Owner = this; // Owner를 설정해야 가능
+			this->Hide();
+			//this->HomeImageSound->Stop();
+			friends->Show();
+		}
 	}
-}
-private: System::Void btnMessage_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (messageMain == nullptr || messageMain->IsDisposed) {
-		messageMain = gcnew MessageMain(_my);
-		messageMain->Owner = this; // Owner를 설정해야 가능
-		this->Hide();
-		//this->HomeImageSound->Stop();
-		messageMain->Show();
+	private: System::Void btnMessage_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (messageMain == nullptr || messageMain->IsDisposed) {
+			messageMain = gcnew MessageMain(_my);
+			messageMain->Owner = this; // Owner를 설정해야 가능
+			this->Hide();
+			//this->HomeImageSound->Stop();
+			messageMain->Show();
+		}
 	}
-}
-private: System::Void btnSignOut_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Close();
-}
+	private: System::Void btnSignOut_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Close();
+	}
+	private: System::Void MainForm_Activated(System::Object^ sender, System::EventArgs^ e) {
+		SendMessageForm(e_message_Cnt);
+	}
+	private: System::Void MainForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+		this->Owner->Show();
+		this->Owner->Activate();
+		delete NumMessage;
+	}
 };
 }

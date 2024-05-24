@@ -93,12 +93,13 @@ namespace Client {
 				this->NumOfList,
 					this->FromWho, this->ReqMsg
 			});
-			this->ViewResponseList->Location = System::Drawing::Point(23, 94);
+			this->ViewResponseList->Location = System::Drawing::Point(20, 75);
+			this->ViewResponseList->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->ViewResponseList->Name = L"ViewResponseList";
 			this->ViewResponseList->RowHeadersWidth = 51;
 			this->ViewResponseList->RowTemplate->Height = 27;
 			this->ViewResponseList->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->ViewResponseList->Size = System::Drawing::Size(662, 343);
+			this->ViewResponseList->Size = System::Drawing::Size(579, 274);
 			this->ViewResponseList->TabIndex = 21;
 			// 
 			// NumOfList
@@ -134,7 +135,7 @@ namespace Client {
 			this->label2->BackColor = System::Drawing::Color::Transparent;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 20));
 			this->label2->ForeColor = System::Drawing::Color::Cornsilk;
-			this->label2->Location = System::Drawing::Point(16, 32);
+			this->label2->Location = System::Drawing::Point(14, 26);
 			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(90, 32);
@@ -143,43 +144,51 @@ namespace Client {
 			// 
 			// btnAccept
 			// 
-			this->btnAccept->Location = System::Drawing::Point(725, 94);
+			this->btnAccept->Location = System::Drawing::Point(634, 75);
+			this->btnAccept->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnAccept->Name = L"btnAccept";
-			this->btnAccept->Size = System::Drawing::Size(119, 48);
+			this->btnAccept->Size = System::Drawing::Size(104, 38);
 			this->btnAccept->TabIndex = 22;
 			this->btnAccept->Text = L"Accept";
 			this->btnAccept->UseVisualStyleBackColor = true;
+			this->btnAccept->Click += gcnew System::EventHandler(this, &FriendsResponse::btnAccept_Click);
 			// 
 			// btnReject
 			// 
-			this->btnReject->Location = System::Drawing::Point(725, 184);
+			this->btnReject->Location = System::Drawing::Point(634, 147);
+			this->btnReject->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnReject->Name = L"btnReject";
-			this->btnReject->Size = System::Drawing::Size(119, 48);
+			this->btnReject->Size = System::Drawing::Size(104, 38);
 			this->btnReject->TabIndex = 22;
 			this->btnReject->Text = L"Reject";
 			this->btnReject->UseVisualStyleBackColor = true;
+			this->btnReject->Click += gcnew System::EventHandler(this, &FriendsResponse::btnReject_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(698, 472);
+			this->btnClose->Location = System::Drawing::Point(611, 378);
+			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(119, 48);
+			this->btnClose->Size = System::Drawing::Size(104, 38);
 			this->btnClose->TabIndex = 22;
 			this->btnClose->Text = L"Close";
 			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->Click += gcnew System::EventHandler(this, &FriendsResponse::btnClose_Click);
 			// 
 			// FriendsResponse
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(900, 565);
+			this->ClientSize = System::Drawing::Size(788, 452);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnReject);
 			this->Controls->Add(this->btnAccept);
 			this->Controls->Add(this->ViewResponseList);
 			this->Controls->Add(this->label2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"FriendsResponse";
 			this->Text = L"FriendsResponse";
+			this->Activated += gcnew System::EventHandler(this, &FriendsResponse::FriendsResponse_Activated);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ViewResponseList))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -280,64 +289,57 @@ namespace Client {
 
 	}
 
-		  void UpdateFriendResponse(String^ message)
-		  {
-			  String^ inputString = message;
+	void UpdateFriendResponse(String^ message)
+	{
+		String^ inputString = message;
 
 
-			  array<String^>^ subString = inputString->Split(gcnew array<String^>{ "*/" }, StringSplitOptions::None);
-			  int count = 0;
-			  ViewResponseList->Rows->Clear();
+		array<String^>^ subString = inputString->Split(gcnew array<String^>{ "*/" }, StringSplitOptions::None);
+		int count = 0;
+		ViewResponseList->Rows->Clear();
 
-			  for (int i = 1; i < subString->Length - 1; i++)
-			  {
+		for (int i = 1; i < subString->Length - 1; i++)
+		{
 
-				  size_t pos = subString[i]->IndexOf(" ");
-				  String^ first = subString[i]->Substring(0, pos);
-				  String^ second = subString[i]->Substring(pos + 1, subString[i]->Length - (pos + 1));
+			size_t pos = subString[i]->IndexOf(" ");
+			String^ first = subString[i]->Substring(0, pos);
+			String^ second = subString[i]->Substring(pos + 1, subString[i]->Length - (pos + 1));
 
-				  ViewResponseList->Rows->Add();
-				  ViewResponseList->Rows[count]->Cells["NumOfList"]->Value = System::Convert::ToString(count);
-				  ViewResponseList->Rows[count]->Cells["FromWho"]->Value = first;
-				  ViewResponseList->Rows[count]->Cells["ReqMsg"]->Value = second;
-				  count++;
-			  }
-
-
-
-		  }
-
-		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
-			this->Close();
-		}
-		private: System::Void FriendResponse_Activated(System::Object^ sender, System::EventArgs^ e) {
-
-
-			int t_index = e_friends_Response_List;
-			String^ buffer = t_index.ToString();
-			_my->SendMessage(buffer);
-
-
-		}
-		private: System::Void btnAccept_Click(System::Object^ sender, System::EventArgs^ e) {
-			if (ViewResponseList->SelectedCells->Count == 0)
-			{
-				System::Windows::Forms::MessageBox::Show("Select ID From List", "Notice", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-			}
-
-			SendMessageForm(e_friends_Accept);
-		}
-		private: System::Void btnReject_Click(System::Object^ sender, System::EventArgs^ e) {
-
-			// 아무것도 선택하지 않았을 때
-			if (ViewResponseList->SelectedCells->Count == 0)
-			{
-				System::Windows::Forms::MessageBox::Show("Select ID From List", "Notice", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-			}
-
-			SendMessageForm(e_friends_Request_Decline);
+			ViewResponseList->Rows->Add();
+			ViewResponseList->Rows[count]->Cells["NumOfList"]->Value = System::Convert::ToString(count);
+			ViewResponseList->Rows[count]->Cells["FromWho"]->Value = first;
+			ViewResponseList->Rows[count]->Cells["ReqMsg"]->Value = second;
+			count++;
 		}
 
+	}
 
-	};
+
+
+	private: System::Void btnAccept_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (ViewResponseList->SelectedCells->Count == 0)
+		{
+			System::Windows::Forms::MessageBox::Show("Select ID From List", "Notice", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+		}
+
+		SendMessageForm(e_friends_Accept);
+	}
+	private: System::Void btnReject_Click(System::Object^ sender, System::EventArgs^ e) {
+		// 아무것도 선택하지 않았을 때
+		if (ViewResponseList->SelectedCells->Count == 0)
+		{
+			System::Windows::Forms::MessageBox::Show("Select ID From List", "Notice", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+		}
+
+		SendMessageForm(e_friends_Request_Decline);
+	}
+	private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Close();
+	}
+private: System::Void FriendsResponse_Activated(System::Object^ sender, System::EventArgs^ e) {
+	int t_index = e_friends_Response_List;
+	String^ buffer = t_index.ToString();
+	_my->SendMessage(buffer);
+}
+};
 }

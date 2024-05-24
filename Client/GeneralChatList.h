@@ -84,11 +84,11 @@ namespace Client {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->ViewRoomList = (gcnew System::Windows::Forms::DataGridView());
-			this->txtBoxPW = (gcnew System::Windows::Forms::TextBox());
 			this->RoomIndex = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->RoomTitle = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->PrivateCheck = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->CreatedDate = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->txtBoxPW = (gcnew System::Windows::Forms::TextBox());
 			this->btnJoin = (gcnew System::Windows::Forms::Button());
 			this->btnClose = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ViewRoomList))->BeginInit();
@@ -100,7 +100,7 @@ namespace Client {
 			this->label1->BackColor = System::Drawing::Color::Transparent;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 16));
 			this->label1->ForeColor = System::Drawing::Color::Cornsilk;
-			this->label1->Location = System::Drawing::Point(218, 43);
+			this->label1->Location = System::Drawing::Point(191, 34);
 			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(119, 26);
@@ -113,7 +113,7 @@ namespace Client {
 			this->label2->BackColor = System::Drawing::Color::Transparent;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 16));
 			this->label2->ForeColor = System::Drawing::Color::Cornsilk;
-			this->label2->Location = System::Drawing::Point(-209, 47);
+			this->label2->Location = System::Drawing::Point(-183, 38);
 			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(118, 26);
@@ -130,23 +130,16 @@ namespace Client {
 				this->RoomIndex,
 					this->RoomTitle, this->PrivateCheck, this->CreatedDate
 			});
-			this->ViewRoomList->Location = System::Drawing::Point(46, 92);
+			this->ViewRoomList->Location = System::Drawing::Point(40, 74);
+			this->ViewRoomList->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->ViewRoomList->MultiSelect = false;
 			this->ViewRoomList->Name = L"ViewRoomList";
 			this->ViewRoomList->RowHeadersWidth = 51;
 			this->ViewRoomList->RowHeadersWidthSizeMode = System::Windows::Forms::DataGridViewRowHeadersWidthSizeMode::DisableResizing;
 			this->ViewRoomList->RowTemplate->Height = 27;
 			this->ViewRoomList->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->ViewRoomList->Size = System::Drawing::Size(898, 425);
+			this->ViewRoomList->Size = System::Drawing::Size(786, 340);
 			this->ViewRoomList->TabIndex = 18;
-			// 
-			// txtBoxPW
-			// 
-			this->txtBoxPW->Location = System::Drawing::Point(374, 47);
-			this->txtBoxPW->Name = L"txtBoxPW";
-			this->txtBoxPW->PasswordChar = '*';
-			this->txtBoxPW->Size = System::Drawing::Size(160, 25);
-			this->txtBoxPW->TabIndex = 17;
 			// 
 			// RoomIndex
 			// 
@@ -180,37 +173,53 @@ namespace Client {
 			this->CreatedDate->Name = L"CreatedDate";
 			this->CreatedDate->Width = 150;
 			// 
+			// txtBoxPW
+			// 
+			this->txtBoxPW->Location = System::Drawing::Point(327, 38);
+			this->txtBoxPW->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->txtBoxPW->Name = L"txtBoxPW";
+			this->txtBoxPW->PasswordChar = '*';
+			this->txtBoxPW->Size = System::Drawing::Size(140, 21);
+			this->txtBoxPW->TabIndex = 17;
+			// 
 			// btnJoin
 			// 
-			this->btnJoin->Location = System::Drawing::Point(296, 541);
+			this->btnJoin->Location = System::Drawing::Point(259, 433);
+			this->btnJoin->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnJoin->Name = L"btnJoin";
-			this->btnJoin->Size = System::Drawing::Size(162, 60);
+			this->btnJoin->Size = System::Drawing::Size(142, 48);
 			this->btnJoin->TabIndex = 21;
 			this->btnJoin->Text = L"Join";
 			this->btnJoin->UseVisualStyleBackColor = true;
+			this->btnJoin->Click += gcnew System::EventHandler(this, &GeneralChatList::btnJoin_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(628, 541);
+			this->btnClose->Location = System::Drawing::Point(550, 433);
+			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(162, 60);
+			this->btnClose->Size = System::Drawing::Size(142, 48);
 			this->btnClose->TabIndex = 21;
 			this->btnClose->Text = L"Close";
 			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->Click += gcnew System::EventHandler(this, &GeneralChatList::btnClose_Click);
 			// 
 			// GeneralChatList
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1053, 631);
+			this->ClientSize = System::Drawing::Size(921, 505);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnJoin);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->ViewRoomList);
 			this->Controls->Add(this->txtBoxPW);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"GeneralChatList";
 			this->Text = L"GeneralChatList";
+			this->Activated += gcnew System::EventHandler(this, &GeneralChatList::GeneralChatList_Activated);
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &GeneralChatList::GeneralChatList_FormClosing);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ViewRoomList))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -357,15 +366,7 @@ namespace Client {
 			}
 
 		}
-		private: System::Void GeneralChatList_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
 
-			this->Owner->Show();
-			this->Owner->Activate();
-
-		}
-		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
-			this->Close();
-		}
 
 		private: Void UpdateRoomList(String^ message) {
 
@@ -396,7 +397,7 @@ namespace Client {
 					ViewRoomList->Rows[rowNum]->Cells["PrivateCheck"]->Value = "Private";
 				}
 
-				ViewRoomList->Rows[rowNum]->Cells["RoomName"]->Value = myString[2];
+				ViewRoomList->Rows[rowNum]->Cells["RoomTitle"]->Value = myString[2];
 
 
 				ViewRoomList->Rows[rowNum]->Cells["CreatedDate"]->Value = myString[3];
@@ -404,18 +405,8 @@ namespace Client {
 				rowNum++;
 			}
 		}
-		private: System::Void GeneralChatList_Activated(System::Object^ sender, System::EventArgs^ e) {
-
-			String^ buffer = _my->s_(e_room_List);
-			_my->SendMessage(buffer);
 
 
-
-
-		}
-		private: System::Void btnJoin_Click(System::Object^ sender, System::EventArgs^ e) {
-			SendMessageForm(e_room_Enter);
-		}
 		private: Void JoinRoom(String^ message) {
 
 			if (chatRoom == nullptr || chatRoom->IsDisposed) {
@@ -430,5 +421,20 @@ namespace Client {
 			}
 
 		}
-	};
+		private: System::Void btnJoin_Click(System::Object^ sender, System::EventArgs^ e) {
+			SendMessageForm(e_room_Enter);
+		}
+		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->Close();
+		}
+private: System::Void GeneralChatList_Activated(System::Object^ sender, System::EventArgs^ e) {
+
+	String^ buffer = _my->s_(e_room_List);
+	_my->SendMessage(buffer);
+}
+private: System::Void GeneralChatList_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+	this->Owner->Show();
+	this->Owner->Activate();
+}
+};
 }
