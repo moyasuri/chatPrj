@@ -82,6 +82,7 @@ namespace Client {
 
 
 
+
 		void disposed()
 		{
 			// 소켓 해제
