@@ -198,12 +198,13 @@ namespace Client {
 					}
 					if (chkBoxPrivate->Checked)
 					{
-						roomType = "3";
+						roomType = _my->s_(e_RT_Private);
+						
 					}
 					else
 					{
-						roomType = "2";
-						roomPW = "0";
+						roomType = _my->s_(e_RT_Public);
+						roomPW = _my->s_(e_Default_PW);
 					}
 
 					if (!String::IsNullOrEmpty(roomTitle) && !chkBoxPrivate->Checked)
@@ -267,5 +268,6 @@ namespace Client {
 			this->Owner->Show();
 			this->Owner->Activate();
 		}
+
 };
 }

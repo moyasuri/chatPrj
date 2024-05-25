@@ -49,6 +49,15 @@ enum EditInfo
 
 };
 
+enum RoomType
+{
+    e_Default_PW = 0,
+    e_RT_Server = 1,
+    e_RT_Public = 2,
+    e_RT_Private = 3,
+
+
+};
 
 enum ShortMessage
 {

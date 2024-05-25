@@ -15,7 +15,7 @@ namespace Client {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
+	using namespace System::Media;
 	/// <summary>
 	/// MyForm에 대한 요약입니다.
 	/// </summary>
@@ -199,7 +199,7 @@ namespace Client {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(714, 380);
+			this->ClientSize = System::Drawing::Size(768, 433);
 			this->Controls->Add(this->btnSignIn);
 			this->Controls->Add(this->btnFindAccount);
 			this->Controls->Add(this->btnExit);
@@ -218,6 +218,14 @@ namespace Client {
 #pragma endregion
 
 
+
+		// Img 관련
+
+		//private: bool isFirstActivation = true;
+		//private: SoundPlayer^ IntroImageSound = gcnew SoundPlayer;
+		//private: SoundPlayer^ HomeImageSound = gcnew SoundPlayer;
+		//private: System::String^ relativePath = System::IO::Path::Combine(currentDirectory, "..\\Media\\HomeIntro.gif");
+		//private: System::String^ currentDirectory = System::IO::Directory::GetCurrentDirectory();
 
 
 		public: void SendMessageForm(int index)

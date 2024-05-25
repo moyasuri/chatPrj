@@ -65,15 +65,7 @@ enum Friends
 };
 
 
-enum Imoji
-{
-	e_imoji_k = 61,
-	e_imoji_kk,
-	e_imoji_kkk,
 
-
-
-};
 
 enum Character
 {
@@ -95,4 +87,25 @@ enum RoomList
 	e_room_Enter_server,
 
 };
+
+enum RoomType
+{	
+	e_Default_PW = 0,
+	e_RT_Server = 1,
+	e_RT_Public = 2,
+	e_RT_Private = 3,
+	
+
+};
+
+enum Imoji
+{
+	e_imoji_k = 81,
+	e_imoji_kk,
+	e_imoji_kkk,
+
+
+
+};
+
 

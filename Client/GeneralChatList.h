@@ -274,15 +274,16 @@ namespace Client {
 
 					if ((PrivateCheck == "Private"))
 					{
-						RoomType = "3";
+						RoomType = _my->s_(e_RT_Private);
 					}
 					else
 					{
-						RoomType = "2";
+						RoomType = _my->s_(e_RT_Public);
 					}
 
 					String^ tmptxt_1 = RoomIndex + " " + RoomType + " " + RoomPW;
 					int t_index = e_room_Enter;
+
 					String^ buffer = _my->s_(t_index) + " " + tmptxt_1;
 					_my->SendMessage(buffer);
 					break;
