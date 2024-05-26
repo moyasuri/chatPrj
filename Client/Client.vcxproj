@@ -112,6 +112,8 @@
     <Link>
       <AdditionalDependencies />
       <EntryPointSymbol>main</EntryPointSymbol>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -196,7 +198,6 @@
     <ClInclude Include="NewMessage.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="resource.h" />
     <ClInclude Include="SignupForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -256,12 +257,6 @@
     <EmbeddedResource Include="SignupForm.resx">
       <DependentUpon>SignupForm.h</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Client.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\Media\Img\Molu.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

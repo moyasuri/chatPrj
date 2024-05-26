@@ -94,30 +94,27 @@ namespace Client {
 		}
 
 
-		void Connect()
+		bool Connect()
 		{
-			while (1)
+		
+			try
 			{
-				try
-				{
-					// 서버에 연결
-					clientSocket->Connect(serverEndPoint);
+				// 서버에 연결
+				clientSocket->Connect(serverEndPoint);
 
-					// 연결 성공시 쓰레드를 시작하여 메시지 수신 대기
-					messageReceiveThread = gcnew System::Threading::Thread(gcnew System::Threading::ThreadStart(this, &MyFunction::ReceiveMessages));
-					messageReceiveThread->Start();
-					break;
-				}
-				catch (Exception^ e)
-				{
-					MessageBox::Show("server connection failed", "error" + e->Message);
-
-				}
-
-				Sleep(3000);
+				// 연결 성공시 쓰레드를 시작하여 메시지 수신 대기
+				messageReceiveThread = gcnew System::Threading::Thread(gcnew System::Threading::ThreadStart(this, &MyFunction::ReceiveMessages));
+				messageReceiveThread->Start();
+				return true;
+			}
+			catch (Exception^ e)
+			{
+				MessageBox::Show("server connection failed", "error" + e->Message);
+				delete clientSocket;
+				clientSocket = nullptr;
+				return false;
 
 			}
-
 
 		}
 

@@ -1,4 +1,4 @@
-#pragma comment(lib, "ws2_32.lib") // 명시적인 라이브러리의 링크. 윈속 라이브러리 참조
+﻿#pragma comment(lib, "ws2_32.lib") // 명시적인 라이브러리의 링크. 윈속 라이브러리 참조
 
 #include <WinSock2.h>
 #include <string>
@@ -147,17 +147,14 @@ void recv_msg(int idx) {
             IniMsg();
             multimsg = false;
             msg = buf;
-
-            cout << "===================================" << endl;
-            cout << "받은 메세지 : " << msg << endl;
+            cout << "========================" << endl;
+            cout << "받은 매세지 : " << msg << endl;
             std::stringstream ss(msg);
-            cout << "MySQL 전" << endl;
+            cout << "MySQL 전\n";
             sqlMsg = mySQL->QuerySql(msg, idx);
-            cout << "MySQL 후" << " : " << sqlMsg << endl;
+            cout << "MySQL 후 : " << sqlMsg << endl;
+            if (!multimsg) { send_msg(sqlMsg.c_str()); }
 
-            if (!multimsg) {
-                send_msg(sqlMsg.c_str());
-            }
         }
         else {
             msg = "[공지] " + sck_list[idx].ui.getName() + " 님이 퇴장했습니다.";

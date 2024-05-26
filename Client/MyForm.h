@@ -7,6 +7,7 @@
 #include "SignupForm.h"
 #include "MainForm.h"
 
+
 namespace Client {
 
 	using namespace System;
@@ -35,9 +36,24 @@ namespace Client {
 			//
 			//TODO: 생성자 코드를 여기에 추가합니다.
 			//
+
 			_my = my;
 			_my->MyEvent += gcnew Action<String^>(this, &MyForm::ReceivedMsg);
 			this->AcceptButton = btnSignIn;
+			
+		
+
+
+			currentDirectory = System::Environment::CurrentDirectory;
+			relativePath = System::IO::Path::Combine(currentDirectory, "..\\Media\\BGM\\Theme_152.wav");
+
+			
+			System::Windows::Forms::MessageBox::Show(relativePath, "warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			IntroImageSound->SoundLocation = relativePath;
+
+			IntroImageSound->Load();
+			IntroImageSound->Play();
+
 		}
 
 	protected:
@@ -53,12 +69,16 @@ namespace Client {
 				// _my를 삭제
 				delete _my;
 				_my = nullptr;  // nullptr로 설정하여 dangling pointer를 방지
+
+				delete IntroImageSound;
 			}
 			if (components)
 			{
 				delete components;
 			}
 		}
+
+
 	private: System::Windows::Forms::Label^ label1;
 	protected:
 	private: System::Windows::Forms::Label^ label2;
@@ -74,11 +94,19 @@ namespace Client {
 	private: MyFunction^ _my;
 	private: System::Windows::Forms::Button^ btnSignIn;
 
+
+
+	private: SoundPlayer^ IntroImageSound = gcnew SoundPlayer;
+	private: SoundPlayer^ HomeImageSound = gcnew SoundPlayer;
+	private: System::String^ currentDirectory;
+	private: System::String^ relativePath;
+
 	private:
 		/// <summary>
 		/// 필수 디자이너 변수입니다.
 		/// </summary>
 		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -222,10 +250,8 @@ namespace Client {
 		// Img 관련
 
 		//private: bool isFirstActivation = true;
-		//private: SoundPlayer^ IntroImageSound = gcnew SoundPlayer;
-		//private: SoundPlayer^ HomeImageSound = gcnew SoundPlayer;
-		//private: System::String^ relativePath = System::IO::Path::Combine(currentDirectory, "..\\Media\\HomeIntro.gif");
-		//private: System::String^ currentDirectory = System::IO::Directory::GetCurrentDirectory();
+
+
 
 
 		public: void SendMessageForm(int index)
@@ -267,23 +293,22 @@ namespace Client {
 			{
 				// Hide 할때의 동작			
 
-			case e_id_try_Signin:
-			{
-
-				if (isTrue == "true")
+				case e_id_try_Signin:
 				{
-					this->Invoke(gcnew MethodInvoker(this, &MyForm::MainFormShow));
 
+					if (isTrue == "true")
+					{
+						this->Invoke(gcnew MethodInvoker(this, &MyForm::MainFormShow));
+
+					}
+					else
+					{
+						System::Windows::Forms::MessageBox::Show("Check the ID and Password", "warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					}
+					break;
 				}
-				else
-				{
-					System::Windows::Forms::MessageBox::Show("Check the ID and Password", "warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-				}
-				break;
-			}
 
 			}
-
 
 		}
 
@@ -299,9 +324,6 @@ namespace Client {
 			return;
 		}
 
-
-
-		
 
 
 		private: System::Void btnSignUp_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -321,8 +343,19 @@ namespace Client {
 
 
 		private: System::Void btnSignIn_Click(System::Object^ sender, System::EventArgs^ e) {
-				btnSignIn->NotifyDefault(false);
-				SendMessageForm(e_id_try_Signin);
+				_my->init();
+				if (_my->Connect()) // 이거 자체는 버튼으로 처리하고싶긴해
+				{
+					btnSignIn->NotifyDefault(false);
+					SendMessageForm(e_id_try_Signin);
+				}
+				else
+				{
+					System::Windows::Forms::MessageBox::Show("Server is shut down", "warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					
+
+				}
+				
 		}
 
 		private: System::Void btnExit_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -341,5 +374,8 @@ namespace Client {
 				findaccount->Activate();
 			}
 		}
+
+
+
 };
 }
