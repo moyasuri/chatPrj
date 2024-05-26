@@ -176,10 +176,6 @@ struct SOCKET_INFO { // 연결된 소켓 정보에 대한 틀 생성
 
 
 
-
-
-
-
 extern std::vector<SOCKET_INFO> sck_list; // 연결된 클라이언트 소켓들을 저장할 배열 선언.
 
 class User {
