@@ -1,4 +1,4 @@
-#pragma comment(lib, "ws2_32.lib") //명시적인 라이브러리의 링크. 윈속 라이브러리 참조
+﻿#pragma comment(lib, "ws2_32.lib") //명시적인 라이브러리의 링크. 윈속 라이브러리 참조
 
 #include "MySQL.h"
 #include "main.h"
@@ -130,7 +130,6 @@ MySQL::MySQL() {
     con = nullptr;
     stmt = nullptr;
     pstmt = nullptr;
-    pstmt = nullptr;
     res = nullptr;
     res2 = nullptr;
 
@@ -142,7 +141,6 @@ MySQL::MySQL() {
 
 MySQL::~MySQL() {
     // 소멸자에서 메모리 정리
-    delete pstmt;
     delete pstmt;
     delete con;
 }

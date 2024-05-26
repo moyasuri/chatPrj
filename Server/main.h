@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include <WinSock2.h>
@@ -98,15 +98,15 @@ public:
     }
 
 private:
-    std::string name;
-    std::string id;
-    std::string pw;
-    std::string phone;
-    std::string email;
-    std::string birth;
-    std::string nickName;
-    std::string chaNum;
-    std::string joinRoomIndex;
+    std::string name="";
+    std::string id = "";
+    std::string pw = "";
+    std::string phone = "";
+    std::string email = "";
+    std::string birth = "";
+    std::string nickName = "";
+    std::string chaNum = "";
+    std::string joinRoomIndex = "";
 
 };
 

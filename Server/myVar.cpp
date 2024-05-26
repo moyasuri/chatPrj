@@ -1,4 +1,4 @@
-#include "myVar.h"
+﻿#include "myVar.h"
 #include <string>
 #include <atomic>
 

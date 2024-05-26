@@ -7,6 +7,7 @@ using namespace Client;
 
 
 
+
 [STAThread]
 
 
@@ -17,8 +18,7 @@ void main(array<String^>^ args) {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 	Client::MyFunction myfunc;
-	myfunc.init();
-	myfunc.Connect(); // 이거 자체는 버튼으로 처리하고싶긴해
+
 	MyForm my(% myfunc);
 	Application::Run(% my);
 
