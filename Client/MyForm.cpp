@@ -25,6 +25,4 @@ void main(array<String^>^ args) {
 
 
 
-	myfunc.disposed();
-
 }
