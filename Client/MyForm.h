@@ -155,11 +155,11 @@ namespace Client {
 			// 
 			this->label1->AutoSize = true;
 			this->label1->BackColor = System::Drawing::Color::Transparent;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Corbel", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label1->Font = (gcnew System::Drawing::Font(L"Georgia", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(155, 387);
+			this->label1->Location = System::Drawing::Point(157, 387);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(59, 18);
+			this->label1->Size = System::Drawing::Size(69, 18);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"User   ID";
 			// 
@@ -167,10 +167,11 @@ namespace Client {
 			// 
 			this->label2->AutoSize = true;
 			this->label2->BackColor = System::Drawing::Color::Transparent;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Corbel", 11.25F));
-			this->label2->Location = System::Drawing::Point(150, 439);
+			this->label2->Font = (gcnew System::Drawing::Font(L"Georgia", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(155, 439);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(68, 18);
+			this->label2->Size = System::Drawing::Size(71, 18);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Password";
 			// 
@@ -381,9 +382,16 @@ namespace Client {
 
 
 		private: System::Void btnSignUp_Click(System::Object^ sender, System::EventArgs^ e) {
-						btnSignUp->NotifyDefault(false);
+			_my->init();
+			btnSignUp->NotifyDefault(false);
+			if (!(_my->Connect()))
+			{
+				System::Windows::Forms::MessageBox::Show("Server is shut down", "warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				return;
+			}
 
 			if (signupForm == nullptr || signupForm->IsDisposed) {
+
 				signupForm = gcnew SignupForm(_my);
 				signupForm->Show();
 
@@ -399,16 +407,17 @@ namespace Client {
 		private: System::Void btnSignIn_Click(System::Object^ sender, System::EventArgs^ e) {
 				_my->init();
 
-				if (_my->Connect()) // 이거 자체는 버튼으로 처리하고싶긴해
-				{
-					btnSignIn->NotifyDefault(false);
-					SendMessageForm(e_id_try_Signin);
-				}
-				else
+				if (!(_my->Connect()))
 				{
 					System::Windows::Forms::MessageBox::Show("Server is shut down", "warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-
+					return;
 				}
+
+
+				btnSignIn->NotifyDefault(false);
+				SendMessageForm(e_id_try_Signin);
+
+
 				
 		}
 
@@ -417,6 +426,16 @@ namespace Client {
 
 		}
 		private: System::Void btnFindAccount_Click(System::Object^ sender, System::EventArgs^ e) {
+
+
+			_my->init();
+			if (!(_my->Connect())) 
+			{
+				System::Windows::Forms::MessageBox::Show("Server is shut down", "warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				return;
+			}
+
+
 			btnFindAccount->NotifyDefault(false);
 
 			if (findaccount == nullptr || findaccount->IsDisposed) {
