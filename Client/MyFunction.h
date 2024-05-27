@@ -5,8 +5,6 @@
 #include <ws2tcpip.h>
 
 
-
-
 namespace Client {
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -79,14 +77,10 @@ namespace Client {
 		}
 
 
-
-
-
-
 		void disposed()
 		{
 			// 소켓 해제
-			clientSocket->Close();
+			this->clientSocket->Close();
 			if (messageReceiveThread != nullptr)
 			{
 				messageReceiveThread->Abort();

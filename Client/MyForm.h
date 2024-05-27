@@ -39,23 +39,31 @@ namespace Client {
 
 			_my = my;
 			_my->MyEvent += gcnew Action<String^>(this, &MyForm::ReceivedMsg);
-			this->AcceptButton = btnSignIn;
 			
+
+			//this->AcceptButton = btnSignIn; // 테두리가 생겨서 삭제
 		
 			IntroImageSound = gcnew SoundPlayer;
-			//HomeImageSound = gcnew SoundPlayer;
 
 			currentDirectory = System::Environment::CurrentDirectory;
-		
-
-
-			// relativePath = System::IO::Path::Combine(currentDirectory, "..\\Media\\Img\\main.gif");
-			relativePath = System::IO::Path::Combine(currentDirectory, "..\\Media\\Img\\main.png");
+					
+			relativePath = System::IO::Path::Combine(currentDirectory, "..\\Media\\Img\\main.gif");
 			PicBoxIntro->ImageLocation = relativePath;
+			
+			relativePath = System::IO::Path::Combine(currentDirectory, "..\\Media\\Img\\Button\\signin.png");
+			btnSignIn->BackgroundImage = Image::FromFile(relativePath);
+			relativePath = System::IO::Path::Combine(currentDirectory, "..\\Media\\Img\\Button\\signup.png");
+			btnSignUp->BackgroundImage = Image::FromFile(relativePath);
+			relativePath = System::IO::Path::Combine(currentDirectory, "..\\Media\\Img\\Button\\findaccount.png");
+			btnFindAccount->BackgroundImage = Image::FromFile(relativePath);
+			relativePath = System::IO::Path::Combine(currentDirectory, "..\\Media\\Img\\Button\\exit.png");
+			btnExit->BackgroundImage = Image::FromFile(relativePath);
 
-			relativePath = System::IO::Path::Combine(currentDirectory, "..\\Media\\Img\\main.png");
-			PicBoxHome->ImageLocation = relativePath;
-
+			// 필요에 따라 버튼의 크기 모드를 설정합니다.
+			btnSignIn->BackgroundImageLayout = ImageLayout::Stretch;
+			btnSignUp->BackgroundImageLayout = ImageLayout::Stretch;
+			btnFindAccount->BackgroundImageLayout = ImageLayout::Stretch;
+			btnExit->BackgroundImageLayout = ImageLayout::Stretch;
 
 
 			timerDeletePicBoxIntro = gcnew System::Windows::Forms::Timer();
@@ -79,7 +87,7 @@ namespace Client {
 				delete _my;
 				_my = nullptr;  // nullptr로 설정하여 dangling pointer를 방지
 				delete IntroImageSound;
-				delete HomeImageSound;
+		
 
 			}
 			if (components)
@@ -109,9 +117,8 @@ namespace Client {
 	private: System::Windows::Forms::Button^ btnSignIn;
 
 	private: SoundPlayer^ IntroImageSound;
-	private: SoundPlayer^ HomeImageSound;
 	private: System::Windows::Forms::PictureBox^ PicBoxIntro;
-	private: System::Windows::Forms::PictureBox^ PicBoxHome;
+
 
 
 	private: System::String^ currentDirectory;
@@ -131,6 +138,7 @@ namespace Client {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->txtBoxID = (gcnew System::Windows::Forms::TextBox());
@@ -140,46 +148,47 @@ namespace Client {
 			this->btnFindAccount = (gcnew System::Windows::Forms::Button());
 			this->btnSignIn = (gcnew System::Windows::Forms::Button());
 			this->PicBoxIntro = (gcnew System::Windows::Forms::PictureBox());
-			this->PicBoxHome = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PicBoxIntro))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PicBoxHome))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(241, 528);
-			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label1->BackColor = System::Drawing::Color::Transparent;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Corbel", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(155, 387);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(22, 18);
+			this->label1->Size = System::Drawing::Size(59, 18);
 			this->label1->TabIndex = 0;
-			this->label1->Text = L"ID";
+			this->label1->Text = L"User   ID";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(241, 561);
-			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label2->BackColor = System::Drawing::Color::Transparent;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Corbel", 11.25F));
+			this->label2->Location = System::Drawing::Point(150, 439);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(90, 18);
+			this->label2->Size = System::Drawing::Size(68, 18);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Password";
 			// 
 			// txtBoxID
 			// 
-			this->txtBoxID->Location = System::Drawing::Point(387, 516);
-			this->txtBoxID->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
+			this->txtBoxID->Location = System::Drawing::Point(260, 385);
+			this->txtBoxID->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxID->Name = L"txtBoxID";
-			this->txtBoxID->Size = System::Drawing::Size(215, 28);
+			this->txtBoxID->Size = System::Drawing::Size(152, 21);
 			this->txtBoxID->TabIndex = 1;
 			// 
 			// txtBoxPW
 			// 
-			this->txtBoxPW->Location = System::Drawing::Point(387, 561);
-			this->txtBoxPW->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
+			this->txtBoxPW->Location = System::Drawing::Point(260, 438);
+			this->txtBoxPW->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPW->Name = L"txtBoxPW";
 			this->txtBoxPW->PasswordChar = '*';
-			this->txtBoxPW->Size = System::Drawing::Size(215, 28);
+			this->txtBoxPW->Size = System::Drawing::Size(152, 21);
 			this->txtBoxPW->TabIndex = 2;
 			// 
 			// btnSignUp
@@ -187,14 +196,15 @@ namespace Client {
 			this->btnSignUp->BackColor = System::Drawing::Color::Transparent;
 			this->btnSignUp->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->btnSignUp->FlatAppearance->BorderSize = 0;
+			this->btnSignUp->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnSignUp->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnSignUp->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnSignUp->ForeColor = System::Drawing::Color::Black;
-			this->btnSignUp->Location = System::Drawing::Point(921, 516);
-			this->btnSignUp->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
+			this->btnSignUp->Location = System::Drawing::Point(625, 373);
+			this->btnSignUp->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSignUp->Name = L"btnSignUp";
-			this->btnSignUp->Size = System::Drawing::Size(199, 42);
+			this->btnSignUp->Size = System::Drawing::Size(112, 53);
 			this->btnSignUp->TabIndex = 4;
-			this->btnSignUp->Text = L"signup";
 			this->btnSignUp->UseVisualStyleBackColor = false;
 			this->btnSignUp->Click += gcnew System::EventHandler(this, &MyForm::btnSignUp_Click);
 			// 
@@ -203,14 +213,15 @@ namespace Client {
 			this->btnExit->BackColor = System::Drawing::Color::Transparent;
 			this->btnExit->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->btnExit->FlatAppearance->BorderSize = 0;
+			this->btnExit->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnExit->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnExit->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnExit->ForeColor = System::Drawing::Color::Black;
-			this->btnExit->Location = System::Drawing::Point(921, 604);
-			this->btnExit->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
+			this->btnExit->Location = System::Drawing::Point(625, 423);
+			this->btnExit->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnExit->Name = L"btnExit";
-			this->btnExit->Size = System::Drawing::Size(199, 42);
+			this->btnExit->Size = System::Drawing::Size(112, 53);
 			this->btnExit->TabIndex = 6;
-			this->btnExit->Text = L"exit";
 			this->btnExit->UseVisualStyleBackColor = false;
 			this->btnExit->Click += gcnew System::EventHandler(this, &MyForm::btnExit_Click);
 			// 
@@ -219,14 +230,15 @@ namespace Client {
 			this->btnFindAccount->BackColor = System::Drawing::Color::Transparent;
 			this->btnFindAccount->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->btnFindAccount->FlatAppearance->BorderSize = 0;
+			this->btnFindAccount->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnFindAccount->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnFindAccount->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnFindAccount->ForeColor = System::Drawing::Color::Black;
-			this->btnFindAccount->Location = System::Drawing::Point(728, 604);
-			this->btnFindAccount->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
+			this->btnFindAccount->Location = System::Drawing::Point(479, 423);
+			this->btnFindAccount->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnFindAccount->Name = L"btnFindAccount";
-			this->btnFindAccount->Size = System::Drawing::Size(199, 42);
+			this->btnFindAccount->Size = System::Drawing::Size(112, 53);
 			this->btnFindAccount->TabIndex = 5;
-			this->btnFindAccount->Text = L"find account";
 			this->btnFindAccount->UseVisualStyleBackColor = false;
 			this->btnFindAccount->Click += gcnew System::EventHandler(this, &MyForm::btnFindAccount_Click);
 			// 
@@ -234,42 +246,38 @@ namespace Client {
 			// 
 			this->btnSignIn->BackColor = System::Drawing::Color::Transparent;
 			this->btnSignIn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnSignIn->FlatAppearance->BorderColor = System::Drawing::Color::Black;
 			this->btnSignIn->FlatAppearance->BorderSize = 0;
+			this->btnSignIn->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnSignIn->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnSignIn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnSignIn->ForeColor = System::Drawing::Color::Black;
-			this->btnSignIn->Location = System::Drawing::Point(728, 516);
-			this->btnSignIn->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
+			this->btnSignIn->Location = System::Drawing::Point(479, 373);
+			this->btnSignIn->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSignIn->Name = L"btnSignIn";
-			this->btnSignIn->Size = System::Drawing::Size(199, 42);
-			this->btnSignIn->TabIndex = 4;
-			this->btnSignIn->Text = L"signup";
+			this->btnSignIn->Size = System::Drawing::Size(112, 53);
+			this->btnSignIn->TabIndex = 3;
 			this->btnSignIn->UseVisualStyleBackColor = false;
 			this->btnSignIn->Click += gcnew System::EventHandler(this, &MyForm::btnSignIn_Click);
 			// 
 			// PicBoxIntro
 			// 
-			this->PicBoxIntro->Location = System::Drawing::Point(77, 53);
+			this->PicBoxIntro->Location = System::Drawing::Point(0, 0);
+			this->PicBoxIntro->Margin = System::Windows::Forms::Padding(2);
 			this->PicBoxIntro->Name = L"PicBoxIntro";
-			this->PicBoxIntro->Size = System::Drawing::Size(1323, 788);
+			this->PicBoxIntro->Size = System::Drawing::Size(408, 203);
 			this->PicBoxIntro->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->PicBoxIntro->TabIndex = 7;
 			this->PicBoxIntro->TabStop = false;
-			// 
-			// PicBoxHome
-			// 
-			this->PicBoxHome->Location = System::Drawing::Point(1462, 89);
-			this->PicBoxHome->Name = L"PicBoxHome";
-			this->PicBoxHome->Size = System::Drawing::Size(384, 282);
-			this->PicBoxHome->TabIndex = 8;
-			this->PicBoxHome->TabStop = false;
+			this->PicBoxIntro->WaitOnLoad = true;
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(10, 18);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(2167, 1290);
-			this->Controls->Add(this->PicBoxHome);
-			this->Controls->Add(this->PicBoxIntro);
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ClientSize = System::Drawing::Size(796, 493);
 			this->Controls->Add(this->btnFindAccount);
 			this->Controls->Add(this->btnExit);
 			this->Controls->Add(this->btnSignIn);
@@ -278,12 +286,13 @@ namespace Client {
 			this->Controls->Add(this->txtBoxID);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			this->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
+			this->Controls->Add(this->PicBoxIntro);
+			this->DoubleBuffered = true;
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->VisibleChanged += gcnew System::EventHandler(this, &MyForm::MyForm_VisibleChanged);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PicBoxIntro))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PicBoxHome))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -442,7 +451,7 @@ namespace Client {
 			IntroImageSound->SoundLocation = relativePath;
 
 			IntroImageSound->Load();
-			IntroImageSound->Play();
+			IntroImageSound->PlayLooping();
 
 
 			isFirstActivation = false; // 처음 활성화 시 함수 실행을 건너뛰기
@@ -451,6 +460,7 @@ namespace Client {
 
 		//HomeImageSound->Play(); // 잠시
 	}
+
 };
 }
 

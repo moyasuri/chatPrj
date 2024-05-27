@@ -250,6 +250,7 @@ namespace Client {
 			this->btnPWchk->TabIndex = 3;
 			this->btnPWchk->Text = L"check";
 			this->btnPWchk->UseVisualStyleBackColor = true;
+			this->btnPWchk->Click += gcnew System::EventHandler(this, &EditProfile::btnPWchk_Click);
 			// 
 			// btnNickNameduplicateChk
 			// 
@@ -260,6 +261,7 @@ namespace Client {
 			this->btnNickNameduplicateChk->TabIndex = 3;
 			this->btnNickNameduplicateChk->Text = L"check";
 			this->btnNickNameduplicateChk->UseVisualStyleBackColor = true;
+			this->btnNickNameduplicateChk->Click += gcnew System::EventHandler(this, &EditProfile::btnNickNameduplicateChk_Click);
 			// 
 			// btnEditConfirm
 			// 
@@ -409,7 +411,9 @@ namespace Client {
 			txtBoxEmail->Enabled = true;
 			txtBoxPhone->Enabled = true;
 			txtBoxPW_new->Enabled = true;
+			txtBoxPW_Confirm->Enabled = true;
 			txtBoxNickName->Enabled = true;
+
 		}
 
 		private: System::Void UpdateTextBoxNickname()
@@ -474,12 +478,8 @@ namespace Client {
 
 		}
 
-		private: System::Void btnPWchk_Click(System::Object^ sender, System::EventArgs^ e) {
-			SendMessageForm(e_edit_PWchk);
-		}
-		private: System::Void btnNickNameduplicateChk_Click(System::Object^ sender, System::EventArgs^ e) {
-			SendMessageForm(e_edit_NickNamechk);
-		}
+
+
 		private: System::Void btnEditConfirm_Click(System::Object^ sender, System::EventArgs^ e) {
 			SendMessageForm(e_edit_Confirm);
 		}
@@ -489,6 +489,14 @@ namespace Client {
 		private: System::Void EditProfile_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
 			this->Owner->Show();
 			this->Owner->Activate();
+		}
+
+		private: System::Void btnPWchk_Click(System::Object^ sender, System::EventArgs^ e) {
+			SendMessageForm(e_edit_PWchk);
+		}
+
+		private: System::Void btnNickNameduplicateChk_Click(System::Object^ sender, System::EventArgs^ e) {
+			SendMessageForm(e_edit_NickNamechk);
 		}
 };
 
