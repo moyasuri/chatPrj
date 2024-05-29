@@ -55,13 +55,13 @@ namespace Client {
 		}
 	
 	protected:
-	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::Label^ label7;
+
+
+
+
+
+
+
 	private: System::Windows::Forms::TextBox^ txtBoxPW;
 
 	private: System::Windows::Forms::TextBox^ txtBoxPW_new;
@@ -77,6 +77,13 @@ namespace Client {
 	private: System::Windows::Forms::Button^ btnNickNameduplicateChk;
 	private: System::Windows::Forms::Button^ btnEditConfirm;
 	private: System::Windows::Forms::Button^ btnClose;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::PictureBox^ pictureBox2;
+	private: System::Windows::Forms::PictureBox^ pictureBox4;
+	private: System::Windows::Forms::PictureBox^ pictureBox5;
+	private: System::Windows::Forms::PictureBox^ pictureBox6;
+	private: System::Windows::Forms::PictureBox^ pictureBox7;
+	private: System::Windows::Forms::PictureBox^ pictureBox8;
 
 
 
@@ -96,13 +103,7 @@ namespace Client {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->label7 = (gcnew System::Windows::Forms::Label());
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(EditProfile::typeid));
 			this->txtBoxPW = (gcnew System::Windows::Forms::TextBox());
 			this->txtBoxPW_new = (gcnew System::Windows::Forms::TextBox());
 			this->txtBoxPW_Confirm = (gcnew System::Windows::Forms::TextBox());
@@ -114,128 +115,79 @@ namespace Client {
 			this->btnNickNameduplicateChk = (gcnew System::Windows::Forms::Button());
 			this->btnEditConfirm = (gcnew System::Windows::Forms::Button());
 			this->btnClose = (gcnew System::Windows::Forms::Button());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox5 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox6 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox7 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox8 = (gcnew System::Windows::Forms::PictureBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox5))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox6))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox7))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox8))->BeginInit();
 			this->SuspendLayout();
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(65, 48);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(107, 12);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"Current Password";
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(277, 148);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(110, 12);
-			this->label2->TabIndex = 0;
-			this->label2->Text = L"Confirm Password";
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(65, 148);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(92, 12);
-			this->label3->TabIndex = 0;
-			this->label3->Text = L"New Password";
-			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(65, 225);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(62, 12);
-			this->label4->TabIndex = 0;
-			this->label4->Text = L"Nickname";
-			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(65, 306);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(41, 12);
-			this->label5->TabIndex = 0;
-			this->label5->Text = L"Phone";
-			// 
-			// label6
-			// 
-			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(65, 375);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(60, 12);
-			this->label6->TabIndex = 0;
-			this->label6->Text = L"Character";
-			// 
-			// label7
-			// 
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(277, 306);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(43, 12);
-			this->label7->TabIndex = 0;
-			this->label7->Text = L"E-mail";
 			// 
 			// txtBoxPW
 			// 
-			this->txtBoxPW->Location = System::Drawing::Point(66, 75);
+			this->txtBoxPW->Location = System::Drawing::Point(144, 75);
 			this->txtBoxPW->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPW->Name = L"txtBoxPW";
-			this->txtBoxPW->Size = System::Drawing::Size(106, 21);
+			this->txtBoxPW->Size = System::Drawing::Size(168, 21);
 			this->txtBoxPW->TabIndex = 1;
 			// 
 			// txtBoxPW_new
 			// 
 			this->txtBoxPW_new->Enabled = false;
-			this->txtBoxPW_new->Location = System::Drawing::Point(66, 171);
+			this->txtBoxPW_new->Location = System::Drawing::Point(144, 172);
 			this->txtBoxPW_new->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPW_new->Name = L"txtBoxPW_new";
-			this->txtBoxPW_new->Size = System::Drawing::Size(106, 21);
+			this->txtBoxPW_new->Size = System::Drawing::Size(168, 21);
 			this->txtBoxPW_new->TabIndex = 1;
 			// 
 			// txtBoxPW_Confirm
 			// 
 			this->txtBoxPW_Confirm->Enabled = false;
-			this->txtBoxPW_Confirm->Location = System::Drawing::Point(280, 171);
+			this->txtBoxPW_Confirm->Location = System::Drawing::Point(342, 172);
 			this->txtBoxPW_Confirm->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPW_Confirm->Name = L"txtBoxPW_Confirm";
-			this->txtBoxPW_Confirm->Size = System::Drawing::Size(106, 21);
+			this->txtBoxPW_Confirm->Size = System::Drawing::Size(168, 21);
 			this->txtBoxPW_Confirm->TabIndex = 1;
 			// 
 			// txtBoxNickName
 			// 
 			this->txtBoxNickName->Enabled = false;
-			this->txtBoxNickName->Location = System::Drawing::Point(66, 250);
+			this->txtBoxNickName->Location = System::Drawing::Point(144, 251);
 			this->txtBoxNickName->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxNickName->Name = L"txtBoxNickName";
-			this->txtBoxNickName->Size = System::Drawing::Size(106, 21);
+			this->txtBoxNickName->Size = System::Drawing::Size(168, 21);
 			this->txtBoxNickName->TabIndex = 1;
 			// 
 			// txtBoxPhone
 			// 
 			this->txtBoxPhone->Enabled = false;
-			this->txtBoxPhone->Location = System::Drawing::Point(66, 320);
+			this->txtBoxPhone->Location = System::Drawing::Point(144, 320);
 			this->txtBoxPhone->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPhone->Name = L"txtBoxPhone";
-			this->txtBoxPhone->Size = System::Drawing::Size(106, 21);
+			this->txtBoxPhone->Size = System::Drawing::Size(168, 21);
 			this->txtBoxPhone->TabIndex = 1;
 			// 
 			// txtBoxEmail
 			// 
 			this->txtBoxEmail->Enabled = false;
-			this->txtBoxEmail->Location = System::Drawing::Point(282, 320);
+			this->txtBoxEmail->Location = System::Drawing::Point(339, 320);
 			this->txtBoxEmail->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxEmail->Name = L"txtBoxEmail";
-			this->txtBoxEmail->Size = System::Drawing::Size(106, 21);
+			this->txtBoxEmail->Size = System::Drawing::Size(168, 21);
 			this->txtBoxEmail->TabIndex = 1;
 			// 
 			// combBoxCha
 			// 
 			this->combBoxCha->FormattingEnabled = true;
-			this->combBoxCha->Location = System::Drawing::Point(66, 406);
+			this->combBoxCha->Location = System::Drawing::Point(142, 401);
 			this->combBoxCha->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->combBoxCha->Name = L"combBoxCha";
 			this->combBoxCha->Size = System::Drawing::Size(106, 20);
@@ -243,7 +195,7 @@ namespace Client {
 			// 
 			// btnPWchk
 			// 
-			this->btnPWchk->Location = System::Drawing::Point(66, 114);
+			this->btnPWchk->Location = System::Drawing::Point(348, 75);
 			this->btnPWchk->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnPWchk->Name = L"btnPWchk";
 			this->btnPWchk->Size = System::Drawing::Size(106, 26);
@@ -254,7 +206,7 @@ namespace Client {
 			// 
 			// btnNickNameduplicateChk
 			// 
-			this->btnNickNameduplicateChk->Location = System::Drawing::Point(280, 246);
+			this->btnNickNameduplicateChk->Location = System::Drawing::Point(348, 246);
 			this->btnNickNameduplicateChk->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnNickNameduplicateChk->Name = L"btnNickNameduplicateChk";
 			this->btnNickNameduplicateChk->Size = System::Drawing::Size(106, 26);
@@ -265,29 +217,127 @@ namespace Client {
 			// 
 			// btnEditConfirm
 			// 
-			this->btnEditConfirm->Location = System::Drawing::Point(66, 475);
+			this->btnEditConfirm->BackColor = System::Drawing::Color::Transparent;
+			this->btnEditConfirm->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnEditConfirm.BackgroundImage")));
+			this->btnEditConfirm->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnEditConfirm->FlatAppearance->BorderSize = 0;
+			this->btnEditConfirm->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnEditConfirm->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnEditConfirm->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnEditConfirm->Location = System::Drawing::Point(142, 464);
 			this->btnEditConfirm->Name = L"btnEditConfirm";
-			this->btnEditConfirm->Size = System::Drawing::Size(116, 33);
+			this->btnEditConfirm->Size = System::Drawing::Size(153, 54);
 			this->btnEditConfirm->TabIndex = 4;
-			this->btnEditConfirm->Text = L"confirm";
-			this->btnEditConfirm->UseVisualStyleBackColor = true;
+			this->btnEditConfirm->UseVisualStyleBackColor = false;
 			this->btnEditConfirm->Click += gcnew System::EventHandler(this, &EditProfile::btnEditConfirm_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(282, 475);
+			this->btnClose->BackColor = System::Drawing::Color::Transparent;
+			this->btnClose->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnClose.BackgroundImage")));
+			this->btnClose->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnClose->FlatAppearance->BorderSize = 0;
+			this->btnClose->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnClose->Location = System::Drawing::Point(301, 464);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(116, 33);
+			this->btnClose->Size = System::Drawing::Size(153, 54);
 			this->btnClose->TabIndex = 4;
-			this->btnClose->Text = L"close";
-			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->UseVisualStyleBackColor = false;
 			this->btnClose->Click += gcnew System::EventHandler(this, &EditProfile::btnClose_Click);
+			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->BackColor = System::Drawing::Color::Transparent;
+			this->pictureBox1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.BackgroundImage")));
+			this->pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->pictureBox1->Location = System::Drawing::Point(136, 44);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(178, 27);
+			this->pictureBox1->TabIndex = 5;
+			this->pictureBox1->TabStop = false;
+			// 
+			// pictureBox2
+			// 
+			this->pictureBox2->BackColor = System::Drawing::Color::Transparent;
+			this->pictureBox2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.BackgroundImage")));
+			this->pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->pictureBox2->Location = System::Drawing::Point(122, 132);
+			this->pictureBox2->Name = L"pictureBox2";
+			this->pictureBox2->Size = System::Drawing::Size(178, 27);
+			this->pictureBox2->TabIndex = 6;
+			this->pictureBox2->TabStop = false;
+			// 
+			// pictureBox4
+			// 
+			this->pictureBox4->BackColor = System::Drawing::Color::Transparent;
+			this->pictureBox4->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.BackgroundImage")));
+			this->pictureBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->pictureBox4->Location = System::Drawing::Point(339, 132);
+			this->pictureBox4->Name = L"pictureBox4";
+			this->pictureBox4->Size = System::Drawing::Size(178, 27);
+			this->pictureBox4->TabIndex = 7;
+			this->pictureBox4->TabStop = false;
+			// 
+			// pictureBox5
+			// 
+			this->pictureBox5->BackColor = System::Drawing::Color::Transparent;
+			this->pictureBox5->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox5.BackgroundImage")));
+			this->pictureBox5->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->pictureBox5->Location = System::Drawing::Point(102, 218);
+			this->pictureBox5->Name = L"pictureBox5";
+			this->pictureBox5->Size = System::Drawing::Size(178, 27);
+			this->pictureBox5->TabIndex = 8;
+			this->pictureBox5->TabStop = false;
+			// 
+			// pictureBox6
+			// 
+			this->pictureBox6->BackColor = System::Drawing::Color::Transparent;
+			this->pictureBox6->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox6.BackgroundImage")));
+			this->pictureBox6->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->pictureBox6->Location = System::Drawing::Point(86, 291);
+			this->pictureBox6->Name = L"pictureBox6";
+			this->pictureBox6->Size = System::Drawing::Size(178, 27);
+			this->pictureBox6->TabIndex = 9;
+			this->pictureBox6->TabStop = false;
+			// 
+			// pictureBox7
+			// 
+			this->pictureBox7->BackColor = System::Drawing::Color::Transparent;
+			this->pictureBox7->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox7.BackgroundImage")));
+			this->pictureBox7->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->pictureBox7->Location = System::Drawing::Point(283, 291);
+			this->pictureBox7->Name = L"pictureBox7";
+			this->pictureBox7->Size = System::Drawing::Size(178, 27);
+			this->pictureBox7->TabIndex = 10;
+			this->pictureBox7->TabStop = false;
+			// 
+			// pictureBox8
+			// 
+			this->pictureBox8->BackColor = System::Drawing::Color::Transparent;
+			this->pictureBox8->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox8.BackgroundImage")));
+			this->pictureBox8->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->pictureBox8->Location = System::Drawing::Point(128, 364);
+			this->pictureBox8->Name = L"pictureBox8";
+			this->pictureBox8->Size = System::Drawing::Size(115, 27);
+			this->pictureBox8->TabIndex = 11;
+			this->pictureBox8->TabStop = false;
 			// 
 			// EditProfile
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(521, 564);
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ClientSize = System::Drawing::Size(593, 564);
+			this->Controls->Add(this->pictureBox8);
+			this->Controls->Add(this->pictureBox7);
+			this->Controls->Add(this->pictureBox6);
+			this->Controls->Add(this->pictureBox5);
+			this->Controls->Add(this->pictureBox4);
+			this->Controls->Add(this->pictureBox2);
+			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnEditConfirm);
 			this->Controls->Add(this->btnNickNameduplicateChk);
@@ -299,17 +349,17 @@ namespace Client {
 			this->Controls->Add(this->txtBoxNickName);
 			this->Controls->Add(this->txtBoxPW_new);
 			this->Controls->Add(this->txtBoxPW);
-			this->Controls->Add(this->label7);
-			this->Controls->Add(this->label6);
-			this->Controls->Add(this->label5);
-			this->Controls->Add(this->label4);
-			this->Controls->Add(this->label3);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->label1);
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"EditProfile";
 			this->Text = L"EditProfile";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &EditProfile::EditProfile_FormClosing);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox5))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox6))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox7))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox8))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -498,6 +548,7 @@ namespace Client {
 		private: System::Void btnNickNameduplicateChk_Click(System::Object^ sender, System::EventArgs^ e) {
 			SendMessageForm(e_edit_NickNamechk);
 		}
+
 };
 
 }

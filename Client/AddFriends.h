@@ -55,13 +55,15 @@ namespace Client {
 			}
 		}
 	protected:
-	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Label^ label2;
+
+
 	private: System::Windows::Forms::TextBox^ txtBoxNickname;
 	private: System::Windows::Forms::TextBox^ txtBoxReqMsg;
 	private: System::Windows::Forms::Button^ btnSendReq;
 	private: System::Windows::Forms::Button^ btnClose;
 	private: MyFunction^ _my;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::PictureBox^ pictureBox2;
 
 	private:
 		/// <summary>
@@ -76,78 +78,97 @@ namespace Client {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(AddFriends::typeid));
 			this->txtBoxNickname = (gcnew System::Windows::Forms::TextBox());
 			this->txtBoxReqMsg = (gcnew System::Windows::Forms::TextBox());
 			this->btnSendReq = (gcnew System::Windows::Forms::Button());
 			this->btnClose = (gcnew System::Windows::Forms::Button());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			this->SuspendLayout();
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(156, 108);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(45, 15);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"label1";
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(156, 204);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(45, 15);
-			this->label2->TabIndex = 0;
-			this->label2->Text = L"label1";
 			// 
 			// txtBoxNickname
 			// 
-			this->txtBoxNickname->Location = System::Drawing::Point(323, 103);
+			this->txtBoxNickname->Location = System::Drawing::Point(283, 82);
+			this->txtBoxNickname->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxNickname->Name = L"txtBoxNickname";
-			this->txtBoxNickname->Size = System::Drawing::Size(183, 25);
+			this->txtBoxNickname->Size = System::Drawing::Size(161, 21);
 			this->txtBoxNickname->TabIndex = 1;
 			// 
 			// txtBoxReqMsg
 			// 
-			this->txtBoxReqMsg->Location = System::Drawing::Point(186, 231);
+			this->txtBoxReqMsg->Location = System::Drawing::Point(127, 201);
+			this->txtBoxReqMsg->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxReqMsg->Multiline = true;
 			this->txtBoxReqMsg->Name = L"txtBoxReqMsg";
-			this->txtBoxReqMsg->Size = System::Drawing::Size(421, 111);
+			this->txtBoxReqMsg->Size = System::Drawing::Size(369, 90);
 			this->txtBoxReqMsg->TabIndex = 1;
 			// 
 			// btnSendReq
 			// 
-			this->btnSendReq->Location = System::Drawing::Point(182, 369);
+			this->btnSendReq->Location = System::Drawing::Point(159, 295);
+			this->btnSendReq->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSendReq->Name = L"btnSendReq";
-			this->btnSendReq->Size = System::Drawing::Size(183, 48);
+			this->btnSendReq->Size = System::Drawing::Size(160, 38);
 			this->btnSendReq->TabIndex = 2;
 			this->btnSendReq->Text = L"btnSendReq";
 			this->btnSendReq->UseVisualStyleBackColor = true;
+			this->btnSendReq->Click += gcnew System::EventHandler(this, &AddFriends::btnSendReq_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(438, 369);
+			this->btnClose->Location = System::Drawing::Point(383, 295);
+			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(183, 48);
+			this->btnClose->Size = System::Drawing::Size(160, 38);
 			this->btnClose->TabIndex = 2;
 			this->btnClose->Text = L"btnClose";
 			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->Click += gcnew System::EventHandler(this, &AddFriends::btnClose_Click);
+			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->BackColor = System::Drawing::Color::Transparent;
+			this->pictureBox1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.BackgroundImage")));
+			this->pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->pictureBox1->Location = System::Drawing::Point(105, 41);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(66, 29);
+			this->pictureBox1->TabIndex = 3;
+			this->pictureBox1->TabStop = false;
+			// 
+			// pictureBox2
+			// 
+			this->pictureBox2->BackColor = System::Drawing::Color::Transparent;
+			this->pictureBox2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.BackgroundImage")));
+			this->pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->pictureBox2->Location = System::Drawing::Point(159, 151);
+			this->pictureBox2->Name = L"pictureBox2";
+			this->pictureBox2->Size = System::Drawing::Size(113, 29);
+			this->pictureBox2->TabIndex = 3;
+			this->pictureBox2->TabStop = false;
 			// 
 			// AddFriends
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(898, 497);
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->ClientSize = System::Drawing::Size(608, 426);
+			this->Controls->Add(this->pictureBox2);
+			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnSendReq);
 			this->Controls->Add(this->txtBoxReqMsg);
 			this->Controls->Add(this->txtBoxNickname);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->label1);
+			this->DoubleBuffered = true;
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"AddFriends";
 			this->Text = L"AddFriends";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -174,6 +195,7 @@ namespace Client {
 				}
 				else
 				{
+					System::Windows::Forms::MessageBox::Show("Check the ID ", "warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 					return;
 				}
 
@@ -220,9 +242,13 @@ namespace Client {
 
 	}
 
+
+	private: System::Void btnSendReq_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->SendMessageForm(e_friends_Request);
+
+	}
 	private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
 	}
-
-	};
+};
 }
