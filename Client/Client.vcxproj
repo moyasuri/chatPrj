@@ -142,6 +142,7 @@
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="MyFunction.cpp" />
     <ClCompile Include="NewMessage.cpp" />
+    <ClCompile Include="PreviousChat.cpp" />
     <ClCompile Include="SignupForm.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +197,9 @@
     </ClInclude>
     <ClInclude Include="MyFunction.h" />
     <ClInclude Include="NewMessage.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PreviousChat.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="SignupForm.h">
@@ -254,6 +258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewMessage.resx">
       <DependentUpon>NewMessage.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PreviousChat.resx">
+      <DependentUpon>PreviousChat.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SignupForm.resx">
       <DependentUpon>SignupForm.h</DependentUpon>

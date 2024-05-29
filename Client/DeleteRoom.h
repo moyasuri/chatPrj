@@ -58,14 +58,23 @@ namespace Client {
 	protected:
 
 	protected:
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ RoomIndex;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ RoomName;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ RoomTitle;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ PrivateCheck;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ CreatedDate;
+
+
+
+
+
 	private: System::Windows::Forms::Button^ btnDelete;
 	private: System::Windows::Forms::Button^ btnClose;
 	private: MyFunction^ _my;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ RoomIndex;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ RoomTitle;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ PrivateCheck;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ CreatedDate;
+
+
+
+
+
 
 	private:
 		/// <summary>
@@ -80,83 +89,98 @@ namespace Client {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(DeleteRoom::typeid));
 			this->ViewRoomList = (gcnew System::Windows::Forms::DataGridView());
+			this->btnDelete = (gcnew System::Windows::Forms::Button());
+			this->btnClose = (gcnew System::Windows::Forms::Button());
 			this->RoomIndex = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->RoomName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->RoomTitle = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->PrivateCheck = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->CreatedDate = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->btnDelete = (gcnew System::Windows::Forms::Button());
-			this->btnClose = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ViewRoomList))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// ViewRoomList
 			// 
 			this->ViewRoomList->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->ViewRoomList->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
+			this->ViewRoomList->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
 				this->RoomIndex,
-					this->RoomName, this->RoomTitle, this->PrivateCheck, this->CreatedDate
+					this->RoomTitle, this->PrivateCheck, this->CreatedDate
 			});
-			this->ViewRoomList->Location = System::Drawing::Point(73, 61);
+			this->ViewRoomList->Location = System::Drawing::Point(12, 11);
 			this->ViewRoomList->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->ViewRoomList->Name = L"ViewRoomList";
 			this->ViewRoomList->RowTemplate->Height = 27;
-			this->ViewRoomList->Size = System::Drawing::Size(503, 282);
+			this->ViewRoomList->Size = System::Drawing::Size(404, 207);
 			this->ViewRoomList->TabIndex = 0;
+			// 
+			// btnDelete
+			// 
+			this->btnDelete->BackColor = System::Drawing::Color::Transparent;
+			this->btnDelete->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnDelete.BackgroundImage")));
+			this->btnDelete->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnDelete->FlatAppearance->BorderSize = 0;
+			this->btnDelete->FlatAppearance->CheckedBackColor = System::Drawing::Color::Transparent;
+			this->btnDelete->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnDelete->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnDelete->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnDelete->Location = System::Drawing::Point(284, 222);
+			this->btnDelete->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btnDelete->Name = L"btnDelete";
+			this->btnDelete->Size = System::Drawing::Size(147, 54);
+			this->btnDelete->TabIndex = 1;
+			this->btnDelete->UseVisualStyleBackColor = false;
+			this->btnDelete->Click += gcnew System::EventHandler(this, &DeleteRoom::btnDelete_Click);
+			// 
+			// btnClose
+			// 
+			this->btnClose->BackColor = System::Drawing::Color::Transparent;
+			this->btnClose->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnClose.BackgroundImage")));
+			this->btnClose->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnClose->FlatAppearance->BorderSize = 0;
+			this->btnClose->FlatAppearance->CheckedBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnClose->Location = System::Drawing::Point(622, 438);
+			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btnClose->Name = L"btnClose";
+			this->btnClose->Size = System::Drawing::Size(147, 54);
+			this->btnClose->TabIndex = 1;
+			this->btnClose->UseVisualStyleBackColor = false;
+			this->btnClose->Click += gcnew System::EventHandler(this, &DeleteRoom::btnClose_Click);
 			// 
 			// RoomIndex
 			// 
 			this->RoomIndex->HeaderText = L"#Index";
 			this->RoomIndex->Name = L"RoomIndex";
-			// 
-			// RoomName
-			// 
-			this->RoomName->HeaderText = L"Name";
-			this->RoomName->Name = L"RoomName";
+			this->RoomIndex->Width = 25;
 			// 
 			// RoomTitle
 			// 
 			this->RoomTitle->HeaderText = L"Title";
 			this->RoomTitle->Name = L"RoomTitle";
+			this->RoomTitle->Width = 150;
 			// 
 			// PrivateCheck
 			// 
 			this->PrivateCheck->HeaderText = L"Private";
 			this->PrivateCheck->Name = L"PrivateCheck";
+			this->PrivateCheck->Width = 60;
 			// 
 			// CreatedDate
 			// 
 			this->CreatedDate->HeaderText = L"CreatedDate";
 			this->CreatedDate->Name = L"CreatedDate";
-			// 
-			// btnDelete
-			// 
-			this->btnDelete->Location = System::Drawing::Point(625, 100);
-			this->btnDelete->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->btnDelete->Name = L"btnDelete";
-			this->btnDelete->Size = System::Drawing::Size(88, 40);
-			this->btnDelete->TabIndex = 1;
-			this->btnDelete->Text = L"Delete";
-			this->btnDelete->UseVisualStyleBackColor = true;
-			this->btnDelete->Click += gcnew System::EventHandler(this, &DeleteRoom::btnDelete_Click);
-			// 
-			// btnClose
-			// 
-			this->btnClose->Location = System::Drawing::Point(625, 236);
-			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(88, 40);
-			this->btnClose->TabIndex = 1;
-			this->btnClose->Text = L"Close";
-			this->btnClose->UseVisualStyleBackColor = true;
-			this->btnClose->Click += gcnew System::EventHandler(this, &DeleteRoom::btnClose_Click);
+			this->CreatedDate->Width = 120;
 			// 
 			// DeleteRoom
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(833, 452);
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ClientSize = System::Drawing::Size(781, 503);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnDelete);
 			this->Controls->Add(this->ViewRoomList);
@@ -308,7 +332,7 @@ namespace Client {
 					ViewRoomList->Rows[rowNum]->Cells["PrivateCheck"]->Value = "Private";
 				}
 
-				ViewRoomList->Rows[rowNum]->Cells["RoomName"]->Value = myString[2];
+				ViewRoomList->Rows[rowNum]->Cells["RoomTitle"]->Value = myString[2];
 
 
 				ViewRoomList->Rows[rowNum]->Cells["CreatedDate"]->Value = myString[3];

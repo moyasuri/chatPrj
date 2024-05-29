@@ -78,6 +78,7 @@ namespace Client {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(NewMessage::typeid));
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->txtBoxMsg = (gcnew System::Windows::Forms::TextBox());
 			this->txtBoxNickname = (gcnew System::Windows::Forms::TextBox());
@@ -101,11 +102,11 @@ namespace Client {
 			// 
 			// txtBoxMsg
 			// 
-			this->txtBoxMsg->Location = System::Drawing::Point(76, 114);
+			this->txtBoxMsg->Location = System::Drawing::Point(29, 102);
 			this->txtBoxMsg->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxMsg->Multiline = true;
 			this->txtBoxMsg->Name = L"txtBoxMsg";
-			this->txtBoxMsg->Size = System::Drawing::Size(266, 252);
+			this->txtBoxMsg->Size = System::Drawing::Size(210, 252);
 			this->txtBoxMsg->TabIndex = 18;
 			// 
 			// txtBoxNickname
@@ -118,41 +119,64 @@ namespace Client {
 			// 
 			// btnFriends
 			// 
-			this->btnFriends->Location = System::Drawing::Point(304, 66);
+			this->btnFriends->BackColor = System::Drawing::Color::Transparent;
+			this->btnFriends->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnFriends.BackgroundImage")));
+			this->btnFriends->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnFriends->FlatAppearance->BorderSize = 0;
+			this->btnFriends->FlatAppearance->CheckedBackColor = System::Drawing::Color::Transparent;
+			this->btnFriends->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnFriends->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnFriends->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnFriends->Location = System::Drawing::Point(259, 49);
 			this->btnFriends->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnFriends->Name = L"btnFriends";
-			this->btnFriends->Size = System::Drawing::Size(78, 28);
+			this->btnFriends->Size = System::Drawing::Size(146, 56);
 			this->btnFriends->TabIndex = 20;
-			this->btnFriends->Text = L"friends";
-			this->btnFriends->UseVisualStyleBackColor = true;
+			this->btnFriends->UseVisualStyleBackColor = false;
 			this->btnFriends->Click += gcnew System::EventHandler(this, &NewMessage::btnFriends_Click);
 			// 
 			// btnSend
 			// 
-			this->btnSend->Location = System::Drawing::Point(89, 402);
+			this->btnSend->BackColor = System::Drawing::Color::Transparent;
+			this->btnSend->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnSend.BackgroundImage")));
+			this->btnSend->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnSend->FlatAppearance->BorderSize = 0;
+			this->btnSend->FlatAppearance->CheckedBackColor = System::Drawing::Color::Transparent;
+			this->btnSend->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnSend->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnSend->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnSend->Location = System::Drawing::Point(109, 361);
 			this->btnSend->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSend->Name = L"btnSend";
-			this->btnSend->Size = System::Drawing::Size(78, 28);
+			this->btnSend->Size = System::Drawing::Size(146, 56);
 			this->btnSend->TabIndex = 20;
-			this->btnSend->Text = L"send";
-			this->btnSend->UseVisualStyleBackColor = true;
+			this->btnSend->UseVisualStyleBackColor = false;
 			this->btnSend->Click += gcnew System::EventHandler(this, &NewMessage::btnSend_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(276, 402);
+			this->btnClose->BackColor = System::Drawing::Color::Transparent;
+			this->btnClose->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnClose.BackgroundImage")));
+			this->btnClose->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnClose->FlatAppearance->BorderSize = 0;
+			this->btnClose->FlatAppearance->CheckedBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnClose->Location = System::Drawing::Point(259, 361);
 			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(78, 28);
+			this->btnClose->Size = System::Drawing::Size(146, 56);
 			this->btnClose->TabIndex = 20;
-			this->btnClose->Text = L"close";
-			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->UseVisualStyleBackColor = false;
 			this->btnClose->Click += gcnew System::EventHandler(this, &NewMessage::btnClose_Click);
 			// 
 			// NewMessage
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(464, 455);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnSend);

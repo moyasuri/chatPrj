@@ -77,6 +77,7 @@ namespace Client {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MessageMain::typeid));
 			this->btnNew = (gcnew System::Windows::Forms::Button());
 			this->btnSent = (gcnew System::Windows::Forms::Button());
 			this->btnMsgBox = (gcnew System::Windows::Forms::Button());
@@ -85,53 +86,83 @@ namespace Client {
 			// 
 			// btnNew
 			// 
-			this->btnNew->Location = System::Drawing::Point(112, 32);
+			this->btnNew->BackColor = System::Drawing::Color::Transparent;
+			this->btnNew->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnNew.BackgroundImage")));
+			this->btnNew->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnNew->FlatAppearance->BorderSize = 0;
+			this->btnNew->FlatAppearance->CheckedBackColor = System::Drawing::Color::Transparent;
+			this->btnNew->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnNew->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnNew->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnNew->Location = System::Drawing::Point(24, 30);
 			this->btnNew->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnNew->Name = L"btnNew";
 			this->btnNew->Size = System::Drawing::Size(158, 58);
 			this->btnNew->TabIndex = 0;
-			this->btnNew->Text = L"new";
-			this->btnNew->UseVisualStyleBackColor = true;
+			this->btnNew->UseVisualStyleBackColor = false;
 			this->btnNew->Click += gcnew System::EventHandler(this, &MessageMain::btnNew_Click);
 			// 
 			// btnSent
 			// 
-			this->btnSent->Location = System::Drawing::Point(112, 121);
+			this->btnSent->BackColor = System::Drawing::Color::Transparent;
+			this->btnSent->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnSent.BackgroundImage")));
+			this->btnSent->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnSent->FlatAppearance->BorderSize = 0;
+			this->btnSent->FlatAppearance->CheckedBackColor = System::Drawing::Color::Transparent;
+			this->btnSent->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnSent->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnSent->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnSent->Location = System::Drawing::Point(24, 119);
 			this->btnSent->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSent->Name = L"btnSent";
 			this->btnSent->Size = System::Drawing::Size(158, 58);
 			this->btnSent->TabIndex = 0;
-			this->btnSent->Text = L"sent";
-			this->btnSent->UseVisualStyleBackColor = true;
+			this->btnSent->UseVisualStyleBackColor = false;
 			this->btnSent->Click += gcnew System::EventHandler(this, &MessageMain::btnSent_Click);
 			// 
 			// btnMsgBox
 			// 
-			this->btnMsgBox->Location = System::Drawing::Point(112, 208);
+			this->btnMsgBox->BackColor = System::Drawing::Color::Transparent;
+			this->btnMsgBox->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnMsgBox.BackgroundImage")));
+			this->btnMsgBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnMsgBox->FlatAppearance->BorderSize = 0;
+			this->btnMsgBox->FlatAppearance->CheckedBackColor = System::Drawing::Color::Transparent;
+			this->btnMsgBox->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnMsgBox->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnMsgBox->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnMsgBox->Location = System::Drawing::Point(24, 206);
 			this->btnMsgBox->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnMsgBox->Name = L"btnMsgBox";
 			this->btnMsgBox->Size = System::Drawing::Size(158, 58);
 			this->btnMsgBox->TabIndex = 0;
-			this->btnMsgBox->Text = L"msgbox";
-			this->btnMsgBox->UseVisualStyleBackColor = true;
+			this->btnMsgBox->UseVisualStyleBackColor = false;
 			this->btnMsgBox->Click += gcnew System::EventHandler(this, &MessageMain::btnMsgBox_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(268, 300);
+			this->btnClose->BackColor = System::Drawing::Color::Transparent;
+			this->btnClose->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnClose.BackgroundImage")));
+			this->btnClose->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnClose->FlatAppearance->BorderSize = 0;
+			this->btnClose->FlatAppearance->CheckedBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnClose->Location = System::Drawing::Point(500, 324);
 			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
 			this->btnClose->Size = System::Drawing::Size(158, 58);
 			this->btnClose->TabIndex = 0;
-			this->btnClose->Text = L"close";
-			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->UseVisualStyleBackColor = false;
 			this->btnClose->Click += gcnew System::EventHandler(this, &MessageMain::btnClose_Click);
 			// 
 			// MessageMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(452, 386);
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ClientSize = System::Drawing::Size(668, 386);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnMsgBox);
 			this->Controls->Add(this->btnSent);

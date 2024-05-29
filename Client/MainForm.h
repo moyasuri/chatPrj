@@ -481,7 +481,7 @@ namespace Client {
 		}
 	}
 	private: System::Void btnSignOut_Click(System::Object^ sender, System::EventArgs^ e) {
-		_my->disposed();
+		//_my->disposed();
 		this->Close();
 	}
 	private: System::Void MainForm_Activated(System::Object^ sender, System::EventArgs^ e) {
