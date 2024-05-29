@@ -77,6 +77,7 @@ namespace Client {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(CreateChatRoom::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->txtBoxRoomTitle = (gcnew System::Windows::Forms::TextBox());
@@ -89,24 +90,28 @@ namespace Client {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(91, 50);
+			this->label1->BackColor = System::Drawing::Color::Transparent;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 16));
+			this->label1->Location = System::Drawing::Point(91, 39);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(62, 12);
+			this->label1->Size = System::Drawing::Size(120, 26);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"RoomTitle";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(91, 122);
+			this->label2->BackColor = System::Drawing::Color::Transparent;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 16));
+			this->label2->Location = System::Drawing::Point(92, 93);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(62, 12);
+			this->label2->Size = System::Drawing::Size(119, 26);
 			this->label2->TabIndex = 0;
 			this->label2->Text = L"Password";
 			// 
 			// txtBoxRoomTitle
 			// 
-			this->txtBoxRoomTitle->Location = System::Drawing::Point(200, 50);
+			this->txtBoxRoomTitle->Location = System::Drawing::Point(234, 46);
 			this->txtBoxRoomTitle->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxRoomTitle->Name = L"txtBoxRoomTitle";
 			this->txtBoxRoomTitle->Size = System::Drawing::Size(177, 21);
@@ -114,7 +119,7 @@ namespace Client {
 			// 
 			// txtBoxPW
 			// 
-			this->txtBoxPW->Location = System::Drawing::Point(200, 119);
+			this->txtBoxPW->Location = System::Drawing::Point(234, 96);
 			this->txtBoxPW->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPW->Name = L"txtBoxPW";
 			this->txtBoxPW->Size = System::Drawing::Size(177, 21);
@@ -133,31 +138,47 @@ namespace Client {
 			// 
 			// btnConfirm
 			// 
-			this->btnConfirm->Location = System::Drawing::Point(94, 221);
+			this->btnConfirm->BackColor = System::Drawing::Color::Transparent;
+			this->btnConfirm->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnConfirm.BackgroundImage")));
+			this->btnConfirm->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnConfirm->FlatAppearance->BorderSize = 0;
+			this->btnConfirm->FlatAppearance->CheckedBackColor = System::Drawing::Color::Transparent;
+			this->btnConfirm->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnConfirm->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnConfirm->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnConfirm->Location = System::Drawing::Point(427, 82);
 			this->btnConfirm->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnConfirm->Name = L"btnConfirm";
-			this->btnConfirm->Size = System::Drawing::Size(106, 22);
+			this->btnConfirm->Size = System::Drawing::Size(149, 54);
 			this->btnConfirm->TabIndex = 3;
-			this->btnConfirm->Text = L"btnConfirm";
-			this->btnConfirm->UseVisualStyleBackColor = true;
+			this->btnConfirm->UseVisualStyleBackColor = false;
 			this->btnConfirm->Click += gcnew System::EventHandler(this, &CreateChatRoom::btnConfirm_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(388, 221);
+			this->btnClose->BackColor = System::Drawing::Color::Transparent;
+			this->btnClose->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnClose.BackgroundImage")));
+			this->btnClose->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnClose->FlatAppearance->BorderSize = 0;
+			this->btnClose->FlatAppearance->CheckedBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnClose->Location = System::Drawing::Point(539, 326);
 			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(106, 22);
+			this->btnClose->Size = System::Drawing::Size(149, 54);
 			this->btnClose->TabIndex = 3;
-			this->btnClose->Text = L"btnClose";
-			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->UseVisualStyleBackColor = false;
 			this->btnClose->Click += gcnew System::EventHandler(this, &CreateChatRoom::btnClose_Click);
 			// 
 			// CreateChatRoom
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(783, 376);
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ClientSize = System::Drawing::Size(697, 396);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnConfirm);
 			this->Controls->Add(this->chkBoxPrivate);
@@ -165,6 +186,7 @@ namespace Client {
 			this->Controls->Add(this->txtBoxRoomTitle);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->DoubleBuffered = true;
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"CreateChatRoom";
 			this->Text = L"CreateChatRoom";

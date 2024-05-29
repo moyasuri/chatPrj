@@ -81,6 +81,7 @@ namespace Client {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(GeneralChatList::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->ViewRoomList = (gcnew System::Windows::Forms::DataGridView());
@@ -99,8 +100,8 @@ namespace Client {
 			this->label1->AutoSize = true;
 			this->label1->BackColor = System::Drawing::Color::Transparent;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 16));
-			this->label1->ForeColor = System::Drawing::Color::Cornsilk;
-			this->label1->Location = System::Drawing::Point(191, 34);
+			this->label1->ForeColor = System::Drawing::SystemColors::Desktop;
+			this->label1->Location = System::Drawing::Point(562, 36);
 			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(119, 26);
@@ -175,7 +176,7 @@ namespace Client {
 			// 
 			// txtBoxPW
 			// 
-			this->txtBoxPW->Location = System::Drawing::Point(327, 38);
+			this->txtBoxPW->Location = System::Drawing::Point(686, 41);
 			this->txtBoxPW->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPW->Name = L"txtBoxPW";
 			this->txtBoxPW->PasswordChar = '*';
@@ -184,30 +185,45 @@ namespace Client {
 			// 
 			// btnJoin
 			// 
-			this->btnJoin->Location = System::Drawing::Point(259, 433);
+			this->btnJoin->BackColor = System::Drawing::Color::Transparent;
+			this->btnJoin->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnJoin.BackgroundImage")));
+			this->btnJoin->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnJoin->FlatAppearance->BorderSize = 0;
+			this->btnJoin->FlatAppearance->CheckedBackColor = System::Drawing::Color::Transparent;
+			this->btnJoin->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnJoin->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnJoin->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnJoin->Location = System::Drawing::Point(434, 420);
 			this->btnJoin->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnJoin->Name = L"btnJoin";
-			this->btnJoin->Size = System::Drawing::Size(142, 48);
+			this->btnJoin->Size = System::Drawing::Size(171, 63);
 			this->btnJoin->TabIndex = 21;
-			this->btnJoin->Text = L"Join";
-			this->btnJoin->UseVisualStyleBackColor = true;
+			this->btnJoin->UseVisualStyleBackColor = false;
 			this->btnJoin->Click += gcnew System::EventHandler(this, &GeneralChatList::btnJoin_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(550, 433);
+			this->btnClose->BackColor = System::Drawing::Color::Transparent;
+			this->btnClose->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnClose.BackgroundImage")));
+			this->btnClose->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnClose->FlatAppearance->BorderSize = 0;
+			this->btnClose->FlatAppearance->CheckedBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnClose->Location = System::Drawing::Point(614, 420);
 			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(142, 48);
+			this->btnClose->Size = System::Drawing::Size(171, 63);
 			this->btnClose->TabIndex = 21;
-			this->btnClose->Text = L"Close";
-			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->UseVisualStyleBackColor = false;
 			this->btnClose->Click += gcnew System::EventHandler(this, &GeneralChatList::btnClose_Click);
 			// 
 			// GeneralChatList
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(921, 505);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnJoin);
