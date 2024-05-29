@@ -157,7 +157,7 @@ namespace Client {
 			this->label1->BackColor = System::Drawing::Color::Transparent;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Georgia", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(157, 387);
+			this->label1->Location = System::Drawing::Point(157, 375);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(69, 18);
 			this->label1->TabIndex = 0;
@@ -169,7 +169,7 @@ namespace Client {
 			this->label2->BackColor = System::Drawing::Color::Transparent;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Georgia", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(155, 439);
+			this->label2->Location = System::Drawing::Point(155, 421);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(71, 18);
 			this->label2->TabIndex = 1;
@@ -177,7 +177,7 @@ namespace Client {
 			// 
 			// txtBoxID
 			// 
-			this->txtBoxID->Location = System::Drawing::Point(260, 385);
+			this->txtBoxID->Location = System::Drawing::Point(260, 373);
 			this->txtBoxID->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxID->Name = L"txtBoxID";
 			this->txtBoxID->Size = System::Drawing::Size(152, 21);
@@ -185,7 +185,7 @@ namespace Client {
 			// 
 			// txtBoxPW
 			// 
-			this->txtBoxPW->Location = System::Drawing::Point(260, 438);
+			this->txtBoxPW->Location = System::Drawing::Point(260, 420);
 			this->txtBoxPW->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPW->Name = L"txtBoxPW";
 			this->txtBoxPW->PasswordChar = '*';
@@ -201,10 +201,10 @@ namespace Client {
 			this->btnSignUp->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnSignUp->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnSignUp->ForeColor = System::Drawing::Color::Black;
-			this->btnSignUp->Location = System::Drawing::Point(625, 373);
+			this->btnSignUp->Location = System::Drawing::Point(625, 356);
 			this->btnSignUp->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSignUp->Name = L"btnSignUp";
-			this->btnSignUp->Size = System::Drawing::Size(112, 53);
+			this->btnSignUp->Size = System::Drawing::Size(164, 63);
 			this->btnSignUp->TabIndex = 4;
 			this->btnSignUp->UseVisualStyleBackColor = false;
 			this->btnSignUp->Click += gcnew System::EventHandler(this, &MyForm::btnSignUp_Click);
@@ -218,10 +218,10 @@ namespace Client {
 			this->btnExit->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnExit->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnExit->ForeColor = System::Drawing::Color::Black;
-			this->btnExit->Location = System::Drawing::Point(625, 423);
+			this->btnExit->Location = System::Drawing::Point(625, 416);
 			this->btnExit->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnExit->Name = L"btnExit";
-			this->btnExit->Size = System::Drawing::Size(112, 53);
+			this->btnExit->Size = System::Drawing::Size(164, 63);
 			this->btnExit->TabIndex = 6;
 			this->btnExit->UseVisualStyleBackColor = false;
 			this->btnExit->Click += gcnew System::EventHandler(this, &MyForm::btnExit_Click);
@@ -235,10 +235,10 @@ namespace Client {
 			this->btnFindAccount->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnFindAccount->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnFindAccount->ForeColor = System::Drawing::Color::Black;
-			this->btnFindAccount->Location = System::Drawing::Point(479, 423);
+			this->btnFindAccount->Location = System::Drawing::Point(455, 416);
 			this->btnFindAccount->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnFindAccount->Name = L"btnFindAccount";
-			this->btnFindAccount->Size = System::Drawing::Size(112, 53);
+			this->btnFindAccount->Size = System::Drawing::Size(164, 63);
 			this->btnFindAccount->TabIndex = 5;
 			this->btnFindAccount->UseVisualStyleBackColor = false;
 			this->btnFindAccount->Click += gcnew System::EventHandler(this, &MyForm::btnFindAccount_Click);
@@ -253,10 +253,10 @@ namespace Client {
 			this->btnSignIn->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnSignIn->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnSignIn->ForeColor = System::Drawing::Color::Black;
-			this->btnSignIn->Location = System::Drawing::Point(479, 373);
+			this->btnSignIn->Location = System::Drawing::Point(455, 356);
 			this->btnSignIn->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSignIn->Name = L"btnSignIn";
-			this->btnSignIn->Size = System::Drawing::Size(112, 53);
+			this->btnSignIn->Size = System::Drawing::Size(164, 63);
 			this->btnSignIn->TabIndex = 3;
 			this->btnSignIn->UseVisualStyleBackColor = false;
 			this->btnSignIn->Click += gcnew System::EventHandler(this, &MyForm::btnSignIn_Click);

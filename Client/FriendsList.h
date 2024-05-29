@@ -72,6 +72,7 @@ namespace Client {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(FriendsList::typeid));
 			this->listBoxFriends = (gcnew System::Windows::Forms::ListBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->btnConfirm = (gcnew System::Windows::Forms::Button());
@@ -82,10 +83,11 @@ namespace Client {
 			// 
 			this->listBoxFriends->FormattingEnabled = true;
 			this->listBoxFriends->ItemHeight = 12;
-			this->listBoxFriends->Location = System::Drawing::Point(54, 67);
+			this->listBoxFriends->Location = System::Drawing::Point(371, 43);
 			this->listBoxFriends->Margin = System::Windows::Forms::Padding(2);
 			this->listBoxFriends->Name = L"listBoxFriends";
-			this->listBoxFriends->Size = System::Drawing::Size(266, 268);
+			this->listBoxFriends->ScrollAlwaysVisible = true;
+			this->listBoxFriends->Size = System::Drawing::Size(252, 268);
 			this->listBoxFriends->TabIndex = 55;
 			// 
 			// label1
@@ -94,7 +96,7 @@ namespace Client {
 			this->label1->BackColor = System::Drawing::Color::Transparent;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 15));
 			this->label1->ForeColor = System::Drawing::Color::Cornsilk;
-			this->label1->Location = System::Drawing::Point(51, 24);
+			this->label1->Location = System::Drawing::Point(367, 12);
 			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(45, 23);
@@ -103,35 +105,50 @@ namespace Client {
 			// 
 			// btnConfirm
 			// 
-			this->btnConfirm->Location = System::Drawing::Point(68, 372);
+			this->btnConfirm->BackColor = System::Drawing::Color::Transparent;
+			this->btnConfirm->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnConfirm.BackgroundImage")));
+			this->btnConfirm->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnConfirm->FlatAppearance->BorderSize = 0;
+			this->btnConfirm->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnConfirm->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnConfirm->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnConfirm->Location = System::Drawing::Point(329, 315);
 			this->btnConfirm->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnConfirm->Name = L"btnConfirm";
-			this->btnConfirm->Size = System::Drawing::Size(125, 37);
+			this->btnConfirm->Size = System::Drawing::Size(165, 59);
 			this->btnConfirm->TabIndex = 56;
-			this->btnConfirm->Text = L"confirm";
-			this->btnConfirm->UseVisualStyleBackColor = true;
+			this->btnConfirm->UseVisualStyleBackColor = false;
 			this->btnConfirm->Click += gcnew System::EventHandler(this, &FriendsList::btnConfirm_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(219, 372);
+			this->btnClose->BackColor = System::Drawing::Color::Transparent;
+			this->btnClose->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnClose.BackgroundImage")));
+			this->btnClose->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnClose->FlatAppearance->BorderSize = 0;
+			this->btnClose->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnClose->Location = System::Drawing::Point(485, 315);
 			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(125, 37);
+			this->btnClose->Size = System::Drawing::Size(165, 59);
 			this->btnClose->TabIndex = 56;
-			this->btnClose->Text = L"close";
-			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->UseVisualStyleBackColor = false;
 			this->btnClose->Click += gcnew System::EventHandler(this, &FriendsList::btnClose_Click);
 			// 
 			// FriendsList
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(457, 436);
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->ClientSize = System::Drawing::Size(636, 436);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnConfirm);
 			this->Controls->Add(this->listBoxFriends);
 			this->Controls->Add(this->label1);
+			this->DoubleBuffered = true;
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"FriendsList";
 			this->Text = L"FriendsList";

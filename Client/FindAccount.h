@@ -44,9 +44,9 @@ namespace Client {
 
 
 			// 필요에 따라 버튼의 크기 모드를 설정합니다.
-			btnSubmit_ID->BackgroundImageLayout = ImageLayout::Stretch;
-			btnSubmit_PW->BackgroundImageLayout = ImageLayout::Stretch;
-			btnCancle->BackgroundImageLayout = ImageLayout::Stretch;
+			btnSubmit_ID->BackgroundImageLayout = ImageLayout::Zoom;
+			btnSubmit_PW->BackgroundImageLayout = ImageLayout::Zoom;
+			btnCancle->BackgroundImageLayout = ImageLayout::Zoom;
 
 
 
@@ -142,10 +142,10 @@ namespace Client {
 			this->btnCancle->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnCancle->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
 			this->btnCancle->ForeColor = System::Drawing::Color::Firebrick;
-			this->btnCancle->Location = System::Drawing::Point(309, 480);
+			this->btnCancle->Location = System::Drawing::Point(247, 478);
 			this->btnCancle->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnCancle->Name = L"btnCancle";
-			this->btnCancle->Size = System::Drawing::Size(100, 47);
+			this->btnCancle->Size = System::Drawing::Size(160, 59);
 			this->btnCancle->TabIndex = 48;
 			this->btnCancle->UseVisualStyleBackColor = false;
 			this->btnCancle->Click += gcnew System::EventHandler(this, &FindAccount::btnCancle_Click);
@@ -158,10 +158,10 @@ namespace Client {
 			this->btnSubmit_PW->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnSubmit_PW->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnSubmit_PW->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
-			this->btnSubmit_PW->Location = System::Drawing::Point(199, 481);
+			this->btnSubmit_PW->Location = System::Drawing::Point(102, 478);
 			this->btnSubmit_PW->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSubmit_PW->Name = L"btnSubmit_PW";
-			this->btnSubmit_PW->Size = System::Drawing::Size(100, 47);
+			this->btnSubmit_PW->Size = System::Drawing::Size(160, 59);
 			this->btnSubmit_PW->TabIndex = 47;
 			this->btnSubmit_PW->UseVisualStyleBackColor = false;
 			this->btnSubmit_PW->Click += gcnew System::EventHandler(this, &FindAccount::btnSubmit_PW_Click);
@@ -169,15 +169,16 @@ namespace Client {
 			// btnSubmit_ID
 			// 
 			this->btnSubmit_ID->BackColor = System::Drawing::Color::Transparent;
+			this->btnSubmit_ID->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->btnSubmit_ID->FlatAppearance->BorderSize = 0;
 			this->btnSubmit_ID->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->btnSubmit_ID->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnSubmit_ID->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnSubmit_ID->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
-			this->btnSubmit_ID->Location = System::Drawing::Point(307, 161);
+			this->btnSubmit_ID->Location = System::Drawing::Point(247, 144);
 			this->btnSubmit_ID->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSubmit_ID->Name = L"btnSubmit_ID";
-			this->btnSubmit_ID->Size = System::Drawing::Size(100, 47);
+			this->btnSubmit_ID->Size = System::Drawing::Size(160, 59);
 			this->btnSubmit_ID->TabIndex = 46;
 			this->btnSubmit_ID->UseVisualStyleBackColor = false;
 			this->btnSubmit_ID->Click += gcnew System::EventHandler(this, &FindAccount::btnSubmit_ID_Click);

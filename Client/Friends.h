@@ -73,6 +73,7 @@ namespace Client {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Friends::typeid));
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->listBoxFriends = (gcnew System::Windows::Forms::ListBox());
 			this->btnAdd = (gcnew System::Windows::Forms::Button());
@@ -86,8 +87,8 @@ namespace Client {
 			this->label2->AutoSize = true;
 			this->label2->BackColor = System::Drawing::Color::Transparent;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 24));
-			this->label2->ForeColor = System::Drawing::Color::SlateGray;
-			this->label2->Location = System::Drawing::Point(27, 42);
+			this->label2->ForeColor = System::Drawing::SystemColors::InfoText;
+			this->label2->Location = System::Drawing::Point(30, 49);
 			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(181, 37);
@@ -98,67 +99,97 @@ namespace Client {
 			// 
 			this->listBoxFriends->FormattingEnabled = true;
 			this->listBoxFriends->ItemHeight = 12;
-			this->listBoxFriends->Location = System::Drawing::Point(33, 93);
+			this->listBoxFriends->Location = System::Drawing::Point(34, 103);
 			this->listBoxFriends->Margin = System::Windows::Forms::Padding(2);
 			this->listBoxFriends->Name = L"listBoxFriends";
-			this->listBoxFriends->Size = System::Drawing::Size(277, 316);
+			this->listBoxFriends->Size = System::Drawing::Size(310, 352);
 			this->listBoxFriends->TabIndex = 17;
 			// 
 			// btnAdd
 			// 
-			this->btnAdd->Location = System::Drawing::Point(357, 102);
+			this->btnAdd->BackColor = System::Drawing::Color::Transparent;
+			this->btnAdd->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnAdd.BackgroundImage")));
+			this->btnAdd->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnAdd->FlatAppearance->BorderSize = 0;
+			this->btnAdd->FlatAppearance->CheckedBackColor = System::Drawing::Color::Transparent;
+			this->btnAdd->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnAdd->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnAdd->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnAdd->Location = System::Drawing::Point(389, 103);
 			this->btnAdd->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnAdd->Name = L"btnAdd";
-			this->btnAdd->Size = System::Drawing::Size(131, 42);
+			this->btnAdd->Size = System::Drawing::Size(170, 65);
 			this->btnAdd->TabIndex = 19;
-			this->btnAdd->Text = L"add";
-			this->btnAdd->UseVisualStyleBackColor = true;
+			this->btnAdd->UseVisualStyleBackColor = false;
 			this->btnAdd->Click += gcnew System::EventHandler(this, &Friends::btnAdd_Click);
 			// 
 			// btnResponse
 			// 
-			this->btnResponse->Location = System::Drawing::Point(349, 159);
+			this->btnResponse->BackColor = System::Drawing::Color::Transparent;
+			this->btnResponse->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnResponse.BackgroundImage")));
+			this->btnResponse->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnResponse->FlatAppearance->BorderSize = 0;
+			this->btnResponse->FlatAppearance->CheckedBackColor = System::Drawing::Color::Transparent;
+			this->btnResponse->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnResponse->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnResponse->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnResponse->Location = System::Drawing::Point(389, 159);
 			this->btnResponse->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnResponse->Name = L"btnResponse";
-			this->btnResponse->Size = System::Drawing::Size(131, 42);
+			this->btnResponse->Size = System::Drawing::Size(170, 65);
 			this->btnResponse->TabIndex = 19;
-			this->btnResponse->Text = L"response";
-			this->btnResponse->UseVisualStyleBackColor = true;
+			this->btnResponse->UseVisualStyleBackColor = false;
 			this->btnResponse->Click += gcnew System::EventHandler(this, &Friends::btnResponse_Click);
 			// 
 			// btnDelete
 			// 
-			this->btnDelete->Location = System::Drawing::Point(357, 222);
+			this->btnDelete->BackColor = System::Drawing::Color::Transparent;
+			this->btnDelete->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnDelete.BackgroundImage")));
+			this->btnDelete->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnDelete->FlatAppearance->BorderSize = 0;
+			this->btnDelete->FlatAppearance->CheckedBackColor = System::Drawing::Color::Transparent;
+			this->btnDelete->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnDelete->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnDelete->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnDelete->Location = System::Drawing::Point(389, 222);
 			this->btnDelete->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnDelete->Name = L"btnDelete";
-			this->btnDelete->Size = System::Drawing::Size(131, 42);
+			this->btnDelete->Size = System::Drawing::Size(170, 65);
 			this->btnDelete->TabIndex = 19;
-			this->btnDelete->Text = L"delete";
-			this->btnDelete->UseVisualStyleBackColor = true;
+			this->btnDelete->UseVisualStyleBackColor = false;
 			this->btnDelete->Click += gcnew System::EventHandler(this, &Friends::btnDelete_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(357, 337);
+			this->btnClose->BackColor = System::Drawing::Color::Transparent;
+			this->btnClose->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnClose.BackgroundImage")));
+			this->btnClose->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnClose->FlatAppearance->BorderSize = 0;
+			this->btnClose->FlatAppearance->CheckedBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnClose->Location = System::Drawing::Point(389, 395);
 			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(131, 42);
+			this->btnClose->Size = System::Drawing::Size(170, 65);
 			this->btnClose->TabIndex = 19;
-			this->btnClose->Text = L"close";
-			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->UseVisualStyleBackColor = false;
 			this->btnClose->Click += gcnew System::EventHandler(this, &Friends::btnClose_Click);
 			// 
 			// Friends
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(555, 488);
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->ClientSize = System::Drawing::Size(579, 488);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnDelete);
 			this->Controls->Add(this->btnResponse);
 			this->Controls->Add(this->btnAdd);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->listBoxFriends);
+			this->DoubleBuffered = true;
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"Friends";
 			this->Text = L"Friends";
@@ -306,5 +337,6 @@ private: System::Void Friends_FormClosing(System::Object^ sender, System::Window
 	this->Owner->Show();
 	this->Owner->Activate();
 }
+
 };
 }
