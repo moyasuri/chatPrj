@@ -273,9 +273,6 @@ string MySQL::QuerySql(string msg, int idx) {
             break;
         }
 
-
-
-
     }
     case e_id_find_ID:
     {
@@ -478,45 +475,57 @@ string MySQL::QuerySql(string msg, int idx) {
     }
     case e_friends_Request:
     {
-        string _id = sck_list[idx].ui.getID();
-        string _to_nickname = "";
+       
+
+        string reqNick = "";
+        string reqID = "";
         _msg = "";
-        ss >> _to_nickname >> std::ws;;
+        ss >> reqNick >> std::ws;;
         getline(ss, _msg, '\0');
 
-        string query = "SELECT Member_ID FROM member WHERE Nickname = '" + _to_nickname + "'";
+
+        // 회원목록에서 지정한 닉네임이 있는지 확인.
+        string query = "SELECT Member_ID FROM member WHERE Nickname = '" + reqNick + "'";
         stmt = con->createStatement();
         res = stmt->executeQuery(query);
 
 
         if (res->next()) {
-            string b_id = res->getString("Member_ID");
 
-            string query = "SELECT My_ID FROM friend_list WHERE My_Friend_ID = '" + b_id + "'";
+            // 닉네임에서 아이디 가져오기
+            query = "SELECT Member_ID FROM member WHERE Nickname = '" + reqNick + "'";
+            stmt = con->createStatement();
+            res = stmt->executeQuery(query);
+            if(res->next())
+                reqID = res->getString("Member_ID");
+
+            query = "SELECT My_ID FROM friend_list WHERE My_Friend_ID = '" + reqID + "'";
             stmt = con->createStatement();
             res = stmt->executeQuery(query);
             if (res->next())
             {
-                // 입력한 회원 닉네임이 잘못된 경우
+                // 입력한 회원 닉네임이 이미 친구 인경우
                 _ret = elseStr;
                 break;
             }
 
+
+            pstmt = con->prepareStatement("INSERT INTO friend_request (From_Friend_Request_ID, To_Friend_Request_ID, Request_Msg) "
+                "SELECT ?, ?, ? WHERE NOT EXISTS (SELECT 1 FROM friend_request WHERE (From_Friend_Request_ID = ? AND To_Friend_Request_ID = ?) OR (From_Friend_Request_ID = ? AND To_Friend_Request_ID = ?))");
+            pstmt->setString(1, myID);
+            pstmt->setString(2, reqID);
+            pstmt->setString(3, _msg);
+            pstmt->setString(4, reqID);
+            pstmt->setString(5, reqID);
+            pstmt->setString(6, reqID);
+            pstmt->setString(7, myID);
+
+
+
             // Friend_Request 테이블 업데이트
             // PreparedStatement를 사용하여 쿼리 준비
-            sql::PreparedStatement* insertFriendRequestStmt;
-            insertFriendRequestStmt = con->prepareStatement("INSERT INTO friend_request (From_Friend_Request_ID, To_Friend_Request_ID, Request_Msg) "
-                "SELECT ?, ?, ? WHERE NOT EXISTS (SELECT 1 FROM friend_request WHERE (From_Friend_Request_ID = ? AND To_Friend_Request_ID = ?) OR (From_Friend_Request_ID = ? AND To_Friend_Request_ID = ?))");
-            insertFriendRequestStmt->setString(1, _id);
-            insertFriendRequestStmt->setString(2, b_id);
-            insertFriendRequestStmt->setString(3, _msg);
-            insertFriendRequestStmt->setString(4, _id);
-            insertFriendRequestStmt->setString(5, b_id);
-            insertFriendRequestStmt->setString(6, b_id);
-            insertFriendRequestStmt->setString(7, _id);
 
-
-            int updateCount = insertFriendRequestStmt->executeUpdate();
+            int updateCount = pstmt->executeUpdate();
 
             if (updateCount > 0) {
                 _ret = s_(e_friends_Request) + delim + trueStr;
@@ -600,7 +609,7 @@ string MySQL::QuerySql(string msg, int idx) {
             sql::PreparedStatement* pstmt;
             pstmt = con->prepareStatement("SELECT From_Friend_Request_ID, To_Friend_Request_ID FROM friend_request WHERE From_Friend_Request_ID = ? AND To_Friend_Request_ID = ?");
             pstmt->setString(1, b_id);
-            pstmt->setString(2, _id);
+            pstmt->setString(2, myID);
 
 
             res = pstmt->executeQuery();
@@ -609,7 +618,7 @@ string MySQL::QuerySql(string msg, int idx) {
 
                 pstmt = con->prepareStatement("DELETE FROM friend_request WHERE From_Friend_Request_ID = ? AND To_Friend_Request_ID = ?");
                 pstmt->setString(1, b_id);
-                pstmt->setString(2, _id);
+                pstmt->setString(2, myID);
 
                 int deleteCount = pstmt->executeUpdate();
 
@@ -617,9 +626,9 @@ string MySQL::QuerySql(string msg, int idx) {
 
                     pstmt = con->prepareStatement("INSERT INTO friend_list (My_ID, My_Friend_ID) VALUES (?, ?)");
                     pstmt->setString(1, b_id);
-                    pstmt->setString(2, _id);
+                    pstmt->setString(2, myID);
                     pstmt->executeUpdate();
-                    pstmt->setString(1, _id);
+                    pstmt->setString(1, myID);
                     pstmt->setString(2, b_id);
                     pstmt->executeUpdate();
 

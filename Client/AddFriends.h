@@ -91,41 +91,53 @@ namespace Client {
 			// 
 			// txtBoxNickname
 			// 
-			this->txtBoxNickname->Location = System::Drawing::Point(283, 82);
+			this->txtBoxNickname->Location = System::Drawing::Point(83, 37);
 			this->txtBoxNickname->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxNickname->Name = L"txtBoxNickname";
-			this->txtBoxNickname->Size = System::Drawing::Size(161, 21);
+			this->txtBoxNickname->Size = System::Drawing::Size(164, 21);
 			this->txtBoxNickname->TabIndex = 1;
 			// 
 			// txtBoxReqMsg
 			// 
-			this->txtBoxReqMsg->Location = System::Drawing::Point(127, 201);
+			this->txtBoxReqMsg->Location = System::Drawing::Point(32, 112);
 			this->txtBoxReqMsg->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxReqMsg->Multiline = true;
 			this->txtBoxReqMsg->Name = L"txtBoxReqMsg";
-			this->txtBoxReqMsg->Size = System::Drawing::Size(369, 90);
+			this->txtBoxReqMsg->Size = System::Drawing::Size(215, 78);
 			this->txtBoxReqMsg->TabIndex = 1;
 			// 
 			// btnSendReq
 			// 
-			this->btnSendReq->Location = System::Drawing::Point(159, 295);
+			this->btnSendReq->BackColor = System::Drawing::Color::Transparent;
+			this->btnSendReq->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnSendReq.BackgroundImage")));
+			this->btnSendReq->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnSendReq->FlatAppearance->BorderSize = 0;
+			this->btnSendReq->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnSendReq->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnSendReq->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnSendReq->Location = System::Drawing::Point(48, 239);
 			this->btnSendReq->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSendReq->Name = L"btnSendReq";
-			this->btnSendReq->Size = System::Drawing::Size(160, 38);
+			this->btnSendReq->Size = System::Drawing::Size(187, 68);
 			this->btnSendReq->TabIndex = 2;
-			this->btnSendReq->Text = L"btnSendReq";
-			this->btnSendReq->UseVisualStyleBackColor = true;
+			this->btnSendReq->UseVisualStyleBackColor = false;
 			this->btnSendReq->Click += gcnew System::EventHandler(this, &AddFriends::btnSendReq_Click);
 			// 
 			// btnClose
 			// 
-			this->btnClose->Location = System::Drawing::Point(383, 295);
+			this->btnClose->BackColor = System::Drawing::Color::Transparent;
+			this->btnClose->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnClose.BackgroundImage")));
+			this->btnClose->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->btnClose->FlatAppearance->BorderSize = 0;
+			this->btnClose->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnClose->Location = System::Drawing::Point(48, 297);
 			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(160, 38);
+			this->btnClose->Size = System::Drawing::Size(187, 68);
 			this->btnClose->TabIndex = 2;
-			this->btnClose->Text = L"btnClose";
-			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->UseVisualStyleBackColor = false;
 			this->btnClose->Click += gcnew System::EventHandler(this, &AddFriends::btnClose_Click);
 			// 
 			// pictureBox1
@@ -133,7 +145,7 @@ namespace Client {
 			this->pictureBox1->BackColor = System::Drawing::Color::Transparent;
 			this->pictureBox1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.BackgroundImage")));
 			this->pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
-			this->pictureBox1->Location = System::Drawing::Point(105, 41);
+			this->pictureBox1->Location = System::Drawing::Point(12, 30);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(66, 29);
 			this->pictureBox1->TabIndex = 3;
@@ -144,7 +156,7 @@ namespace Client {
 			this->pictureBox2->BackColor = System::Drawing::Color::Transparent;
 			this->pictureBox2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.BackgroundImage")));
 			this->pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
-			this->pictureBox2->Location = System::Drawing::Point(159, 151);
+			this->pictureBox2->Location = System::Drawing::Point(13, 78);
 			this->pictureBox2->Name = L"pictureBox2";
 			this->pictureBox2->Size = System::Drawing::Size(113, 29);
 			this->pictureBox2->TabIndex = 3;
@@ -156,7 +168,7 @@ namespace Client {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->ClientSize = System::Drawing::Size(608, 426);
+			this->ClientSize = System::Drawing::Size(571, 426);
 			this->Controls->Add(this->pictureBox2);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->btnClose);
