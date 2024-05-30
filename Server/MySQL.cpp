@@ -55,14 +55,10 @@ void MySQL::_send_msg(const char* msg, int room_Index) {
 
 
 
-string MySQL::room_Delete(string roomidx, int idx) {
-
-
-}
 
 
 
-void MySQL::room_activate(int roomIndex, int idx, string myID) {
+void MySQL::room_activate(int roomIndex, string myID) {
     
     if (isWorkingRoomIndexExist(roomIndex) == false) {
         workingRoom_list[roomIndex].Room_Index = roomIndex;
@@ -79,10 +75,6 @@ bool MySQL::isWorkingRoomIndexExist(int roomIndex) {
         }
     }
     return false;
-}
-
-string MySQL::room_myList(int index) {
-
 }
 
 
@@ -1303,9 +1295,9 @@ string MySQL::QuerySql(string msg, int idx) {
         
         
         for (auto text : UroomInfo.room_info)
-            UroomInfo.room_Title = UroomInfo.room_Title + text + IDENTIFIER;
+            UroomInfo.room_Title = UroomInfo.room_Title + text + delim;
         
-        cout << UroomInfo.room_Type << IDENTIFIER << UroomInfo.room_Title << IDENTIFIER << UroomInfo.room_PW << endl;
+        cout << UroomInfo.room_Type << delim << UroomInfo.room_Title << delim << UroomInfo.room_PW << endl;
         UroomInfo.i_room_Type = std::stoi(UroomInfo.room_Type);
         
         cout << "i_room_Type : " << UroomInfo.i_room_Type << endl;
@@ -1348,19 +1340,19 @@ string MySQL::QuerySql(string msg, int idx) {
                         sck_list[idx].room.setRoom_PW(res->getString(6));
                     }
                     
-                    sck_list[idx].ui.setJoinRoomIndex(s_(sck_list[idx].room.getRoom_Index()));
+                    //sck_list[idx].ui.setJoinRoomIndex(s_(sck_list[idx].room.getRoom_Index()));
 
 
-                    pstmt = con->prepareStatement("UPDATE member set Join_Room_Index = ? WHERE member_ID = ? ");
+   /*                 pstmt = con->prepareStatement("UPDATE member set Join_Room_Index = ? WHERE member_ID = ? ");
                     pstmt->setInt(1, std::stoi(sck_list[idx].ui.getJoinRoomIndex()));
                     pstmt->setString(2, myID);
                     
-                    Updated = pstmt->executeUpdate();
+                    Updated = pstmt->executeUpdate();*/
                     
                     cout << "update member query 완료;" << endl;
                     
-                    room_activate(room_Index, idx, myID); // 방 활성화 해주기
-                    result = s_(e_room_Create) + IDENTIFIER + trueStr;/*+ IDENTIFIER + sck_list[idx].ui.getJoinRoomIndex(); */// * 내가 몇번방에들어갔는지 알 수 있다.
+                    room_activate(room_Index, myID); // 방 활성화 해주기
+                    result = s_(e_room_Create) + delim + trueStr;/*+ IDENTIFIER + sck_list[idx].ui.getJoinRoomIndex(); */// * 내가 몇번방에들어갔는지 알 수 있다.
 
                     return result;
 
@@ -1368,14 +1360,14 @@ string MySQL::QuerySql(string msg, int idx) {
                 }
                 else {
                     cout << "등록은 성공 but 정보 저장 실패" << endl;
-                    result = s_(e_room_Create) + IDENTIFIER + falseStr;
+                    result = s_(e_room_Create) + delim + falseStr;
                     return result;
                 }
             }
             else
             {
                 cout << "등록은 성공 but 정보 저장 실패" << endl;
-                result = s_(e_room_Create) + IDENTIFIER + falseStr;
+                result = s_(e_room_Create) + delim + falseStr;
                 return result;
             }
         }
@@ -1490,7 +1482,7 @@ string MySQL::QuerySql(string msg, int idx) {
                 if (i_room_Type == 3)// 비밀방만 비밀번호 받으므로 예외 처리
                     sck_list[idx].room.setRoom_PW(res->getString(6));
                 sck_list[idx].ui.setJoinRoomIndex(room_Index);
-                room_activate(stoi(room_Index), idx, myID);
+                room_activate(stoi(room_Index), myID);
                 if (i_room_Type == 1)
                 {
                     isServer = elseStr;
@@ -1533,12 +1525,13 @@ string MySQL::QuerySql(string msg, int idx) {
             chat = res->getString(2);
             chat_Data = res->getString(3);
             row = s_(e_room_show_whole_Text) + delim + trueStr + delim + nickname + delim + chat + delim + chat_Data;
-            Sleep(20);
+            Sleep(30);
             send(sck_list[idx].sck, row.c_str(), row.size(), 0);
 
         }
         row = s_(e_room_show_whole_Text) + delim + elseStr;
         send(sck_list[idx].sck, row.c_str(), row.size(), 0);
+
         break;
     }
 

@@ -229,7 +229,7 @@ namespace Client {
 						roomPW = _my->s_(e_Default_PW);
 					}
 
-					if (!String::IsNullOrEmpty(roomTitle) && !chkBoxPrivate->Checked)
+					if (!String::IsNullOrEmpty(roomTitle))
 					{
 						int t_index = e_room_Create;
 						String^ buffer = t_index.ToString() + " " + roomType + " " + roomPW + " " + roomTitle;
