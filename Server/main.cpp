@@ -157,10 +157,8 @@ void recv_msg(int idx) {
 
         }
         else {
-            msg = "[공지] " + sck_list[idx].ui.getName() + " 님이 퇴장했습니다.";
-            cout << msg << endl;
-            
-            send_msg(msg.c_str());
+            msg = "server notice : " + sck_list[idx].ui.getName() + " 님이 퇴장했습니다.";
+            cout << msg << endl;         
 
             del_client(idx);
             delete mySQL;

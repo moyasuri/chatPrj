@@ -91,12 +91,12 @@ namespace Client {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(DeleteRoom::typeid));
 			this->ViewRoomList = (gcnew System::Windows::Forms::DataGridView());
-			this->btnDelete = (gcnew System::Windows::Forms::Button());
-			this->btnClose = (gcnew System::Windows::Forms::Button());
 			this->RoomIndex = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->RoomTitle = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->PrivateCheck = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->CreatedDate = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->btnDelete = (gcnew System::Windows::Forms::Button());
+			this->btnClose = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ViewRoomList))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -111,8 +111,33 @@ namespace Client {
 			this->ViewRoomList->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->ViewRoomList->Name = L"ViewRoomList";
 			this->ViewRoomList->RowTemplate->Height = 27;
+			this->ViewRoomList->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
 			this->ViewRoomList->Size = System::Drawing::Size(404, 207);
 			this->ViewRoomList->TabIndex = 0;
+			// 
+			// RoomIndex
+			// 
+			this->RoomIndex->HeaderText = L"#Index";
+			this->RoomIndex->Name = L"RoomIndex";
+			this->RoomIndex->Width = 25;
+			// 
+			// RoomTitle
+			// 
+			this->RoomTitle->HeaderText = L"Title";
+			this->RoomTitle->Name = L"RoomTitle";
+			this->RoomTitle->Width = 150;
+			// 
+			// PrivateCheck
+			// 
+			this->PrivateCheck->HeaderText = L"Private";
+			this->PrivateCheck->Name = L"PrivateCheck";
+			this->PrivateCheck->Width = 60;
+			// 
+			// CreatedDate
+			// 
+			this->CreatedDate->HeaderText = L"CreatedDate";
+			this->CreatedDate->Name = L"CreatedDate";
+			this->CreatedDate->Width = 120;
 			// 
 			// btnDelete
 			// 
@@ -150,30 +175,6 @@ namespace Client {
 			this->btnClose->UseVisualStyleBackColor = false;
 			this->btnClose->Click += gcnew System::EventHandler(this, &DeleteRoom::btnClose_Click);
 			// 
-			// RoomIndex
-			// 
-			this->RoomIndex->HeaderText = L"#Index";
-			this->RoomIndex->Name = L"RoomIndex";
-			this->RoomIndex->Width = 25;
-			// 
-			// RoomTitle
-			// 
-			this->RoomTitle->HeaderText = L"Title";
-			this->RoomTitle->Name = L"RoomTitle";
-			this->RoomTitle->Width = 150;
-			// 
-			// PrivateCheck
-			// 
-			this->PrivateCheck->HeaderText = L"Private";
-			this->PrivateCheck->Name = L"PrivateCheck";
-			this->PrivateCheck->Width = 60;
-			// 
-			// CreatedDate
-			// 
-			this->CreatedDate->HeaderText = L"CreatedDate";
-			this->CreatedDate->Name = L"CreatedDate";
-			this->CreatedDate->Width = 120;
-			// 
 			// DeleteRoom
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
@@ -206,41 +207,45 @@ namespace Client {
 				MessageBoxButtons buttons = MessageBoxButtons::YesNo;
 
 				// 메시지 박스를 표시하고 사용자의 선택을 저장합니다.
-				System::Windows::Forms::DialogResult result = \
-					MessageBox::Show("Do you really want to delete this room?", "confirm", buttons);
+				System::Windows::Forms::DialogResult result = MessageBox::Show("Do you really want to delete this room?", "confirm", buttons);
 
 				// 사용자의 선택에 따라 분기합니다.
 				if (result == System::Windows::Forms::DialogResult::Yes)
 				{
+					if (ViewRoomList->SelectedRows->Count > 0)
+					{
+						int selectedRowIndex = ViewRoomList->SelectedRows[0]->Index;
+
+						System::Object^ column1ValueObj = ViewRoomList->Rows[selectedRowIndex]->Cells["RoomIndex"]->Value;
+						System::String^ tmptxt_1;
+						// null 체크
+						if (column1ValueObj != nullptr)
+						{
+							System::String^ column1Value = column1ValueObj->ToString();
+							tmptxt_1 = column1Value;
+						}
+						else
+						{
+							ViewRoomList->Rows->Clear();
+							return;
+						}
+
+						int t_index = e_room_Delete;
+						String^ buffer = _my->s_(t_index) + " " + tmptxt_1;
+						_my->SendMessage(buffer);
+					}
+					else
+					{
+						MessageBox::Show("No row is selected.");
+					}
 				}
 				else if (result == System::Windows::Forms::DialogResult::No)
 				{
 					return;
 				}
-
-
-
-				int selectedRowIndex = ViewRoomList->SelectedRows[0]->Index;
-
-				System::Object^ column1ValueObj = ViewRoomList->Rows[selectedRowIndex]->Cells["RoomIndex"]->Value;
-				System::String^ tmptxt_1;
-				// null 체크
-				if (column1ValueObj != nullptr)
-				{
-					System::String^ column1Value = column1ValueObj->ToString();
-					tmptxt_1 = column1Value;
-				}
-				else
-				{
-					ViewRoomList->Rows->Clear();
-					return;
-				}
-
-				int t_index = e_room_Delete;
-				String^ buffer = _my->s_(t_index) + " " + tmptxt_1;
-				_my->SendMessage(buffer);
-				break;
 			}
+
+
 			case e_room_myList:
 			{
 				int t_index = e_room_myList;

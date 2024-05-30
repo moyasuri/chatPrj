@@ -2,6 +2,10 @@
 #include "enum.h"
 #include "MyFunction.h"
 
+//#include <iostream>
+//#include <msclr/marshal_cppstd.h>
+
+
 namespace Client {
 
 	using namespace System;
@@ -322,8 +326,11 @@ namespace Client {
 			ViewDataSent->Rows[indexnum]->Cells["To"]->Value = Nickname;
 			ViewDataSent->Rows[indexnum]->Cells["Date"]->Value = subString_loop[2] + " " + subString_loop[3];
 
+			/*msclr::interop::marshal_context context;
+			std::string stdString = context.marshal_as<std::string>(subString_loop[i]);
+			std::cout << "??? = " <<  i <<  stdString << std::endl;*/
 			String^ status = "";
-			if (subString_loop[i] == "0" || subString_loop[i] == "2")
+			if (subString_loop[1] == "0" || subString_loop[1] == "2")
 			{
 				status = "Unread";
 			}
