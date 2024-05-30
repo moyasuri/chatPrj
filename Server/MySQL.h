@@ -36,7 +36,7 @@ public:
 
     void Init_Mysql();
     void set_database(string str);
-    void room_activate(int roomIndex, int idx, string myID);
+    void room_activate(int roomIndex, string myID);
     void _send_msg(const char* msg, int room_Index);
     
     string QuerySql(string msg, int idx);
