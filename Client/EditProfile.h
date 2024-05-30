@@ -136,6 +136,7 @@ namespace Client {
 			this->txtBoxPW->Location = System::Drawing::Point(144, 75);
 			this->txtBoxPW->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPW->Name = L"txtBoxPW";
+			this->txtBoxPW->PasswordChar = '*';
 			this->txtBoxPW->Size = System::Drawing::Size(168, 21);
 			this->txtBoxPW->TabIndex = 1;
 			// 
@@ -145,6 +146,7 @@ namespace Client {
 			this->txtBoxPW_new->Location = System::Drawing::Point(144, 172);
 			this->txtBoxPW_new->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPW_new->Name = L"txtBoxPW_new";
+			this->txtBoxPW_new->PasswordChar = '*';
 			this->txtBoxPW_new->Size = System::Drawing::Size(168, 21);
 			this->txtBoxPW_new->TabIndex = 1;
 			// 
@@ -154,6 +156,7 @@ namespace Client {
 			this->txtBoxPW_Confirm->Location = System::Drawing::Point(342, 172);
 			this->txtBoxPW_Confirm->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPW_Confirm->Name = L"txtBoxPW_Confirm";
+			this->txtBoxPW_Confirm->PasswordChar = '*';
 			this->txtBoxPW_Confirm->Size = System::Drawing::Size(168, 21);
 			this->txtBoxPW_Confirm->TabIndex = 1;
 			// 
@@ -433,15 +436,17 @@ namespace Client {
 					
 
 				// ID와 PW의 문자열이 채워져있다면
+				/*if (!String::IsNullOrEmpty(tmptxt_1) && !String::IsNullOrEmpty(tmptxt_2) && !String::IsNullOrEmpty(tmptxt_2)\
+					&& !String::IsNullOrEmpty(tmptxt_3) && !String::IsNullOrEmpty(tmptxt_4) && !String::IsNullOrEmpty(tmptxt_5))*/
 				if (!String::IsNullOrEmpty(tmptxt_1) && !String::IsNullOrEmpty(tmptxt_2) && !String::IsNullOrEmpty(tmptxt_2)\
-					&& !String::IsNullOrEmpty(tmptxt_3) && !String::IsNullOrEmpty(tmptxt_4) && !String::IsNullOrEmpty(tmptxt_5))
+					&& !String::IsNullOrEmpty(tmptxt_3)  && !String::IsNullOrEmpty(tmptxt_5))
 				{
 					if (1) // 나중에 캐릭터 추가하자
 					{
 						tmptxt_4 = _my->s_(e_character_izuna);
 					}
-					int t_index = e_signup_NickNamechk;
-					String^ buffer = _my->s_(t_index) + " " + tmptxt_1 + " " + tmptxt_2 + " " + tmptxt_3 + " " + tmptxt_4;
+					int t_index = e_edit_Confirm;
+					String^ buffer = _my->s_(t_index) + " " + tmptxt_1 + " " + tmptxt_2 + " " + tmptxt_3 + " " + tmptxt_4 + " " + tmptxt_5;
 					_my->SendMessage(buffer);
 				}
 				// 입력값이 없다면,
@@ -504,6 +509,7 @@ namespace Client {
 					{
 						Invoke(gcnew Action(this, &EditProfile::UpdateTextBoxNickname));
 						System::Windows::Forms::MessageBox::Show("You can use this Nickname", "nickname check", MessageBoxButtons::OK, MessageBoxIcon::Information);
+						isChkNickName = true;
 					}
 					else
 					{

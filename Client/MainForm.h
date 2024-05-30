@@ -75,13 +75,6 @@ namespace Client {
 			btnJoinChatRoom->BackgroundImageLayout = ImageLayout::Zoom;
 			btnDelChatRoom->BackgroundImageLayout = ImageLayout::Zoom;
 			btnCreateChatRoom->BackgroundImageLayout = ImageLayout::Zoom;
-	
-
-
-
-
-
-
 
 
 		}
@@ -94,9 +87,10 @@ namespace Client {
 		{
 			if (_my != nullptr) {
 				// MyEvent 이벤트 핸들러를 해제
+				this->_my->disposed();
 				_my->MyEvent -= gcnew Action<String^>(this, &MainForm::ReceivedMsg);
-
 				// _my를 삭제
+				
 				delete _my;
 				_my = nullptr;  // nullptr로 설정하여 dangling pointer를 방지
 			}
@@ -292,12 +286,12 @@ namespace Client {
 			// NumMessage
 			// 
 			this->NumMessage->AutoSize = true;
-			this->NumMessage->Font = (gcnew System::Drawing::Font(L"Calibri", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->NumMessage->Font = (gcnew System::Drawing::Font(L"Calibri", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->NumMessage->ForeColor = System::Drawing::Color::DarkCyan;
-			this->NumMessage->Location = System::Drawing::Point(32, 23);
+			this->NumMessage->Location = System::Drawing::Point(33, 20);
 			this->NumMessage->Name = L"NumMessage";
-			this->NumMessage->Size = System::Drawing::Size(18, 14);
+			this->NumMessage->Size = System::Drawing::Size(19, 18);
 			this->NumMessage->TabIndex = 0;
 			this->NumMessage->Text = L"la";
 			// 
@@ -481,7 +475,7 @@ namespace Client {
 		}
 	}
 	private: System::Void btnSignOut_Click(System::Object^ sender, System::EventArgs^ e) {
-		//_my->disposed();
+		
 		this->Close();
 	}
 	private: System::Void MainForm_Activated(System::Object^ sender, System::EventArgs^ e) {

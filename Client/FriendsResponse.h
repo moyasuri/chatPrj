@@ -232,7 +232,7 @@ namespace Client {
 						DataGridViewRow^ selectedRow = ViewResponseList->SelectedRows[0];
 						String^ tmptxt_1 = safe_cast<String^>(selectedRow->Cells[1]->Value);
 
-						int t_index = e_id_find_ID;
+						int t_index = e_friends_Accept;
 						String^ buffer = t_index.ToString() + " " + tmptxt_1;
 						_my->SendMessage(buffer);
 
@@ -246,11 +246,19 @@ namespace Client {
 						DataGridViewRow^ selectedRow = ViewResponseList->SelectedRows[0];
 						String^ tmptxt_1 = safe_cast<String^>(selectedRow->Cells[1]->Value);
 
-						int t_index = e_id_find_ID;
+						int t_index = e_friends_Request_Decline;
 						String^ buffer = t_index.ToString() + " " + tmptxt_1;
 						_my->SendMessage(buffer);
 
 						break;
+					}
+
+					case e_friends_Response_List:
+					{
+						int t_index = e_friends_Response_List;
+						String^ buffer = t_index.ToString();
+						_my->SendMessage(buffer);
+
 					}
 
 					}
@@ -272,7 +280,7 @@ namespace Client {
 
 		switch (index)
 		{
-		case e_friends_Request_Accept:
+		case e_friends_Accept:
 		{
 			if (isTrue == "true")
 			{
@@ -306,6 +314,7 @@ namespace Client {
 			}
 			else
 			{
+				ViewResponseList->Rows->Clear();
 				// false
 			}
 			break;
@@ -342,14 +351,7 @@ namespace Client {
 
 
 
-	private: System::Void btnAccept_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (ViewResponseList->SelectedCells->Count == 0)
-		{
-			System::Windows::Forms::MessageBox::Show("Select ID From List", "Notice", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-		}
 
-		SendMessageForm(e_friends_Accept);
-	}
 	private: System::Void btnReject_Click(System::Object^ sender, System::EventArgs^ e) {
 		// 아무것도 선택하지 않았을 때
 		if (ViewResponseList->SelectedCells->Count == 0)
@@ -358,15 +360,26 @@ namespace Client {
 		}
 
 		SendMessageForm(e_friends_Request_Decline);
+		SendMessageForm(e_friends_Response_List);
 	}
 	private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
 	}
 private: System::Void FriendsResponse_Activated(System::Object^ sender, System::EventArgs^ e) {
-	int t_index = e_friends_Response_List;
-	String^ buffer = t_index.ToString();
-	_my->SendMessage(buffer);
+	SendMessageForm(e_friends_Response_List);
 }
 
+private: System::Void btnAccept_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	if (ViewResponseList->SelectedCells->Count == 0)
+	{
+		System::Windows::Forms::MessageBox::Show("Select ID From List", "Notice", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+		return;
+	}
+
+	SendMessageForm(e_friends_Accept);
+	SendMessageForm(e_friends_Response_List);
+	
+}
 };
 }

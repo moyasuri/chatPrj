@@ -152,6 +152,7 @@ namespace Client {
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"FriendsList";
 			this->Text = L"FriendsList";
+			this->Activated += gcnew System::EventHandler(this, &FriendsList::FriendsList_Activated);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -205,20 +206,9 @@ namespace Client {
 		}
 	}
 
-	private: System::Void FriendsList_Activated(System::Object^ sender, System::EventArgs^ e) {
 
-		listBoxFriends->Items->Clear();
-		int t_index = e_friends_List;
-		String^ buffer = _my->s_(t_index);
-		_my->SendMessage(buffer);
-	}
 
-	private: System::Void btnConfirm_Click1(System::Object^ sender, System::EventArgs^ e) {
 
-	}
-	private: System::Void btnClose_Click1(System::Object^ sender, System::EventArgs^ e) {
-
-	}
 
 
 	private: System::Void btnConfirm_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -233,6 +223,12 @@ namespace Client {
 	private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
 		
+	}
+	private: System::Void FriendsList_Activated(System::Object^ sender, System::EventArgs^ e) {
+		listBoxFriends->Items->Clear();
+		int t_index = e_friends_List;
+		String^ buffer = _my->s_(t_index);
+		_my->SendMessage(buffer);
 	}
 };
 }

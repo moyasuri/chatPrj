@@ -123,6 +123,7 @@ namespace Client {
 
 	private: System::String^ currentDirectory;
 	private: System::String^ relativePath;
+private: System::Windows::Forms::PictureBox^ pictureBox1;
 
 	private:
 		/// <summary>
@@ -148,7 +149,9 @@ namespace Client {
 			this->btnFindAccount = (gcnew System::Windows::Forms::Button());
 			this->btnSignIn = (gcnew System::Windows::Forms::Button());
 			this->PicBoxIntro = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PicBoxIntro))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -157,7 +160,7 @@ namespace Client {
 			this->label1->BackColor = System::Drawing::Color::Transparent;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Georgia", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(157, 375);
+			this->label1->Location = System::Drawing::Point(157, 373);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(69, 18);
 			this->label1->TabIndex = 0;
@@ -169,7 +172,7 @@ namespace Client {
 			this->label2->BackColor = System::Drawing::Color::Transparent;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Georgia", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(155, 421);
+			this->label2->Location = System::Drawing::Point(155, 424);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(71, 18);
 			this->label2->TabIndex = 1;
@@ -177,7 +180,7 @@ namespace Client {
 			// 
 			// txtBoxID
 			// 
-			this->txtBoxID->Location = System::Drawing::Point(260, 373);
+			this->txtBoxID->Location = System::Drawing::Point(260, 371);
 			this->txtBoxID->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxID->Name = L"txtBoxID";
 			this->txtBoxID->Size = System::Drawing::Size(152, 21);
@@ -185,7 +188,7 @@ namespace Client {
 			// 
 			// txtBoxPW
 			// 
-			this->txtBoxPW->Location = System::Drawing::Point(260, 420);
+			this->txtBoxPW->Location = System::Drawing::Point(260, 423);
 			this->txtBoxPW->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPW->Name = L"txtBoxPW";
 			this->txtBoxPW->PasswordChar = '*';
@@ -272,6 +275,19 @@ namespace Client {
 			this->PicBoxIntro->TabStop = false;
 			this->PicBoxIntro->WaitOnLoad = true;
 			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->BackColor = System::Drawing::Color::Transparent;
+			this->pictureBox1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.BackgroundImage")));
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Location = System::Drawing::Point(33, 344);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(116, 115);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->pictureBox1->TabIndex = 8;
+			this->pictureBox1->TabStop = false;
+			this->pictureBox1->WaitOnLoad = true;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
@@ -279,6 +295,7 @@ namespace Client {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(796, 493);
+			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->btnFindAccount);
 			this->Controls->Add(this->btnExit);
 			this->Controls->Add(this->btnSignIn);
@@ -294,6 +311,7 @@ namespace Client {
 			this->Text = L"MyForm";
 			this->VisibleChanged += gcnew System::EventHandler(this, &MyForm::MyForm_VisibleChanged);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PicBoxIntro))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
