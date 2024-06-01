@@ -1524,13 +1524,13 @@ string MySQL::QuerySql(string msg, int idx) {
             nickname = res->getString(1);
             chat = res->getString(2);
             chat_Data = res->getString(3);
-            row = s_(e_room_show_whole_Text) + delim + trueStr + delim + nickname + delim + chat + delim + chat_Data;
-            Sleep(30);
+            row = s_(e_room_show_whole_Text) + delim + trueStr + delim + nickname + delim + chat + delim + chat_Data + "\n";
+            Sleep(50);
             send(sck_list[idx].sck, row.c_str(), row.size(), 0);
 
         }
-        row = s_(e_room_show_whole_Text) + delim + elseStr;
-        send(sck_list[idx].sck, row.c_str(), row.size(), 0);
+        //row = s_(e_room_show_whole_Text) + delim + elseStr;
+        //send(sck_list[idx].sck, row.c_str(), row.size(), 0);
 
         break;
     }
