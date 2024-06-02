@@ -16,7 +16,7 @@ namespace Client {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
+	using namespace System::Media;
 	/// <summary>
 	/// MainForm에 대한 요약입니다.
 	/// </summary>
@@ -64,7 +64,10 @@ namespace Client {
 
 			relativePath = System::IO::Path::Combine(currentDirectory, "..\\Media\\Img\\Button\\createroom.png");
 			btnCreateChatRoom->BackgroundImage = Image::FromFile(relativePath);
-
+			
+			IntroImageSound = gcnew SoundPlayer;
+			relativePath = System::IO::Path::Combine(currentDirectory, "..\\Media\\BGM\\Nichirin.wav");
+			IntroImageSound->SoundLocation = relativePath;
 
 
 			// 필요에 따라 버튼의 크기 모드를 설정합니다.
@@ -90,7 +93,7 @@ namespace Client {
 				this->_my->disposed();
 				_my->MyEvent -= gcnew Action<String^>(this, &MainForm::ReceivedMsg);
 				// _my를 삭제
-				
+				delete IntroImageSound;
 				delete _my;
 				_my = nullptr;  // nullptr로 설정하여 dangling pointer를 방지
 			}
@@ -123,7 +126,8 @@ namespace Client {
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
 	private: System::Windows::Forms::PictureBox^ pictureBox3;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-
+	private: SoundPlayer^ IntroImageSound;
+	private: bool isFirstActivation = true;
 
 
 
@@ -172,10 +176,10 @@ namespace Client {
 			this->btnJoinChatRoom->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->btnJoinChatRoom->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnJoinChatRoom->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnJoinChatRoom->Location = System::Drawing::Point(142, 37);
-			this->btnJoinChatRoom->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btnJoinChatRoom->Location = System::Drawing::Point(203, 56);
+			this->btnJoinChatRoom->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->btnJoinChatRoom->Name = L"btnJoinChatRoom";
-			this->btnJoinChatRoom->Size = System::Drawing::Size(267, 67);
+			this->btnJoinChatRoom->Size = System::Drawing::Size(381, 100);
 			this->btnJoinChatRoom->TabIndex = 0;
 			this->btnJoinChatRoom->UseVisualStyleBackColor = false;
 			this->btnJoinChatRoom->Click += gcnew System::EventHandler(this, &MainForm::btnJoinChatRoom_Click);
@@ -188,10 +192,10 @@ namespace Client {
 			this->btnCreateChatRoom->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->btnCreateChatRoom->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnCreateChatRoom->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnCreateChatRoom->Location = System::Drawing::Point(142, 119);
-			this->btnCreateChatRoom->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btnCreateChatRoom->Location = System::Drawing::Point(203, 178);
+			this->btnCreateChatRoom->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->btnCreateChatRoom->Name = L"btnCreateChatRoom";
-			this->btnCreateChatRoom->Size = System::Drawing::Size(267, 67);
+			this->btnCreateChatRoom->Size = System::Drawing::Size(381, 100);
 			this->btnCreateChatRoom->TabIndex = 0;
 			this->btnCreateChatRoom->UseVisualStyleBackColor = false;
 			this->btnCreateChatRoom->Click += gcnew System::EventHandler(this, &MainForm::btnCreateChatRoom_Click);
@@ -203,10 +207,10 @@ namespace Client {
 			this->btnDelChatRoom->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->btnDelChatRoom->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnDelChatRoom->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnDelChatRoom->Location = System::Drawing::Point(142, 201);
-			this->btnDelChatRoom->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btnDelChatRoom->Location = System::Drawing::Point(203, 302);
+			this->btnDelChatRoom->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->btnDelChatRoom->Name = L"btnDelChatRoom";
-			this->btnDelChatRoom->Size = System::Drawing::Size(267, 67);
+			this->btnDelChatRoom->Size = System::Drawing::Size(381, 100);
 			this->btnDelChatRoom->TabIndex = 0;
 			this->btnDelChatRoom->UseVisualStyleBackColor = false;
 			this->btnDelChatRoom->Click += gcnew System::EventHandler(this, &MainForm::btnDelChatRoom_Click);
@@ -218,10 +222,10 @@ namespace Client {
 			this->btnEditProfile->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->btnEditProfile->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnEditProfile->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnEditProfile->Location = System::Drawing::Point(86, 299);
-			this->btnEditProfile->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btnEditProfile->Location = System::Drawing::Point(123, 448);
+			this->btnEditProfile->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->btnEditProfile->Name = L"btnEditProfile";
-			this->btnEditProfile->Size = System::Drawing::Size(68, 91);
+			this->btnEditProfile->Size = System::Drawing::Size(97, 136);
 			this->btnEditProfile->TabIndex = 0;
 			this->btnEditProfile->UseVisualStyleBackColor = false;
 			this->btnEditProfile->Click += gcnew System::EventHandler(this, &MainForm::btnEditProfile_Click);
@@ -233,10 +237,10 @@ namespace Client {
 			this->btnFriends->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->btnFriends->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnFriends->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnFriends->Location = System::Drawing::Point(228, 299);
-			this->btnFriends->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btnFriends->Location = System::Drawing::Point(326, 448);
+			this->btnFriends->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->btnFriends->Name = L"btnFriends";
-			this->btnFriends->Size = System::Drawing::Size(80, 91);
+			this->btnFriends->Size = System::Drawing::Size(114, 136);
 			this->btnFriends->TabIndex = 0;
 			this->btnFriends->UseVisualStyleBackColor = false;
 			this->btnFriends->Click += gcnew System::EventHandler(this, &MainForm::btnFriends_Click);
@@ -248,10 +252,10 @@ namespace Client {
 			this->btnMessage->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->btnMessage->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnMessage->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnMessage->Location = System::Drawing::Point(361, 316);
-			this->btnMessage->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btnMessage->Location = System::Drawing::Point(516, 474);
+			this->btnMessage->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->btnMessage->Name = L"btnMessage";
-			this->btnMessage->Size = System::Drawing::Size(120, 59);
+			this->btnMessage->Size = System::Drawing::Size(171, 88);
 			this->btnMessage->TabIndex = 0;
 			this->btnMessage->UseVisualStyleBackColor = false;
 			this->btnMessage->Click += gcnew System::EventHandler(this, &MainForm::btnMessage_Click);
@@ -263,10 +267,10 @@ namespace Client {
 			this->btnSignOut->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->btnSignOut->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnSignOut->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnSignOut->Location = System::Drawing::Point(374, 437);
-			this->btnSignOut->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btnSignOut->Location = System::Drawing::Point(534, 656);
+			this->btnSignOut->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->btnSignOut->Name = L"btnSignOut";
-			this->btnSignOut->Size = System::Drawing::Size(154, 59);
+			this->btnSignOut->Size = System::Drawing::Size(220, 88);
 			this->btnSignOut->TabIndex = 0;
 			this->btnSignOut->UseVisualStyleBackColor = false;
 			this->btnSignOut->Click += gcnew System::EventHandler(this, &MainForm::btnSignOut_Click);
@@ -277,10 +281,10 @@ namespace Client {
 			this->panel1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel1.BackgroundImage")));
 			this->panel1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->panel1->Controls->Add(this->NumMessage);
-			this->panel1->Location = System::Drawing::Point(461, 256);
-			this->panel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->panel1->Location = System::Drawing::Point(659, 384);
+			this->panel1->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(69, 64);
+			this->panel1->Size = System::Drawing::Size(99, 96);
 			this->panel1->TabIndex = 1;
 			// 
 			// NumMessage
@@ -289,9 +293,10 @@ namespace Client {
 			this->NumMessage->Font = (gcnew System::Drawing::Font(L"Calibri", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->NumMessage->ForeColor = System::Drawing::Color::DarkCyan;
-			this->NumMessage->Location = System::Drawing::Point(33, 20);
+			this->NumMessage->Location = System::Drawing::Point(47, 30);
+			this->NumMessage->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->NumMessage->Name = L"NumMessage";
-			this->NumMessage->Size = System::Drawing::Size(19, 18);
+			this->NumMessage->Size = System::Drawing::Size(29, 28);
 			this->NumMessage->TabIndex = 0;
 			this->NumMessage->Text = L"la";
 			// 
@@ -300,9 +305,10 @@ namespace Client {
 			this->pictureBox2->BackColor = System::Drawing::Color::Transparent;
 			this->pictureBox2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.BackgroundImage")));
 			this->pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
-			this->pictureBox2->Location = System::Drawing::Point(207, 388);
+			this->pictureBox2->Location = System::Drawing::Point(296, 582);
+			this->pictureBox2->Margin = System::Windows::Forms::Padding(4);
 			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(120, 30);
+			this->pictureBox2->Size = System::Drawing::Size(171, 45);
 			this->pictureBox2->TabIndex = 3;
 			this->pictureBox2->TabStop = false;
 			// 
@@ -311,9 +317,10 @@ namespace Client {
 			this->pictureBox3->BackColor = System::Drawing::Color::Transparent;
 			this->pictureBox3->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox3.BackgroundImage")));
 			this->pictureBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
-			this->pictureBox3->Location = System::Drawing::Point(360, 390);
+			this->pictureBox3->Location = System::Drawing::Point(514, 585);
+			this->pictureBox3->Margin = System::Windows::Forms::Padding(4);
 			this->pictureBox3->Name = L"pictureBox3";
-			this->pictureBox3->Size = System::Drawing::Size(120, 30);
+			this->pictureBox3->Size = System::Drawing::Size(171, 45);
 			this->pictureBox3->TabIndex = 4;
 			this->pictureBox3->TabStop = false;
 			// 
@@ -322,19 +329,20 @@ namespace Client {
 			this->pictureBox1->BackColor = System::Drawing::Color::Transparent;
 			this->pictureBox1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.BackgroundImage")));
 			this->pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
-			this->pictureBox1->Location = System::Drawing::Point(62, 389);
+			this->pictureBox1->Location = System::Drawing::Point(89, 584);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(4);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(120, 30);
+			this->pictureBox1->Size = System::Drawing::Size(171, 45);
 			this->pictureBox1->TabIndex = 5;
 			this->pictureBox1->TabStop = false;
 			// 
 			// MainForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
+			this->AutoScaleDimensions = System::Drawing::SizeF(10, 18);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(566, 518);
+			this->ClientSize = System::Drawing::Size(809, 777);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->pictureBox3);
 			this->Controls->Add(this->pictureBox2);
@@ -346,11 +354,13 @@ namespace Client {
 			this->Controls->Add(this->btnDelChatRoom);
 			this->Controls->Add(this->btnCreateChatRoom);
 			this->Controls->Add(this->btnJoinChatRoom);
-			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
 			this->Name = L"MainForm";
 			this->Text = L"MainForm";
 			this->Activated += gcnew System::EventHandler(this, &MainForm::MainForm_Activated);
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &MainForm::MainForm_FormClosing);
+			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Load);
+			this->VisibleChanged += gcnew System::EventHandler(this, &MainForm::MainForm_VisibleChanged);
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
@@ -487,5 +497,22 @@ namespace Client {
 		delete NumMessage;
 	}
 
+
+private: System::Void MainForm_VisibleChanged(System::Object^ sender, System::EventArgs^ e) {
+	if (isFirstActivation) {
+
+		IntroImageSound->Load();
+		IntroImageSound->PlayLooping();
+
+		isFirstActivation = false; // 처음 활성화 시 함수 실행을 건너뛰기
+	}
+
+	
+
+
+
+}
+private: System::Void MainForm_Load(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
