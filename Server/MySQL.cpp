@@ -1544,19 +1544,24 @@ string MySQL::QuerySql(string msg, int idx) {
         string room_Date;
         string myNick;
         string date = getCurrentTime();
+        string cha = "";
         cout << msg_chat << endl;
         
-        pstmt = con->prepareStatement("SELECT Nickname from member WHERE Member_ID = ?");
+        pstmt = con->prepareStatement("SELECT Nickname, Cha_Num from member WHERE Member_ID = ?");
         pstmt->setString(1, myID);
         sql::ResultSet* res = pstmt->executeQuery();
         if (res->next())
+        {
             myNick = res->getString(1);
-        int room_Index66 = stoi(sck_list[idx].ui.getJoinRoomIndex());
+            cha = res -> getString(2);
+        }
+            
+        int room_Index = stoi(sck_list[idx].ui.getJoinRoomIndex());
         pstmt = con->prepareStatement("INSERT INTO room_chat VALUES (NULL,?,?,?,?)");
         pstmt->setString(1, myID);
         pstmt->setString(2, modifiedString);
         pstmt->setString(3, date);
-        pstmt->setInt(4, room_Index66);
+        pstmt->setInt(4, room_Index);
         int rowUpdate = pstmt->executeUpdate();
         cout << "rowUpdate : " << rowUpdate << endl;
 
@@ -1571,9 +1576,10 @@ string MySQL::QuerySql(string msg, int idx) {
 
         if (rowUpdate > 0)
         {
-            msg_chat = s_(e_room_Chat) + delim + trueStr + delim + myNick + delim + modifiedString + delim + formattedTime;
-            _send_msg(msg_chat.c_str(), room_Index66);// 방에 참여한 모든 사람에게 메시지를 보내는 함수
-            cout << "if (res->next()) " << endl;
+            msg_chat = s_(e_room_Chat) + delim + trueStr + delim + myNick + delim + cha + delim + modifiedString + delim + formattedTime;
+            _send_msg(msg_chat.c_str(), room_Index);// 방에 참여한 모든 사람에게 메시지를 보내는 함수
+            cout << "cha num : " << cha << endl;
+            
         }
         //return _ret;
         break;

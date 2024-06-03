@@ -2,7 +2,7 @@
 #include "MyFunction.h"
 #include "enum.h"
 #include "PreviousChat.h"
-
+#include <iostream>
 
 namespace Client {
 
@@ -124,12 +124,13 @@ namespace Client {
 			// 
 			// picBoxImojiMy
 			// 
+			this->picBoxImojiMy->BackColor = System::Drawing::Color::Transparent;
 			this->picBoxImojiMy->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"picBoxImojiMy.InitialImage")));
-			this->picBoxImojiMy->Location = System::Drawing::Point(666, 55);
+			this->picBoxImojiMy->Location = System::Drawing::Point(722, 44);
 			this->picBoxImojiMy->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->picBoxImojiMy->Name = L"picBoxImojiMy";
-			this->picBoxImojiMy->Size = System::Drawing::Size(157, 167);
-			this->picBoxImojiMy->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->picBoxImojiMy->Size = System::Drawing::Size(200, 240);
+			this->picBoxImojiMy->SizeMode = System::Windows::Forms::PictureBoxSizeMode::AutoSize;
 			this->picBoxImojiMy->TabIndex = 0;
 			this->picBoxImojiMy->TabStop = false;
 			this->picBoxImojiMy->Visible = false;
@@ -137,19 +138,19 @@ namespace Client {
 			// 
 			// txtBoxMessage
 			// 
-			this->txtBoxMessage->Location = System::Drawing::Point(63, 55);
+			this->txtBoxMessage->Location = System::Drawing::Point(72, 69);
 			this->txtBoxMessage->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxMessage->Multiline = true;
 			this->txtBoxMessage->Name = L"txtBoxMessage";
-			this->txtBoxMessage->Size = System::Drawing::Size(381, 234);
+			this->txtBoxMessage->Size = System::Drawing::Size(435, 292);
 			this->txtBoxMessage->TabIndex = 2;
 			// 
 			// txtBoxMyChat
 			// 
-			this->txtBoxMyChat->Location = System::Drawing::Point(63, 322);
+			this->txtBoxMyChat->Location = System::Drawing::Point(72, 402);
 			this->txtBoxMyChat->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxMyChat->Name = L"txtBoxMyChat";
-			this->txtBoxMyChat->Size = System::Drawing::Size(379, 21);
+			this->txtBoxMyChat->Size = System::Drawing::Size(433, 25);
 			this->txtBoxMyChat->TabIndex = 2;
 			this->txtBoxMyChat->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &ChatRoom::txtBoxMyChat_KeyPress);
 			// 
@@ -163,10 +164,10 @@ namespace Client {
 			this->btnSend->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->btnSend->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnSend->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnSend->Location = System::Drawing::Point(47, 356);
+			this->btnSend->Location = System::Drawing::Point(54, 445);
 			this->btnSend->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSend->Name = L"btnSend";
-			this->btnSend->Size = System::Drawing::Size(149, 57);
+			this->btnSend->Size = System::Drawing::Size(170, 71);
 			this->btnSend->TabIndex = 4;
 			this->btnSend->UseVisualStyleBackColor = false;
 			this->btnSend->Click += gcnew System::EventHandler(this, &ChatRoom::btnSend_Click);
@@ -181,10 +182,10 @@ namespace Client {
 			this->btnClose->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->btnClose->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnClose->Location = System::Drawing::Point(310, 473);
+			this->btnClose->Location = System::Drawing::Point(354, 591);
 			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(149, 57);
+			this->btnClose->Size = System::Drawing::Size(170, 71);
 			this->btnClose->TabIndex = 4;
 			this->btnClose->UseVisualStyleBackColor = false;
 			this->btnClose->Click += gcnew System::EventHandler(this, &ChatRoom::btnClose_Click);
@@ -199,20 +200,21 @@ namespace Client {
 			this->btnPreviewChat->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->btnPreviewChat->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnPreviewChat->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnPreviewChat->Location = System::Drawing::Point(310, 356);
+			this->btnPreviewChat->Location = System::Drawing::Point(354, 445);
+			this->btnPreviewChat->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->btnPreviewChat->Name = L"btnPreviewChat";
-			this->btnPreviewChat->Size = System::Drawing::Size(149, 57);
+			this->btnPreviewChat->Size = System::Drawing::Size(170, 71);
 			this->btnPreviewChat->TabIndex = 5;
 			this->btnPreviewChat->UseVisualStyleBackColor = false;
 			this->btnPreviewChat->Click += gcnew System::EventHandler(this, &ChatRoom::btnPreviewChat_Click);
 			// 
 			// ChatRoom
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->ClientSize = System::Drawing::Size(855, 601);
+			this->ClientSize = System::Drawing::Size(977, 751);
 			this->Controls->Add(this->btnPreviewChat);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnSend);
@@ -262,15 +264,25 @@ namespace Client {
 
 		public: void UpdateMessage(String^ message)
 		{
-			String^ e_length = _my->s_(e_room_show_whole_Text);
+			String^ e_length = _my->s_(e_room_Chat);
 			String^ msg = message->Substring(e_length->Length + 6);
-
+			
 			// 아이디 추출
 			int idEndIndex = msg->IndexOf(' '); // 공백 이전까지가 아이디
 			String^ id = msg->Substring(0, idEndIndex)->Trim();
 
+			
+			// 첫 번째 공백 이후의 문자열을 가져옴
+			String^ remaining = msg->Substring(idEndIndex + 1)->Trim();
+
+			// 두 번째 구분자 위치 찾기
+			int chaEndIndex = remaining->IndexOf(' '); // 두 번째 공백의 위치
+			String^ cha = remaining->Substring(0, chaEndIndex)->Trim();
+
+			
+
 			// 메시지 추출
-			String^ messagePart = msg->Substring(idEndIndex)->Trim();
+			String^ messagePart = msg->Substring(idEndIndex+2)->Trim();
 
 			// 날짜 추출
 			int lastSpaceIndex = messagePart->LastIndexOf(' '); // 뒤에서부터 첫 번째 공백의 위치
@@ -282,10 +294,10 @@ namespace Client {
 
 			// 각각의 텍스트 박스에 표시
 			//txtBoxId->Text += id + Environment::NewLine; // 삭제
-			txtBoxMessage->Text += id + " : " + messageText + " , " + date + Environment::NewLine;
+			txtBoxMessage->Text += id + " : " + messageText + "  [" + date + "]" + Environment::NewLine;
 			// txtBoxDate->Text += date + Environment::NewLine; // 삭제
 
-			ProcessText(messageText);
+			ProcessText(messageText,cha);
 
 
 
@@ -372,13 +384,43 @@ namespace Client {
 		}
 
 			   // 주어진 텍스트를 처리하는 함수
-		void ProcessText(String^ tmptxt_1)
+		void ProcessText(String^ tmptxt_1, String^ cha)
 		{
-			ShowImageIfContains(tmptxt_1, "ㅇㅇ", "icon_49.gif");
-			ShowImageIfContains(tmptxt_1, "Null", "icon_16.png");
-			ShowImageIfContains(tmptxt_1, "~~", "icon_1.gif");
-			ShowImageIfContains(tmptxt_1, "쪼아", "icon_35.gif");
-			ShowImageIfContains(tmptxt_1, "ㅠㅠ", "icon_3.gif");
+			int i_cha = Convert::ToInt32(cha);
+
+			if (i_cha == e_character_izuna)
+			{
+
+				ShowImageIfContains(tmptxt_1, "성큰", "icon_48.gif");
+				ShowImageIfContains(tmptxt_1, "ㅠㅠ", "icon_3.gif");
+				ShowImageIfContains(tmptxt_1, "야이씨", "icon_45.gif");
+				ShowImageIfContains(tmptxt_1, "튀어", "icon_21.gif");
+				
+
+			}
+			else if (i_cha == e_character_hihumi)
+			{
+				ShowImageIfContains(tmptxt_1, "ㄴㄴ", "icon_24.gif");
+				ShowImageIfContains(tmptxt_1, "ㅇㅇ", "icon_23.png");
+				ShowImageIfContains(tmptxt_1, "...", "h_icon_6.png");
+				ShowImageIfContains(tmptxt_1, "헙", "h_icon_13.png");
+				ShowImageIfContains(tmptxt_1, "사랑한다고?", "h_icon_40.png");
+				ShowImageIfContains(tmptxt_1, "땡큐", "h_icon_12.png");
+				ShowImageIfContains(tmptxt_1, "그런거임?", "h_icon_11.png");
+
+			}
+
+			else if (i_cha == e_character_mari)
+			{
+				ShowImageIfContains(tmptxt_1, "ㄱㅊ", "m_icon_43.png");
+				ShowImageIfContains(tmptxt_1, "음", "m_icon_41.png");
+				ShowImageIfContains(tmptxt_1, "생축", "m_icon_27.gif");
+				ShowImageIfContains(tmptxt_1, "???", "m_icon_16.gif");
+				ShowImageIfContains(tmptxt_1, "쪼아요", "m_icon_32.png");
+				ShowImageIfContains(tmptxt_1, "잘자", "m_icon_3.gif");
+			}
+
+
 		}
 
 

@@ -70,7 +70,8 @@ enum Friends
 enum Character
 {
 	e_character_izuna = 1,
-	e_character_alice,
+	e_character_hihumi = 2,
+	e_character_mari =3,
 };
 
 
