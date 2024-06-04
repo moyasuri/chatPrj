@@ -32,6 +32,7 @@ namespace Client {
 			//
 			_my = my;
 			_my->MyEvent += gcnew Action<String^>(this, &DeleteRoom::ReceivedMsg);
+			DeleteRoom_Activated();
 		}
 
 	protected:
@@ -188,7 +189,6 @@ namespace Client {
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"DeleteRoom";
 			this->Text = L"DeleteRoom";
-			this->Activated += gcnew System::EventHandler(this, &DeleteRoom::DeleteRoom_Activated);
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &DeleteRoom::DeleteRoom_FormClosing);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ViewRoomList))->EndInit();
 			this->ResumeLayout(false);
@@ -279,6 +279,7 @@ namespace Client {
 				{
 
 					System::Windows::Forms::MessageBox::Show("Room deleted", "Notice", MessageBoxButtons::OK, MessageBoxIcon::Information);
+					DeleteRoom_Activated();
 				}
 				else
 				{
@@ -358,7 +359,7 @@ namespace Client {
 		private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
 			this->Close();
 		}
-		private: System::Void DeleteRoom_Activated(System::Object^ sender, System::EventArgs^ e) {
+		private: System::Void DeleteRoom_Activated(){
 			SendMessageForm(e_room_myList);
 		}
 		private: System::Void DeleteRoom_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
