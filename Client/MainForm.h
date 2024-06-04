@@ -406,7 +406,6 @@ namespace Client {
 
 					if (isTrue == "true")
 					{
-						//txtBoxNickName->Invoke(gcnew Action<String^>(this, &YourFormName::UpdateTextBox), newText);
 						String^ numMsg = subString[2];
 						this->Invoke(gcnew Action<String^>(this, &MainForm::UpdateMessageCnt), numMsg);
 					}

@@ -45,8 +45,6 @@ namespace Client {
 			}
 		}
 
-
-
 		void ReceiveMessages()
 		{
 			while (true)

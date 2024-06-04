@@ -88,6 +88,8 @@ namespace Client {
 
 	private: PreviousChat^ previousChat = nullptr;
 	private: System::Windows::Forms::Timer^ timerDeletePicBoxIntro;
+	private: System::Windows::Forms::ListBox^ listBoxUser;
+
 
 
 
@@ -119,6 +121,7 @@ namespace Client {
 			this->btnClose = (gcnew System::Windows::Forms::Button());
 			this->btnPreviewChat = (gcnew System::Windows::Forms::Button());
 			this->timerDeletePicBoxIntro = (gcnew System::Windows::Forms::Timer(this->components));
+			this->listBoxUser = (gcnew System::Windows::Forms::ListBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picBoxImojiMy))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -126,7 +129,7 @@ namespace Client {
 			// 
 			this->picBoxImojiMy->BackColor = System::Drawing::Color::Transparent;
 			this->picBoxImojiMy->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"picBoxImojiMy.InitialImage")));
-			this->picBoxImojiMy->Location = System::Drawing::Point(722, 44);
+			this->picBoxImojiMy->Location = System::Drawing::Point(630, 52);
 			this->picBoxImojiMy->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->picBoxImojiMy->Name = L"picBoxImojiMy";
 			this->picBoxImojiMy->Size = System::Drawing::Size(200, 240);
@@ -138,19 +141,19 @@ namespace Client {
 			// 
 			// txtBoxMessage
 			// 
-			this->txtBoxMessage->Location = System::Drawing::Point(72, 69);
+			this->txtBoxMessage->Location = System::Drawing::Point(63, 55);
 			this->txtBoxMessage->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxMessage->Multiline = true;
 			this->txtBoxMessage->Name = L"txtBoxMessage";
-			this->txtBoxMessage->Size = System::Drawing::Size(435, 292);
+			this->txtBoxMessage->Size = System::Drawing::Size(381, 234);
 			this->txtBoxMessage->TabIndex = 2;
 			// 
 			// txtBoxMyChat
 			// 
-			this->txtBoxMyChat->Location = System::Drawing::Point(72, 402);
+			this->txtBoxMyChat->Location = System::Drawing::Point(63, 322);
 			this->txtBoxMyChat->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxMyChat->Name = L"txtBoxMyChat";
-			this->txtBoxMyChat->Size = System::Drawing::Size(433, 25);
+			this->txtBoxMyChat->Size = System::Drawing::Size(379, 21);
 			this->txtBoxMyChat->TabIndex = 2;
 			this->txtBoxMyChat->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &ChatRoom::txtBoxMyChat_KeyPress);
 			// 
@@ -164,10 +167,10 @@ namespace Client {
 			this->btnSend->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->btnSend->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnSend->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnSend->Location = System::Drawing::Point(54, 445);
+			this->btnSend->Location = System::Drawing::Point(47, 356);
 			this->btnSend->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSend->Name = L"btnSend";
-			this->btnSend->Size = System::Drawing::Size(170, 71);
+			this->btnSend->Size = System::Drawing::Size(149, 57);
 			this->btnSend->TabIndex = 4;
 			this->btnSend->UseVisualStyleBackColor = false;
 			this->btnSend->Click += gcnew System::EventHandler(this, &ChatRoom::btnSend_Click);
@@ -182,10 +185,10 @@ namespace Client {
 			this->btnClose->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->btnClose->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnClose->Location = System::Drawing::Point(354, 591);
+			this->btnClose->Location = System::Drawing::Point(310, 473);
 			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(170, 71);
+			this->btnClose->Size = System::Drawing::Size(149, 57);
 			this->btnClose->TabIndex = 4;
 			this->btnClose->UseVisualStyleBackColor = false;
 			this->btnClose->Click += gcnew System::EventHandler(this, &ChatRoom::btnClose_Click);
@@ -200,21 +203,30 @@ namespace Client {
 			this->btnPreviewChat->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->btnPreviewChat->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btnPreviewChat->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnPreviewChat->Location = System::Drawing::Point(354, 445);
-			this->btnPreviewChat->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+			this->btnPreviewChat->Location = System::Drawing::Point(310, 356);
 			this->btnPreviewChat->Name = L"btnPreviewChat";
-			this->btnPreviewChat->Size = System::Drawing::Size(170, 71);
+			this->btnPreviewChat->Size = System::Drawing::Size(149, 57);
 			this->btnPreviewChat->TabIndex = 5;
 			this->btnPreviewChat->UseVisualStyleBackColor = false;
 			this->btnPreviewChat->Click += gcnew System::EventHandler(this, &ChatRoom::btnPreviewChat_Click);
 			// 
+			// listBoxUser
+			// 
+			this->listBoxUser->FormattingEnabled = true;
+			this->listBoxUser->ItemHeight = 12;
+			this->listBoxUser->Location = System::Drawing::Point(474, 55);
+			this->listBoxUser->Name = L"listBoxUser";
+			this->listBoxUser->Size = System::Drawing::Size(138, 232);
+			this->listBoxUser->TabIndex = 6;
+			// 
 			// ChatRoom
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->ClientSize = System::Drawing::Size(977, 751);
+			this->ClientSize = System::Drawing::Size(855, 601);
+			this->Controls->Add(this->listBoxUser);
 			this->Controls->Add(this->btnPreviewChat);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnSend);
@@ -224,6 +236,7 @@ namespace Client {
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"ChatRoom";
 			this->Text = L"ChatRoom";
+			this->Activated += gcnew System::EventHandler(this, &ChatRoom::ChatRoom_Activated);
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &ChatRoom::ChatRoom_FormClosing);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picBoxImojiMy))->EndInit();
 			this->ResumeLayout(false);
@@ -255,10 +268,30 @@ namespace Client {
 				}
 				break;
 			}
+			case e_room_User:
+			{
+
+				if (isTrue == "true")
+				{
+					listBoxUser->Items->Clear();
+					for (int i = 2; i < subString->Length;i++)
+					{
+						
+						listBoxUser->Items->Add(gcnew String(subString[i]));
+					}
+					
+
+				}
+
+				Sleep(100);
+				
+				break;
+			}
 
 			}
 
 		}
+
 
 
 
@@ -421,6 +454,17 @@ namespace Client {
 			}
 
 
+		}
+		private: System::Void ChatRoom_Activated(System::Object^ sender, System::EventArgs^ e) {
+
+			
+			
+			
+			int t_index = e_room_User;
+			String^ buffer = _my->s_(t_index);
+			_my->SendMessage(buffer);
+			
+		
 		}
 
 
