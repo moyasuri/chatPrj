@@ -123,7 +123,7 @@ namespace Client {
 			this->txtBoxPW->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxPW->Name = L"txtBoxPW";
 			this->txtBoxPW->Size = System::Drawing::Size(177, 21);
-			this->txtBoxPW->TabIndex = 1;
+			this->txtBoxPW->TabIndex = 2;
 			// 
 			// chkBoxPrivate
 			// 
