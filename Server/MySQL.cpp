@@ -217,6 +217,7 @@ string MySQL::QuerySql(string msg, int idx) {
             }
 
             myID = sck_list[idx].ui.getID();
+            myNICK = sck_list[idx].ui.getNickName();
             cout << myID + "로그인 성공" << endl;
             _ret = s_(e_id_try_Signin) + delim + trueStr;
             break;
@@ -1585,27 +1586,26 @@ string MySQL::QuerySql(string msg, int idx) {
         break;
     }
 
-    case e_room_User:
+    case e_room_User_Enter:
     {
         // 내아이디로부터 들어가있는 방을 찾고
         // 그 번호로 되어있는 모든 유저의 Nickname을출력하자
 
         string query = "SELECT m.Join_Room_Index FROM member m where m.Member_ID = '" + myID + "'";
- ;
+        string roomIndex;
         res = stmt->executeQuery(query);
 
-        result = "";
-
+        
         while (res->next()) {
-            result = res->getString("Join_Room_Index");
+            roomIndex = res->getString("Join_Room_Index");
         }
 
 
 
-        if (!result.empty()) {
+        if (!roomIndex.empty()) {
 
 
-            query = "SELECT m.Nickname FROM member m where m.Join_Room_Index = '" + result + "'";
+            query = "SELECT m.Nickname FROM member m where m.Join_Room_Index = '" + roomIndex + "'";
             res = stmt->executeQuery(query);
             
             result = "";
@@ -1615,14 +1615,68 @@ string MySQL::QuerySql(string msg, int idx) {
                 
             }
 
-            _ret = s_(e_room_User) + delim + trueStr + delim + result;
+            _ret = s_(e_room_User_Enter) + delim + trueStr + delim + result;
+
+            
+            _send_msg(_ret.c_str(), stoi(roomIndex));
+
+            multimsg = true;
             break;
         }
         else {
             // 친구 아이디를 찾지 못했을 때
-            _ret = s_(e_room_User) + delim + falseStr;
+
+            _ret = s_(e_room_User_Enter) + delim + falseStr;
             break;
         }
+
+        break;
+    }
+
+    case e_room_User_Exit:
+    {
+        // 내아이디로부터 들어가있는 방을 찾고
+        // 그 번호로 되어있는 모든 유저의 Nickname을출력하자
+
+        string query = "SELECT m.Join_Room_Index FROM member m where m.Member_ID = '" + myID + "'";
+        string roomIndex;
+        res = stmt->executeQuery(query);
+
+        
+
+        while (res->next()) {
+            roomIndex = res->getString("Join_Room_Index");
+        }
+
+
+
+        if (!roomIndex.empty()) {
+
+
+            query = "SELECT m.Nickname FROM member m where m.Join_Room_Index = '" + roomIndex + "'";
+            res = stmt->executeQuery(query);
+
+            result = "";
+            while (res->next())
+            {
+                if (res->getString("Nickname") == myNICK)
+                    continue;
+                result += res->getString("Nickname") + delim;
+
+            }
+
+            _ret = s_(e_room_User_Exit) + delim + trueStr + delim + result;
+            _send_msg(_ret.c_str(), stoi(roomIndex));
+            multimsg = true;
+            break;
+        }
+        else {
+            // 친구 아이디를 찾지 못했을 때
+            _ret = s_(e_room_User_Exit) + delim + falseStr;
+            break;
+        }
+
+        
 
         break;
     }

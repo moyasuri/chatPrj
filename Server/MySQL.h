@@ -63,6 +63,7 @@ private:
     string _from_nickname;
     string _date;
     string myID;
+    string myNICK;
 
 };
 

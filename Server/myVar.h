@@ -105,7 +105,8 @@ enum RoomList
     e_room_Chat,
     e_room_show_whole_Text,
     e_room_Chat_send,
-    e_room_User
+    e_room_User_Enter,
+    e_room_User_Exit
 
 };
 

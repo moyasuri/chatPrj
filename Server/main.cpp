@@ -134,13 +134,12 @@ void add_client() {
     }
 }
 
-void send_msg(const char* msg) {
+void send_msg(const char* msg, int idx) {
     size_t length = strlen(msg);
 
-    std::lock_guard<std::mutex> lock(sck_list_mutex);
-    for (int i = 0; i < client_count; i++) {
-        send(sck_list[i].sck, msg, length, 0);
-    }
+    //std::lock_guard<std::mutex> lock(sck_list_mutex);
+     send(sck_list[idx].sck, msg, length, 0);
+    //}
 }
 
 void recv_msg(int idx) {
@@ -163,7 +162,7 @@ void recv_msg(int idx) {
             cout << "MySQL 전\n";
             sqlMsg = mySQL->QuerySql(msg, idx);
             cout << "MySQL 후 : " << sqlMsg << endl;
-            if (!multimsg) { send_msg(sqlMsg.c_str()); }
+            if (!multimsg) { send_msg(sqlMsg.c_str(),idx); }
 
         }
         else {
