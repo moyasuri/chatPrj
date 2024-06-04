@@ -56,6 +56,7 @@ namespace Client {
 		{
 			if (_my != nullptr) {
 				// MyEvent 이벤트 핸들러를 해제
+				_my->clientSocket->Close();
 				_my->MyEvent -= gcnew Action<String^>(this, &SignupForm::ReceivedMsg);
 
 				// _my를 삭제

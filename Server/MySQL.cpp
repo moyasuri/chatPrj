@@ -43,13 +43,21 @@ string MySQL::s_(int e_num) {
 
 void MySQL::_send_msg(const char* msg, int room_Index) {
     size_t length = strlen(msg);
-    for (int i = 0; i < client_count; i++) { // 이 방에 접속해 있는 모든 client에게 메시지 전송 < 이부분
-        if (stoi(sck_list[i].ui.getJoinRoomIndex()) == room_Index) {// UserInfo 객체 생성시 초기화 반드시 진행, JoinRoomIndex ="0"으로
+
+    // client_cnt 범위 체크
+    
+    for (int i = 0; i < client_count; i++) {
+        try {
+
+
+            // join_client 멤버들의 소켓으로 메시지 전송
             send(sck_list[i].sck, msg, length, 0);
         }
-        else
-            break;
-        //join_client 멤버들의 소켓으로 보내줘야 됨
+        catch (const std::exception& e) {
+            // 에러 발생 시 처리 (예: 로그 출력, 메시지 전송 실패 알림 등)
+            // 예시: 로그 출력
+            std::cerr << "Error: sending message to client " << i << ": " << e.what() << std::endl;
+        }
     }
 }
 
@@ -1595,12 +1603,14 @@ string MySQL::QuerySql(string msg, int idx) {
         string roomIndex;
         res = stmt->executeQuery(query);
 
+        cout << "111111" << endl;
         
         while (res->next()) {
             roomIndex = res->getString("Join_Room_Index");
         }
 
 
+        cout << "22222" << endl;
 
         if (!roomIndex.empty()) {
 
@@ -1615,18 +1625,23 @@ string MySQL::QuerySql(string msg, int idx) {
                 
             }
 
+            cout << "33333" << endl;
             _ret = s_(e_room_User_Enter) + delim + trueStr + delim + result;
 
             
+            cout << _ret << endl;
+            cout << roomIndex << endl;
             _send_msg(_ret.c_str(), stoi(roomIndex));
 
             multimsg = true;
+            cout << "44444" << endl;
             break;
         }
         else {
-            // 친구 아이디를 찾지 못했을 때
-
+            
             _ret = s_(e_room_User_Enter) + delim + falseStr;
+            cout << "55555" << endl;
+
             break;
         }
 
