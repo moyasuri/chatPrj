@@ -32,7 +32,6 @@ namespace Client {
 			//
 			_my = my;
 			_my->MyEvent += gcnew Action<String^>(this, &DeleteRoom::ReceivedMsg);
-			DeleteRoom_Activated();
 		}
 
 	protected:
@@ -190,6 +189,7 @@ namespace Client {
 			this->Name = L"DeleteRoom";
 			this->Text = L"DeleteRoom";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &DeleteRoom::DeleteRoom_FormClosing);
+			this->Load += gcnew System::EventHandler(this, &DeleteRoom::DeleteRoom_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ViewRoomList))->EndInit();
 			this->ResumeLayout(false);
 
@@ -366,5 +366,9 @@ namespace Client {
 			this->Owner->Show();
 			this->Owner->Activate();
 		}
+private: System::Void DeleteRoom_Load(System::Object^ sender, System::EventArgs^ e) {
+	DeleteRoom_Activated();
+
+}
 };
 }
