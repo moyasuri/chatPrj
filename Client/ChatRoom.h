@@ -36,7 +36,7 @@ namespace Client {
 			_my = my;
 			_my->MyEvent += gcnew Action<String^>(this, &ChatRoom::ReceivedMsg);
 			
-			
+			ChatRoom_Activated();
 			
 
 			currentDirectory = System::Environment::CurrentDirectory;
@@ -236,7 +236,6 @@ namespace Client {
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"ChatRoom";
 			this->Text = L"ChatRoom";
-			this->Activated += gcnew System::EventHandler(this, &ChatRoom::ChatRoom_Activated);
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &ChatRoom::ChatRoom_FormClosing);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picBoxImojiMy))->EndInit();
 			this->ResumeLayout(false);
@@ -268,7 +267,7 @@ namespace Client {
 				}
 				break;
 			}
-			case e_room_User:
+			case e_room_User_Enter:
 			{
 
 				if (isTrue == "true")
@@ -285,6 +284,26 @@ namespace Client {
 
 				Sleep(100);
 				
+				break;
+			}
+
+			case e_room_User_Exit:
+			{
+
+				if (isTrue == "true")
+				{
+					listBoxUser->Items->Clear();
+					for (int i = 2; i < subString->Length;i++)
+					{
+
+						listBoxUser->Items->Add(gcnew String(subString[i]));
+					}
+
+
+				}
+
+				Sleep(100);
+
 				break;
 			}
 
@@ -356,8 +375,24 @@ namespace Client {
 
 		private: System::Void ChatRoom_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
 
-			String^ buffer = _my->s_(e_room_Exit);
+
+
+
+
+			int t_index = e_room_User_Exit;
+			String^ buffer = _my->s_(t_index);
 			_my->SendMessage(buffer);
+			
+
+			Sleep(100);
+
+			t_index = e_room_Exit;
+			buffer = _my->s_(t_index);
+			_my->SendMessage(buffer);
+
+			
+
+
 			this->Owner->Show();
 			this->Owner->Activate();
 		}
@@ -455,12 +490,13 @@ namespace Client {
 
 
 		}
-		private: System::Void ChatRoom_Activated(System::Object^ sender, System::EventArgs^ e) {
+		private: System::Void ChatRoom_Activated()
+		{
 
 			
+		
 			
-			
-			int t_index = e_room_User;
+			int t_index = e_room_User_Enter;
 			String^ buffer = _my->s_(t_index);
 			_my->SendMessage(buffer);
 			
