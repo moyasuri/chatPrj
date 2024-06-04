@@ -430,74 +430,76 @@ string MySQL::QuerySql(string msg, int idx) {
     }
     case e_friends_Request:
     {
-
         string reqNick = "";
         string reqID = "";
+        string tmp = "";
         _msg = "";
-        ss >> reqNick >> std::ws;;
+        ss >> reqNick >> std::ws;
         getline(ss, _msg, '\0');
 
-
-        // 회원목록에서 지정한 닉네임이 있는지 확인.
-        string query = "SELECT Member_ID FROM member WHERE Nickname = '" + reqNick + "'";
-        stmt = con->createStatement();
-        res = stmt->executeQuery(query);
-
+        // 회원 목록에서 지정한 닉네임이 있는지 확인
+        string query = "SELECT Member_ID FROM member WHERE Nickname = ?";
+        pstmt = con->prepareStatement(query);
+        pstmt->setString(1, reqNick);
+        res = pstmt->executeQuery();
 
         if (res->next()) {
-
             // 닉네임에서 아이디 가져오기
-            query = "SELECT Member_ID FROM member WHERE Nickname = '" + reqNick + "'";
-            stmt = con->createStatement();
-            res = stmt->executeQuery(query);
-            if(res->next())
-                reqID = res->getString("Member_ID");
+            reqID = res->getString("Member_ID");
 
-            query = "SELECT My_ID FROM friend_list WHERE My_Friend_ID = '" + reqID + "'";
-            stmt = con->createStatement();
-            res = stmt->executeQuery(query);
-            if (res->next())
-            {
-                // 입력한 회원 닉네임이 이미 친구 인경우
-                _ret = elseStr;
-                break;
+            query = "SELECT My_ID FROM friend_list WHERE My_Friend_ID = ?";
+            pstmt = con->prepareStatement(query);
+            pstmt->setString(1, reqID);
+            res = pstmt->executeQuery();
+
+            if (res->next()) {
+                // 입력한 회원 닉네임이 이미 친구인 경우
+                tmp = res->getString("My_ID");
+                if (tmp == myID)
+                {
+                    _ret = s_(e_friends_Request) + delim + elseStr;
+                    break;
+                    cout << "Already friends with: " << reqNick << endl;
+
+                }
+                else
+                {
+
+                }
+               
             }
 
-
-            pstmt = con->prepareStatement("INSERT INTO friend_request (From_Friend_Request_ID, To_Friend_Request_ID, Request_Msg) "
-                "SELECT ?, ?, ? WHERE NOT EXISTS (SELECT 1 FROM friend_request WHERE (From_Friend_Request_ID = ? AND To_Friend_Request_ID = ?) OR (From_Friend_Request_ID = ? AND To_Friend_Request_ID = ?))");
+            // 중복된 친구 요청이 있는지 확인 후 요청 추가
+            query = "INSERT INTO friend_request (From_Friend_Request_ID, To_Friend_Request_ID, Request_Msg) "
+                "SELECT ?, ?, ? WHERE NOT EXISTS (SELECT 1 FROM friend_request WHERE (From_Friend_Request_ID = ? AND To_Friend_Request_ID = ?) OR (From_Friend_Request_ID = ? AND To_Friend_Request_ID = ?))";
+            pstmt = con->prepareStatement(query);
             pstmt->setString(1, myID);
             pstmt->setString(2, reqID);
             pstmt->setString(3, _msg);
-            pstmt->setString(4, reqID);
+            pstmt->setString(4, myID);
             pstmt->setString(5, reqID);
             pstmt->setString(6, reqID);
             pstmt->setString(7, myID);
-
-
-
-            // Friend_Request 테이블 업데이트
-            // PreparedStatement를 사용하여 쿼리 준비
 
             int updateCount = pstmt->executeUpdate();
 
             if (updateCount > 0) {
                 _ret = s_(e_friends_Request) + delim + trueStr;
-                break;
+                cout << "Friend request sent to: " << reqNick << endl;
             }
             else {
                 _ret = s_(e_friends_Request) + delim + elseStr;
-                break;
+                cout << "Failed to send friend request to: " << reqNick << endl;
             }
-
         }
-        else
-        {
+        else {
             _ret = s_(e_friends_Request) + delim + falseStr;
-            break;
-
+            cout << "No member found with nickname: " << reqNick << endl;
         }
+
+        break;
     }
+
 
     case e_friends_Response_List:
     {
@@ -1394,8 +1396,6 @@ string MySQL::QuerySql(string msg, int idx) {
         cout << "int rows_affected = pstmt->executeUpdate(); " << rowUpdate << endl;
         if (rowUpdate > 0) {
             sck_list[idx].room.room_init();//방정보 초기화
-            result = s_(e_room_Exit) + IDENTIFIER + trueStr;
-            cout << "result = s_(e_room_Exit) + IDENTIFIER + True; :" << result << endl;
             str_room_Index = sck_list[idx].ui.getJoinRoomIndex();
             i_room_Index = stoi(str_room_Index);
             for (auto id : workingRoom_list[i_room_Index].join_client)
@@ -1582,6 +1582,48 @@ string MySQL::QuerySql(string msg, int idx) {
             
         }
         //return _ret;
+        break;
+    }
+
+    case e_room_User:
+    {
+        // 내아이디로부터 들어가있는 방을 찾고
+        // 그 번호로 되어있는 모든 유저의 Nickname을출력하자
+
+        string query = "SELECT m.Join_Room_Index FROM member m where m.Member_ID = '" + myID + "'";
+ ;
+        res = stmt->executeQuery(query);
+
+        result = "";
+
+        while (res->next()) {
+            result = res->getString("Join_Room_Index");
+        }
+
+
+
+        if (!result.empty()) {
+
+
+            query = "SELECT m.Nickname FROM member m where m.Join_Room_Index = '" + result + "'";
+            res = stmt->executeQuery(query);
+            
+            result = "";
+            while (res->next())
+            {
+                result += res->getString("Nickname") + delim;
+                
+            }
+
+            _ret = s_(e_room_User) + delim + trueStr + delim + result;
+            break;
+        }
+        else {
+            // 친구 아이디를 찾지 못했을 때
+            _ret = s_(e_room_User) + delim + falseStr;
+            break;
+        }
+
         break;
     }
 

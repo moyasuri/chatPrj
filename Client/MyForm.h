@@ -41,7 +41,7 @@ namespace Client {
 			_my->MyEvent += gcnew Action<String^>(this, &MyForm::ReceivedMsg);
 			
 
-			//this->AcceptButton = btnSignIn; // 테두리가 생겨서 삭제
+			
 		
 			IntroImageSound = gcnew SoundPlayer;
 
