@@ -8,6 +8,7 @@
 #include <sstream>
 #include <mutex>
 #include <atomic>
+#include <Ws2tcpip.h>
 
 #include "main.h"
 #include "MySQL.h"
@@ -59,6 +60,7 @@ int main() {
     return 0;
 }
 
+
 void server_init() {
     server_sock.sck = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (server_sock.sck == INVALID_SOCKET) {
@@ -69,7 +71,14 @@ void server_init() {
     SOCKADDR_IN server_addr = {};
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(7777);
-    server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+
+    // 특정 IP 주소로 바인딩 (예: 127.0.0.1 또는 192.168.0.5)
+    const char* ip_address = "192.168.1.125";
+    if (inet_pton(AF_INET, ip_address, &server_addr.sin_addr) <= 0) {
+        cout << "IP 주소 설정 실패." << endl;
+        closesocket(server_sock.sck);
+        exit(EXIT_FAILURE);
+    }
 
     // bind 함수 호출 수정
     if (::bind(server_sock.sck, (sockaddr*)&server_addr, sizeof(server_addr)) == SOCKET_ERROR) {
@@ -84,9 +93,10 @@ void server_init() {
         exit(EXIT_FAILURE);
     }
 
-    server_sock.ui.setName("server"); // server에 
+    server_sock.ui.setName("server");
     cout << "Server On" << endl;
 }
+
 
 void add_client() {
     while (true) {

@@ -104,7 +104,7 @@ namespace Client {
 			this->txtBoxReqMsg->Multiline = true;
 			this->txtBoxReqMsg->Name = L"txtBoxReqMsg";
 			this->txtBoxReqMsg->Size = System::Drawing::Size(215, 78);
-			this->txtBoxReqMsg->TabIndex = 1;
+			this->txtBoxReqMsg->TabIndex = 2;
 			// 
 			// btnSendReq
 			// 
@@ -119,7 +119,7 @@ namespace Client {
 			this->btnSendReq->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnSendReq->Name = L"btnSendReq";
 			this->btnSendReq->Size = System::Drawing::Size(187, 68);
-			this->btnSendReq->TabIndex = 2;
+			this->btnSendReq->TabIndex = 3;
 			this->btnSendReq->UseVisualStyleBackColor = false;
 			this->btnSendReq->Click += gcnew System::EventHandler(this, &AddFriends::btnSendReq_Click);
 			// 
@@ -136,7 +136,7 @@ namespace Client {
 			this->btnClose->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnClose->Name = L"btnClose";
 			this->btnClose->Size = System::Drawing::Size(187, 68);
-			this->btnClose->TabIndex = 2;
+			this->btnClose->TabIndex = 4;
 			this->btnClose->UseVisualStyleBackColor = false;
 			this->btnClose->Click += gcnew System::EventHandler(this, &AddFriends::btnClose_Click);
 			// 

@@ -190,6 +190,7 @@ namespace Client {
 			// combBoxCha
 			// 
 			this->combBoxCha->FormattingEnabled = true;
+			this->combBoxCha->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"izuna", L"hihumi", L"mari" });
 			this->combBoxCha->Location = System::Drawing::Point(142, 401);
 			this->combBoxCha->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->combBoxCha->Name = L"combBoxCha";

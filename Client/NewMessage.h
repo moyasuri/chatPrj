@@ -107,7 +107,7 @@ namespace Client {
 			this->txtBoxMsg->Multiline = true;
 			this->txtBoxMsg->Name = L"txtBoxMsg";
 			this->txtBoxMsg->Size = System::Drawing::Size(210, 252);
-			this->txtBoxMsg->TabIndex = 18;
+			this->txtBoxMsg->TabIndex = 2;
 			// 
 			// txtBoxNickname
 			// 
@@ -115,7 +115,7 @@ namespace Client {
 			this->txtBoxNickname->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtBoxNickname->Name = L"txtBoxNickname";
 			this->txtBoxNickname->Size = System::Drawing::Size(163, 21);
-			this->txtBoxNickname->TabIndex = 17;
+			this->txtBoxNickname->TabIndex = 1;
 			// 
 			// btnFriends
 			// 

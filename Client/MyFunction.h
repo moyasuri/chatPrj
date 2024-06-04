@@ -68,7 +68,8 @@ namespace Client {
 					// 서버와의 연결이 끊겼을 때 SocketException을 처리합니다.
 					// 예외 처리 코드 추가, 예를 들면:
 					// 
-					MessageBox::Show("Server disconnected");
+
+					//MessageBox::Show("Server disconnected");
 					break; // 스레드 종료 또는 다른 조치를 취할 수 있음
 				}
 			}
@@ -124,7 +125,8 @@ namespace Client {
 				Application::Exit();
 			}
 			// 서버 주소 설정 (서버 IP 주소와 포트를 적절히 수정)
-			serverEndPoint = gcnew IPEndPoint(IPAddress::Parse("127.0.0.1"), 7777);
+			//serverEndPoint = gcnew IPEndPoint(IPAddress::Parse("127.0.0.1"), 7777);
+			serverEndPoint = gcnew IPEndPoint(IPAddress::Parse("192.168.1.125"), 7777);
 
 			// 클라이언트 소켓 생성
 			clientSocket = gcnew Socket(AddressFamily::InterNetwork, SocketType::Stream, ProtocolType::Tcp);

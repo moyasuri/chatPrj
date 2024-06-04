@@ -192,7 +192,7 @@ namespace Client {
 			this->txtBoxName->Location = System::Drawing::Point(115, 67);
 			this->txtBoxName->Name = L"txtBoxName";
 			this->txtBoxName->Size = System::Drawing::Size(272, 29);
-			this->txtBoxName->TabIndex = 26;
+			this->txtBoxName->TabIndex = 1;
 			// 
 			// txtBoxEmail
 			// 
@@ -203,7 +203,7 @@ namespace Client {
 			this->txtBoxEmail->Location = System::Drawing::Point(115, 116);
 			this->txtBoxEmail->Name = L"txtBoxEmail";
 			this->txtBoxEmail->Size = System::Drawing::Size(272, 29);
-			this->txtBoxEmail->TabIndex = 26;
+			this->txtBoxEmail->TabIndex = 2;
 			// 
 			// label2
 			// 
