@@ -90,7 +90,7 @@ namespace Client {
 		{
 			if (_my != nullptr) {
 				// MyEvent 이벤트 핸들러를 해제
-				this->_my->disposed();
+				
 				_my->MyEvent -= gcnew Action<String^>(this, &MainForm::ReceivedMsg);
 				// _my를 삭제
 				delete IntroImageSound;
@@ -491,6 +491,7 @@ namespace Client {
 		SendMessageForm(e_message_Cnt);
 	}
 	private: System::Void MainForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+		this->_my->disposed();
 		this->Owner->Show();
 		this->Owner->Activate();
 		delete NumMessage;

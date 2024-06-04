@@ -163,7 +163,7 @@ void recv_msg(int idx) {
             sqlMsg = mySQL->QuerySql(msg, idx);
             cout << "MySQL 후 : " << sqlMsg << endl;
             if (!multimsg) { send_msg(sqlMsg.c_str(),idx); }
-
+            cout << client_count << endl;
         }
         else {
             msg = "server notice : " + sck_list[idx].ui.getName() + " 님이 퇴장했습니다.";
