@@ -385,7 +385,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox1;
 					}
 					else
 					{
-						_my->clientSocket->Close();
+						_my->disposed();
 						System::Windows::Forms::MessageBox::Show("Check the ID and Password", "warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 					}
 					break;
