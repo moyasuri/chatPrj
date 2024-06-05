@@ -41,8 +41,6 @@ public:
     
     string QuerySql(string msg, int idx);
     string room_List();
-    string room_Delete(string roomidx, int idx);
-    string room_myList(int index);
     string s_(int e_num);
 
     static string getCurrentTime();
@@ -93,7 +91,7 @@ public:
     string room_Type = "";
     string room_PW = "";
     string room_Title = "";
-    string room_date;
+    string room_date = "";
     std::vector<string> room_info;
 
 
