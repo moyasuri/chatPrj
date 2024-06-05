@@ -1525,7 +1525,10 @@ string MySQL::QuerySql(string msg, int idx) {
         string result;
         string nickname, chat, chat_Data = "";
         int room_index = stoi(sck_list[idx].ui.getJoinRoomIndex());
-        pstmt = con->prepareStatement("SELECT Member_ID, Chat, Chat_Date FROM room_chat WHERE Room_Index=?");
+        pstmt = con->prepareStatement("SELECT member.nickname, room_chat.Chat, room_chat.Chat_Date \
+            FROM room_chat\
+            JOIN member ON room_chat.Member_ID = member.Member_ID\
+            WHERE room_chat.Room_Index = ? ;");
         pstmt->setInt(1, room_index);
         sql::ResultSet* res = pstmt->executeQuery();
         while (res->next())
