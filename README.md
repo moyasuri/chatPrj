@@ -24,6 +24,9 @@
   ![alt text](image-6.png)
 
 
+## Database 구조
+  ![alt text](image-7.png)
+
 
 ## 시연영상
 [유튜브 링크](https://youtu.be/HBpXbJ_PWr0?si=lU0wJy6quX_jf3sn)
