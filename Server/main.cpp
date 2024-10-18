@@ -73,7 +73,7 @@ void server_init() {
     server_addr.sin_port = htons(7777);
 
     // 특정 IP 주소로 바인딩 (예: 127.0.0.1 또는 192.168.0.5)
-    const char* ip_address = "192.168.1.125";
+    const char* ip_address = "127.0.0.1";
     if (inet_pton(AF_INET, ip_address, &server_addr.sin_addr) <= 0) {
         cout << "IP 주소 설정 실패." << endl;
         closesocket(server_sock.sck);

@@ -125,8 +125,8 @@ namespace Client {
 				Application::Exit();
 			}
 			// 서버 주소 설정 (서버 IP 주소와 포트를 적절히 수정)
-			//serverEndPoint = gcnew IPEndPoint(IPAddress::Parse("127.0.0.1"), 7777);
-			serverEndPoint = gcnew IPEndPoint(IPAddress::Parse("192.168.1.125"), 7777);
+			serverEndPoint = gcnew IPEndPoint(IPAddress::Parse("127.0.0.1"), 7777);
+			//serverEndPoint = gcnew IPEndPoint(IPAddress::Parse("192.168.1.125"), 7777);
 
 			// 클라이언트 소켓 생성
 			clientSocket = gcnew Socket(AddressFamily::InterNetwork, SocketType::Stream, ProtocolType::Tcp);
